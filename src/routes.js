@@ -1,13 +1,20 @@
 import React from 'react'
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
 
+import Navbar from 'components/Navbar/Navbar'
+
+import Landing from './pages/Landing'
+
 function RouteWithLayout(route) {
 	return (
-		<Route
-			path={route.path}
-			exact={route.exact}
-			render={(props) => <route.component {...props} routes={route.routes} />}
-		/>
+		<>
+			<Navbar />
+			<Route
+				path={route.path}
+				exact={route.exact}
+				render={(props) => <route.component {...props} routes={route.routes} />}
+			/>
+		</>
 	)
 }
 
@@ -32,7 +39,7 @@ export function RenderRoutes({ routes }) {
 }
 
 const ROUTES = [
-	{ path: '/', key: 'ROOT', exact: true, component: () => <h1>Beranda</h1> },
+	{ path: '/', key: 'ROOT', exact: true, component: Landing },
 	{
 		path: '/tentang',
 		key: 'ABOUT',
