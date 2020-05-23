@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const ImageContainer = styled.div`
-  width: ${({ width }) => width},
-  height: ${({ height }) => height}
+	width: ${({ width }) => width || 'auto'};
+	height: ${({ height }) => height || 'auto'};
 `
 
 const Image = styled.img.attrs(({ src, alt }) => ({
@@ -25,9 +25,9 @@ export default function ContainedImage({ src, alt, width, height }) {
 	)
 }
 
-ContainedImage.PropTypes = {
-	src: PropTypes.string,
-	alt: PropTypes.string,
+ContainedImage.propTypes = {
+	src: PropTypes.string.isRequired,
+	alt: PropTypes.string.isRequired,
 	width: PropTypes.string,
 	height: PropTypes.string,
 }

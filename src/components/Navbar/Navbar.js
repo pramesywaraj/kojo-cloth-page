@@ -3,6 +3,9 @@ import styled from 'styled-components'
 
 import { FaBars } from 'react-icons/fa'
 
+import ContainedImage from 'components/Images/ContainedImage'
+import Logo from 'assets/kojo-primary-logo.svg'
+
 const NavbarLayout = styled.nav`
 	height: 8vh;
 	width: 100%;
@@ -55,7 +58,12 @@ export default function Navbar() {
 					<FaBars size="1.6em" />
 				</li>
 				<li className="logo">
-					<a href="/">Logo</a>
+					<ContainedImage
+						src={Logo}
+						alt="kojo-logo"
+						width="20vw"
+						height="auto"
+					/>
 				</li>
 			</NavbarLinkList>
 		</NavbarLayout>
