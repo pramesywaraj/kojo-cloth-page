@@ -54,6 +54,8 @@ const SidebarMenuContainer = styled.div`
 		margin: 2vh 0;
 
 		text-align: center;
+		text-decoration: none;
+		-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 	}
 `
 
@@ -89,7 +91,7 @@ export default function Sidebar() {
 					<a href="/">Cek Status Pemesanan</a>
 				</SidebarMenuContainer>
 				<SidebarFooter>
-					<p>Copyrigth CV. Kojo Group Indonesia 2020</p>
+					<p>&copy; CV. Kojo Group Indonesia 2020</p>
 				</SidebarFooter>
 			</SidebarContainer>
 		</>
