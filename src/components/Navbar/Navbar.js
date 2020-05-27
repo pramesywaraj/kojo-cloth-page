@@ -33,7 +33,11 @@ const NavbarLinkList = styled.ul`
 		grid-column: 2 / span 10;
 	}
 	.menu {
-		color: ${(props) => props.theme.primary};
+		display: flex;
+		align-items: center;
+		color: ${({ theme }) => theme.colors.primary};
+
+		cursor: pointer;
 	}
 `
 
@@ -61,8 +65,8 @@ export default function Navbar() {
 					<ContainedImage
 						src={Logo}
 						alt="kojo-logo"
-						width="20vw"
-						height="auto"
+						width="auto"
+						height="25px"
 					/>
 				</li>
 			</NavbarLinkList>

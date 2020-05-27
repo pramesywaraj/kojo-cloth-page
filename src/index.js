@@ -5,7 +5,7 @@ import App from './App'
 import * as serviceWorker from './serviceWorker'
 
 import { ThemeProvider } from 'styled-components'
-import * as theme from './config/theme'
+import theme from './theme/theme'
 
 ReactDOM.render(
 	<React.StrictMode>
