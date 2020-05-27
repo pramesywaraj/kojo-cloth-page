@@ -14,11 +14,25 @@ const RegularButton = styled.button`
 	width: 100%;
 	height: auto;
 
+	transition-duration: 0.5s;
+
+	&:focus {
+		outline: none;
+	}
+
 	${(props) =>
 		props.primary &&
 		css`
 			background: ${({ theme }) => theme.colors.primary};
 			color: white;
+
+			&:hover {
+				background: ${({ theme }) => theme.colors.darkPrimary};
+			}
+
+			&:active {
+				background: ${({ theme }) => theme.colors.veryDarkPrimary};
+			}
 		`}
 
 	${(props) =>
