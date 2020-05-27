@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 
 import { FaBars } from 'react-icons/fa'
 
 import ContainedImage from 'components/Images/ContainedImage'
 import Logo from 'assets/kojo-primary-logo.svg'
+
+import SidebarContext from 'context/sidebar.context'
 
 const NavbarLayout = styled.nav`
 	height: 8vh;
@@ -37,6 +39,8 @@ const NavbarLinkList = styled.ul`
 		align-items: center;
 		color: ${({ theme }) => theme.colors.primary};
 
+		-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
 		cursor: pointer;
 	}
 `
@@ -55,10 +59,12 @@ function NavbarExtendedMenu() {
 }
 
 export default function Navbar() {
+	const { showSidebar } = useContext(SidebarContext)
+
 	return (
 		<NavbarLayout>
 			<NavbarLinkList>
-				<li className="menu">
+				<li className="menu" onClick={showSidebar}>
 					<FaBars size="1.6em" />
 				</li>
 				<li className="logo">

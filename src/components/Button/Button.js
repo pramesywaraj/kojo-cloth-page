@@ -42,6 +42,11 @@ const RegularButton = styled.button`
 			color: ${({ theme }) => theme.colors.primary};
 
 			border: 1px solid ${({ theme }) => theme.colors.primary};
+
+			&:hover {
+				background: ${({ theme }) => theme.colors.primary};
+				color: white;
+			}
 		`}
 `
 

@@ -1,14 +1,11 @@
 import React from 'react'
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
 
-import Navbar from 'components/Navbar/Navbar'
-
 import Landing from './pages/Landing'
 
 function RouteWithLayout(route) {
 	return (
 		<>
-			<Navbar />
 			<Route
 				path={route.path}
 				exact={route.exact}

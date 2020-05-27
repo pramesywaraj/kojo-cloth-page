@@ -7,6 +7,7 @@ export default {
 		white: '#FFFFFF',
 	},
 	fontSize: {
+		extraSmall: '10px',
 		small: '0.88rem',
 		regular: '1rem',
 		medium: '1.5rem',
