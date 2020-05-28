@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import Landing from './pages/Landing'
 
@@ -33,6 +34,14 @@ export function RenderRoutes({ routes }) {
 			</Switch>
 		</Router>
 	)
+}
+
+RenderRoutes.propTypes = {
+	routes: PropTypes.arrayOf(
+		PropTypes.shape({
+			route: PropTypes.object,
+		})
+	),
 }
 
 const ROUTES = [
