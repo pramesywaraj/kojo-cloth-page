@@ -70,6 +70,34 @@ const SidebarFooter = styled.footer`
 	}
 `
 
+const SidemenuItem = [
+	{
+		key: 'HOME',
+		name: 'Beranda',
+		link: '/',
+	},
+	{
+		key: 'ABOUT',
+		name: 'Tentang Kami',
+		link: '/tentang',
+	},
+	{
+		key: 'SERVICES',
+		name: 'Layanan',
+		link: '/layanan',
+	},
+	{
+		key: 'ORDER',
+		name: 'Pesan',
+		link: '/pesan-layanan',
+	},
+	{
+		key: 'STATUS',
+		name: 'Cek Status Pemesanan',
+		link: '/cek-status-pemesanan',
+	},
+]
+
 export default function Sidebar() {
 	const { isShow, hideSidebar } = useContext(SidebarContext)
 
@@ -86,11 +114,11 @@ export default function Sidebar() {
 					<ContainedImage src={Logo} alt="Logo Kojo" width="100px" />
 				</SidebarImageContainer>
 				<SidebarMenuContainer>
-					<a href="/">Beranda</a>
-					<a href="/">Tentang Kami</a>
-					<a href="/">Layanan</a>
-					<a href="/">Pesan</a>
-					<a href="/">Cek Status Pemesanan</a>
+					{SidemenuItem.map((item) => (
+						<a key={item.key} href={item.link}>
+							{item.name}
+						</a>
+					))}
 				</SidebarMenuContainer>
 				<SidebarFooter>
 					<p>&copy; CV. Kojo Group Indonesia 2020</p>

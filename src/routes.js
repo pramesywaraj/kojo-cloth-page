@@ -64,6 +64,12 @@ const ROUTES = [
 		exact: true,
 		component: () => <h1>PESAN LAYANAN</h1>,
 	},
+	{
+		path: '/cek-status-pemesanan',
+		key: 'STATUS',
+		exact: true,
+		component: () => <h1>STATUS PESANAN</h1>,
+	},
 ]
 
 export default ROUTES
