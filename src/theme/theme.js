@@ -8,7 +8,7 @@ export default {
 	},
 	fontSize: {
 		extraSmall: '10px',
-		small: '0.88rem',
+		small: '12px',
 		regular: '1rem',
 		medium: '1.5rem',
 		large: '2rem',

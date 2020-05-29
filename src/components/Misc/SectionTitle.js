@@ -3,7 +3,8 @@ import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 
 const Container = styled.div`
-	margin: 5vh 0;
+	margin: 3vh 0;
+	text-align: center;
 
 	${({ primary }) =>
 		primary &&

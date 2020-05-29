@@ -27,7 +27,8 @@ const AboutContainer = styled.section`
 
 		P {
 			margin-bottom: 3vh;
-			font-size: ${({ theme }) => theme.fontSize.small};
+			font-size: ${({ theme }) => theme.fontSize.regular};
+			color: ${({ theme }) => theme.colors.font};
 		}
 	}
 `

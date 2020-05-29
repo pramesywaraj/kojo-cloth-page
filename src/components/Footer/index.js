@@ -49,7 +49,7 @@ const CustomerAreaContainer = styled.div`
 			line-height: 20px;
 
 			margin-top: 5vh;
-			font-size: ${({ theme }) => theme.fontSize.small};
+			font-size: ${({ theme }) => theme.fontSize.regular};
 		}
 	}
 `
@@ -76,7 +76,7 @@ const AdditionalInfoContainer = styled.div`
 
 			p {
 				margin-top: 2vh;
-				font-size: ${({ theme }) => theme.fontSize.small};
+				font-size: ${({ theme }) => theme.fontSize.regular};
 			}
 		}
 	}
@@ -103,7 +103,7 @@ const CopyrightContainer = styled.div`
 	padding: 5%;
 
 	p {
-		font-size: ${({ theme }) => theme.fontSize.small};
+		font-size: ${({ theme }) => theme.fontSize.regular};
 	}
 `
 
