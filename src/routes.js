@@ -3,6 +3,7 @@ import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 import Landing from './pages/Landing'
+import About from './pages/About'
 
 function RouteWithLayout(route) {
 	return (
@@ -50,7 +51,7 @@ const ROUTES = [
 		path: '/tentang',
 		key: 'ABOUT',
 		exact: true,
-		component: () => <h1>Tentang</h1>,
+		component: About,
 	},
 	{
 		path: '/layanan',
