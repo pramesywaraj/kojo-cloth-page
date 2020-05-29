@@ -3,6 +3,7 @@ import ROUTE, { RenderRoutes } from './routes'
 import SidebarProvider from 'components/Provider/sidebar'
 import Sidebar from 'components/Sidebar'
 import Navbar from 'components/Navbar/Navbar'
+import KojoFooter from 'components/Footer'
 
 function App() {
 	return (
@@ -12,6 +13,7 @@ function App() {
 				<Navbar />
 			</SidebarProvider>
 			<RenderRoutes routes={ROUTE} />
+			<KojoFooter />
 		</div>
 	)
 }

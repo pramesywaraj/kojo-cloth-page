@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+
 import Wrapper from 'components/Layout/Wrapper'
 import { PrimaryButton } from 'components/Button/Button'
 import LandingBackground from 'assets/bg-landing.svg'

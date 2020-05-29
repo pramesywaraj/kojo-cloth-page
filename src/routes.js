@@ -20,7 +20,7 @@ export function RenderRoutes({ routes }) {
 	return (
 		<Router>
 			<Switch>
-				{routes.map((route, index) => {
+				{routes.map((route) => {
 					return <RouteWithLayout key={route.key} {...route} />
 				})}
 				<Route
