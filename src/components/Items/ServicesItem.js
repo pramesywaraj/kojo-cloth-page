@@ -1,9 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 import ContainedImage from 'components/Images/ContainedImage'
 
 import Bag from 'assets/services/bag.svg'
+
+import { otherServices } from 'constants/services'
 
 const CardContainer = styled.div`
 	width: 156px;
@@ -23,7 +26,14 @@ const CardContainer = styled.div`
 	}
 `
 
-const OtherServicesContainer = styled.div`
+const ServicesListContainer = styled.div`
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: auto auto;
+	margin: 3vh 0;
+`
+
+const OtherServiceContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -39,7 +49,14 @@ const OtherServicesContainer = styled.div`
 	}
 `
 
-export function ServicesCard() {
+const OtherServicesListContainer = styled.div`
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: auto;
+	margin: 3vh 0;
+`
+
+function ServiceCard() {
 	return (
 		<CardContainer>
 			<ContainedImage src={Bag} alt="Tas" width="85px" />
@@ -48,15 +65,47 @@ export function ServicesCard() {
 	)
 }
 
-export function OtherServices() {
+function OtherService({ name, description, img }) {
 	return (
-		<OtherServicesContainer>
-			<ContainedImage src={Bag} alt="Tas" width="85px" />
-			<h3>Title</h3>
-			<p>
-				KOJO.CLOTH juga menerima pemesanan untuk membuat Tote Bag dengan bahan
-				Canvas, Belacu, Drill, Dll.
-			</p>
-		</OtherServicesContainer>
+		<OtherServiceContainer>
+			<ContainedImage src={img} alt="Tas" width="85px" />
+			<h3>{name}</h3>
+			<p>{description}</p>
+		</OtherServiceContainer>
 	)
+}
+
+export function ServicesList() {
+	return (
+		<ServicesListContainer>
+			<ServiceCard />
+			<ServiceCard />
+			<ServiceCard />
+			<ServiceCard />
+			<ServiceCard />
+			<ServiceCard />
+			<ServiceCard />
+		</ServicesListContainer>
+	)
+}
+
+export function OtherServicesList() {
+	return (
+		<OtherServicesListContainer>
+			{otherServices.map((item, index) => (
+				<OtherService
+					key={index}
+					name={item.name}
+					description={item.description}
+					img={item.img}
+				/>
+			))}
+		</OtherServicesListContainer>
+	)
+}
+
+OtherService.propTypes = {
+	name: PropTypes.string.isRequired,
+	description: PropTypes.string.isRequired,
+	img: PropTypes.string.isRequired,
 }

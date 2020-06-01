@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import Wrapper from 'components/Layout/Wrapper'
 import { PrimarySectionTitle } from 'components/Misc/SectionTitle'
-import { ServicesCard, OtherServices } from 'components/Items/ServicesItem'
+import { OtherServicesList, ServicesList } from 'components/Items/ServicesItem'
 
 const ServicesMain = styled.main`
 	padding-top: 8vh;
@@ -19,21 +19,6 @@ const ServicesSection = styled.section`
 		font-size: ${({ theme }) => theme.fontSize.regular};
 		color: ${({ theme }) => theme.colors.font};
 	}
-
-	.services-list {
-		display: grid;
-		grid-gap: 10px;
-		grid-template-columns: auto auto;
-
-		margin: 3vh 0;
-	}
-
-	.services-other {
-		display: grid;
-		grid-gap: 10px;
-		grid-template-columns: auto;
-		margin: 3vh 0;
-	}
 `
 
 export default function Services() {
@@ -47,19 +32,11 @@ export default function Services() {
 							Kami melayani pembuatan berbagai kebutuhan sandang Anda, seperti
 						</p>
 					</div>
-					<div className="services-list">
-						<ServicesCard />
-						<ServicesCard />
-						<ServicesCard />
-						<ServicesCard />
-						<ServicesCard />
-					</div>
+					<ServicesList />
 				</ServicesSection>
 				<ServicesSection>
 					<PrimarySectionTitle>Layanan Lainnya</PrimarySectionTitle>
-					<div className="services-other">
-						<OtherServices />
-					</div>
+					<OtherServicesList />
 				</ServicesSection>
 			</Wrapper>
 		</ServicesMain>
