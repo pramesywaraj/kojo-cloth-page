@@ -6,7 +6,7 @@ import ContainedImage from 'components/Images/ContainedImage'
 
 import Bag from 'assets/services/bag.svg'
 
-import { otherServices } from 'constants/services'
+import { otherServices, services } from 'constants/services'
 
 const CardContainer = styled.div`
 	width: 156px;
@@ -56,11 +56,11 @@ const OtherServicesListContainer = styled.div`
 	margin: 3vh 0;
 `
 
-function ServiceCard() {
+function ServiceCard({ name, img }) {
 	return (
 		<CardContainer>
-			<ContainedImage src={Bag} alt="Tas" width="85px" />
-			<p>Caption</p>
+			<ContainedImage src={img} alt="Tas" width="85px" height="85px" />
+			<p>{name}</p>
 		</CardContainer>
 	)
 }
@@ -78,13 +78,9 @@ function OtherService({ name, description, img }) {
 export function ServicesList() {
 	return (
 		<ServicesListContainer>
-			<ServiceCard />
-			<ServiceCard />
-			<ServiceCard />
-			<ServiceCard />
-			<ServiceCard />
-			<ServiceCard />
-			<ServiceCard />
+			{services.map((item, index) => (
+				<ServiceCard key={index} name={item.name} img={item.img} />
+			))}
 		</ServicesListContainer>
 	)
 }
@@ -102,6 +98,11 @@ export function OtherServicesList() {
 			))}
 		</OtherServicesListContainer>
 	)
+}
+
+ServiceCard.propTypes = {
+	name: PropTypes.string.isRequired,
+	img: PropTypes.string.isRequired,
 }
 
 OtherService.propTypes = {

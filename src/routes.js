@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import Landing from './pages/Landing'
 import About from './pages/About'
 import Services from './pages/Services'
+import Order from './pages/Order'
 
 function RouteWithLayout(route) {
 	return (
@@ -64,7 +65,7 @@ const ROUTES = [
 		path: '/pesan-layanan',
 		key: 'ORDER',
 		exact: true,
-		component: () => <h1>PESAN LAYANAN</h1>,
+		component: Order,
 	},
 	{
 		path: '/cek-status-pemesanan',

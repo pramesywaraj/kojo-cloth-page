@@ -50,9 +50,9 @@ const RegularButton = styled.button`
 		`}
 `
 
-export function PrimaryButton({ onClickHandler, children }) {
+export function PrimaryButton({ onClickHandler, children, type }) {
 	return (
-		<RegularButton primary onClick={onClickHandler}>
+		<RegularButton primary onClick={onClickHandler} type={type | 'button'}>
 			{children}
 		</RegularButton>
 	)
@@ -60,5 +60,6 @@ export function PrimaryButton({ onClickHandler, children }) {
 
 PrimaryButton.propTypes = {
 	children: PropTypes.node.isRequired,
-	onClickHandler: PropTypes.func.isRequired,
+	onClickHandler: PropTypes.func,
+	type: PropTypes.string,
 }
