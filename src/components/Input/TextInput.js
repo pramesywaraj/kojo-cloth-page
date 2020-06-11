@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import PropTypes from 'prop-types'
 
@@ -36,6 +36,13 @@ const Input = styled.input`
 	border: 1.5px solid ${({ theme }) => theme.colors.primary};
 	border-radius: 8px;
 
+	${(props) =>
+		props.centered
+			? css`
+					text-align: center;
+			  `
+			: ''}
+
 	&:focus {
 		outline: none;
 	}
@@ -61,11 +68,13 @@ export function TextInput({
 	onChange,
 	value,
 	unit,
+	centered,
 }) {
 	return (
 		<InputContainer suffix={unit}>
 			<Label htmlFor={name}>{label}</Label>
 			<Input
+				centered={centered}
 				id={name}
 				name={name}
 				value={value}
@@ -101,6 +110,7 @@ TextInput.propTypes = {
 	onChange: PropTypes.func.isRequired,
 	value: PropTypes.any.isRequired,
 	unit: PropTypes.string,
+	centered: PropTypes.bool,
 }
 
 TextArea.propTypes = {

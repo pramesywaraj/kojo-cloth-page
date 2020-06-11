@@ -6,6 +6,7 @@ import Landing from './pages/Landing'
 import About from './pages/About'
 import Services from './pages/Services'
 import Order from './pages/Order'
+import OrderStatusCheck from './pages/OrderStatusCheck'
 
 function RouteWithLayout(route) {
 	return (
@@ -71,7 +72,7 @@ const ROUTES = [
 		path: '/cek-status-pemesanan',
 		key: 'STATUS',
 		exact: true,
-		component: () => <h1>STATUS PESANAN</h1>,
+		component: OrderStatusCheck,
 	},
 ]
 
