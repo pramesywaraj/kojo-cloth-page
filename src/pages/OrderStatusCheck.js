@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import axios from 'axios'
 
 import Wrapper from 'components/Layout/Wrapper'
 import { PrimarySectionTitle } from 'components/Misc/SectionTitle'
 import { TextInput } from 'components/Input/TextInput'
 import { PrimaryButton } from 'components/Button/Button'
+
+import Loading from 'components/Loading/Loading'
 
 const OrderMain = styled.main`
 	padding-top: 8vh;
@@ -46,6 +49,16 @@ export default function OrderStatusCheck() {
 
 	function onSubmitSearchStatus(e) {
 		e.preventDefault()
+
+		try {
+			const { data } = axios.get(
+				`${process.env.REACT_APP_API_URL}/order/${orderRef}`
+			)
+			console.log(data)
+		} catch (e) {
+			console.log('ada error')
+		} finally {
+		}
 	}
 
 	function changeFormValue({ target }) {
