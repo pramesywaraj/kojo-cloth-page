@@ -3,8 +3,10 @@ import styled from 'styled-components'
 
 const LoadingContainer = styled.div`
 	width: auto;
-	max-width: 20vw;
+	max-width: 25vw;
 	height: 100%;
+
+	margin: 0 auto;
 
 	display: flex;
 	flex-direction: row;
@@ -18,10 +20,10 @@ const LoadingContainer = styled.div`
 `
 
 const LoadingSpinner = styled.div`
-	width: 20px;
-	height: 20px;
+	width: 15px;
+	height: 15px;
 	border-radius: 50%;
-	background-color: ${({ theme }) => theme.colors.primary};
+	background-color: ${({ theme }) => theme.colors.white};
 	opacity: 0.5;
 
 	-webkit-animation: loading-bounce 2s infinite ease-in-out;

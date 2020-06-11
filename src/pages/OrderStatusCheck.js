@@ -2,12 +2,15 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
 
+import useLoading from 'hooks/useLoading'
+
 import Wrapper from 'components/Layout/Wrapper'
 import { PrimarySectionTitle } from 'components/Misc/SectionTitle'
 import { TextInput } from 'components/Input/TextInput'
 import { PrimaryButton } from 'components/Button/Button'
 
 import Loading from 'components/Loading/Loading'
+import { ErrorMessage } from 'components/Message/Message'
 
 const OrderMain = styled.main`
 	padding-top: 8vh;
@@ -41,23 +44,43 @@ const OrderForm = styled.form`
 	.submit-button {
 		width: 50vw;
 		margin: 20px auto;
+
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
 	}
 `
 
 export default function OrderStatusCheck() {
 	const [orderRef, setOrderRef] = useState('')
+	const [orderDetail, setOrderDetail] = useState({})
+	const [error, setError] = useState({
+		isError: false,
+		message: '',
+	})
 
-	function onSubmitSearchStatus(e) {
+	const [loading, showLoading, hideLoading] = useLoading()
+
+	async function onSubmitSearchStatus(e) {
 		e.preventDefault()
 
+		showLoading()
+
 		try {
-			const { data } = axios.get(
+			const { data } = await axios.get(
 				`${process.env.REACT_APP_API_URL}/order/${orderRef}`
 			)
-			console.log(data)
-		} catch (e) {
-			console.log('ada error')
+
+			if (!data.success || data.errors) throw data.errors
+
+			setOrderDetail(data.data)
+		} catch (err) {
+			setError({
+				isError: true,
+				message: err,
+			})
 		} finally {
+			hideLoading()
 		}
 	}
 
@@ -71,6 +94,7 @@ export default function OrderStatusCheck() {
 			<Wrapper>
 				<OrderSection>
 					<PrimarySectionTitle>Cek Status Pemesanan</PrimarySectionTitle>
+					{error.isError && <ErrorMessage message={error.message} />}
 					<OrderForm onSubmit={onSubmitSearchStatus}>
 						<TextInput
 							name="name"
@@ -81,7 +105,10 @@ export default function OrderStatusCheck() {
 							centered
 						/>
 						<div className="submit-button">
-							<PrimaryButton type="submit">Periksa Pesanan Saya</PrimaryButton>
+							<PrimaryButton type="submit">
+								{loading && <Loading />}
+								{!loading && 'Periksa Pesanan Saya'}
+							</PrimaryButton>
 						</div>
 					</OrderForm>
 				</OrderSection>

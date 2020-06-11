@@ -5,6 +5,7 @@ export default {
 		veryDarkPrimary: '#2a0643',
 		font: '#777777',
 		white: '#FFFFFF',
+		error: '#f02213',
 	},
 	fontSize: {
 		extraSmall: '10px',
