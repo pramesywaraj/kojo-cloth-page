@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useHistory } from 'react-router-dom'
 
 import Wrapper from 'components/Layout/Wrapper'
 import { PrimaryButton } from 'components/Button/Button'
@@ -43,8 +44,10 @@ const HeaderButtonContainer = styled.div`
 `
 
 export default function Landing() {
-	function clickHandler() {
-		console.log('click')
+	const history = useHistory()
+
+	function goToOrderPage() {
+		history.push('/pesan-layanan')
 	}
 
 	return (
@@ -59,7 +62,7 @@ export default function Landing() {
 						<p>Kojo Cloth hadir untuk memenuhi kebutuhan sandang Anda</p>
 					</HeaderCaptionContainer>
 					<HeaderButtonContainer>
-						<PrimaryButton onClickHandler={clickHandler}>
+						<PrimaryButton onClickHandler={goToOrderPage}>
 							Pesan Sekarang
 						</PrimaryButton>
 					</HeaderButtonContainer>
