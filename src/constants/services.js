@@ -24,66 +24,82 @@ export const services = [
 	{
 		name: 'Kaos Oblong',
 		img: KaosOblong,
+		value: 'T_SHIRT',
 	},
 	{
 		name: 'Kaos Fullprint',
 		img: KaosFullprint,
+		value: 'T_SHIRT',
 	},
 	{
 		name: 'Kaos Kombinasi',
 		img: KaosKombinasi,
+		value: 'T_SHIRT',
 	},
 	{
 		name: 'Kaos Panjang/Raglan',
 		img: KaosPanjangRaglan,
+		value: 'T_SHIRT',
 	},
 	{
 		name: 'Kaos Polo',
 		img: KaosPolo,
+		value: 'T_SHIRT',
 	},
 	{
 		name: 'Kemeja Kerja/Jurusan/Outdoor',
 		img: KemejaKerjaJurusan,
+		value: 'SHIRT',
 	},
 	{
 		name: 'Jaket Zipper',
 		img: JaketZipper,
+		value: 'JACKET',
 	},
 	{
 		name: 'Jaket Gunung',
 		img: JaketGunung,
+		value: 'JACKET',
 	},
 	{
 		name: 'Jaket Versity',
 		img: JaketVersity,
+		value: 'JACKET',
 	},
 	{
 		name: 'Jaket Musim Dingin',
 		img: JaketMusimDingin,
+		value: 'JACKET',
 	},
 	{
 		name: 'Jaket Motor',
 		img: JaketMotor,
+		value: 'JACKET',
 	},
 	{
 		name: 'Jaket Parka',
 		img: JaketParka,
+		value: 'JACKET',
 	},
 	{
 		name: 'Hoodie',
 		img: Hoodie,
+		value: 'JACKET',
 	},
 	{
 		name: 'Jas Almamater',
 		img: JasAlmamater,
+		value: 'JACKET',
 	},
 	{
 		name: 'Jas Kerja',
 		img: JasKerja,
+		value: 'OTHER',
 	},
 	{
 		name: 'Rompi Komunitas',
 		img: RompiKomunitas,
+		value: 'OTHER',
 	},
 ]
 
@@ -93,23 +109,46 @@ export const otherServices = [
 		description:
 			'KOJO.CLOTH juga menerima pemesanan untuk membuat Tote Bag dengan bahan Canvas, Belacu, Drill, Dll.',
 		img: Bag,
+		value: 'OTHER',
 	},
 	{
 		name: 'Topi',
 		description:
 			'KOJO.CLOTH juga menerima pemesanan untuk membuat Topi Favoritmu dengan desain sendiri dan tentunya menggunakan bahan yang premium.',
 		img: Hat,
+		value: 'OTHER',
 	},
 	{
 		name: 'Syal',
 		description:
 			'KOJO.CLOTH juga dapat membuatkanmu Syal, Scarf Pramuka, dll. untuk Kepanitiaan, Komunitas, Dll.',
 		img: Scarf,
+		value: 'OTHER',
 	},
 	{
 		name: 'Gelang',
 		description:
 			'KOJO.CLOTH juga menerima pesanan untuk pembuatan gelang Kepanitiaan, Komunitas, Perusahaan Dll.',
 		img: Bracelet,
+		value: 'OTHER',
+	},
+]
+
+export const materials = [
+	{
+		name: 'Taslan',
+		value: 'Taslan',
+	},
+	{
+		name: 'American Drill',
+		value: 'American Drill',
+	},
+	{
+		name: 'Cotton Combed 30s',
+		value: 'Cotton Combed 30s',
+	},
+	{
+		name: 'Cotton Combed 20s',
+		value: 'Cotton Combed 20s',
 	},
 ]

@@ -9,6 +9,7 @@ const SelectContainer = styled.div`
 	margin: 1.5vh 0;
 
 	display: block;
+	position: relative;
 `
 
 const Label = styled.label`
@@ -24,18 +25,39 @@ const SelectInput = styled.select`
 	padding: 10px;
 	border: 1.5px solid ${({ theme }) => theme.colors.primary};
 	border-radius: 8px;
+	outline: none;
 
-	&:focus {
-		outline: none;
+	option {
+		width: 100%;
+		color: ${({ theme }) => theme.colors.font};
+		background: white;
+		display: flex;
+		white-space: pre;
+		min-height: 20px;
+		padding: 0px 2px 1px;
 	}
 `
 
-export default function Select({ name, placeholder, label, onChange, value }) {
+export default function Select({
+	name,
+	placeholder,
+	label,
+	onChange,
+	value,
+	options,
+}) {
 	return (
 		<SelectContainer>
 			<Label htmlFor={name}>{label}</Label>
 			<SelectInput id={name} name={name} onChange={onChange} value={value}>
-				<option>{placeholder}</option>
+				<option value="DEFAULT" disabled>
+					{placeholder}
+				</option>
+				{options.map((option, index) => (
+					<option key={index} value={option.value}>
+						{option.name}
+					</option>
+				))}
 			</SelectInput>
 		</SelectContainer>
 	)
@@ -47,4 +69,5 @@ Select.propTypes = {
 	label: PropTypes.string,
 	onChange: PropTypes.func.isRequired,
 	value: PropTypes.any.isRequired,
+	options: PropTypes.array.isRequired,
 }

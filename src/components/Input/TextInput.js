@@ -8,7 +8,18 @@ const InputContainer = styled.div`
 	height: auto;
 	margin: 1.5vh 0;
 
-	display: block;
+	display: inline-block;
+	position: relative;
+
+	&::after {
+		position: absolute;
+		top: 33px;
+		right: 1em;
+	}
+
+	&::after {
+		content: '${(props) => props.suffix}';
+	}
 `
 
 const Label = styled.label`
@@ -42,9 +53,17 @@ const TextAreaInput = styled.textarea`
 	}
 `
 
-export function TextInput({ name, placeholder, type, label, onChange, value }) {
+export function TextInput({
+	name,
+	placeholder,
+	type = 'text',
+	label,
+	onChange,
+	value,
+	unit,
+}) {
 	return (
-		<InputContainer>
+		<InputContainer suffix={unit}>
 			<Label htmlFor={name}>{label}</Label>
 			<Input
 				id={name}
@@ -77,10 +96,11 @@ export function TextArea({ name, placeholder, label, onChange, value }) {
 TextInput.propTypes = {
 	name: PropTypes.string.isRequired,
 	placeholder: PropTypes.string,
-	type: PropTypes.string.isRequired,
+	type: PropTypes.string,
 	label: PropTypes.string,
 	onChange: PropTypes.func.isRequired,
 	value: PropTypes.any.isRequired,
+	unit: PropTypes.string,
 }
 
 TextArea.propTypes = {
