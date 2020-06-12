@@ -247,7 +247,7 @@ export default function OrderStatusCheck() {
 
 		try {
 			const { data } = await axios.get(
-				`${process.env.REACT_APP_API_URL}/order/${orderRef}`
+				`${process.env.REACT_APP_API_URL}order/${orderRef}`
 			)
 
 			if (!data.success || data.errors) throw data.errors

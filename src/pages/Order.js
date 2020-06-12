@@ -96,7 +96,7 @@ function OrderSuccess({ orderRef, onReOrderHandler }) {
 				<p>
 					Pesanan Anda telah kami terima dan sedang kami proses. Silahkan
 					konfirmasi pesanan Anda melalui kontak kami. Terima kasih telah
-					memesan di Kojo Cloth &#128512;
+					memesan di Kojo Cloth <span>&#128512;</span>
 				</p>
 			</div>
 			<div className="order-ref">
@@ -181,7 +181,7 @@ export default function Order() {
 			const {
 				data: imageUploadResponse,
 			} = await axios.post(
-				`${process.env.REACT_APP_API_URL}/order/design/upload`,
+				`${process.env.REACT_APP_API_URL}order/design/upload`,
 				imageData,
 				{ headers: imageUploadOption }
 			)
