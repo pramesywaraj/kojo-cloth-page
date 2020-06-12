@@ -49,18 +49,18 @@ const NavbarLinkList = styled.ul`
 	}
 `
 
-function NavbarExtendedMenu() {
-	return (
-		<>
-			<li className="link">
-				<a href="/">Menu</a>
-			</li>
-			<li className="link">
-				<a href="/">Logo</a>
-			</li>
-		</>
-	)
-}
+// function NavbarExtendedMenu() {
+// 	return (
+// 		<>
+// 			<li className="link">
+// 				<a href="/">Menu</a>
+// 			</li>
+// 			<li className="link">
+// 				<a href="/">Logo</a>
+// 			</li>
+// 		</>
+// 	)
+// }
 
 export default function Navbar() {
 	const { showSidebar } = useContext(SidebarContext)
