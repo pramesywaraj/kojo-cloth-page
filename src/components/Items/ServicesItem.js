@@ -3,9 +3,6 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
 import ContainedImage from 'components/Images/ContainedImage'
-
-import Bag from 'assets/services/bag.svg'
-
 import { otherServices, services } from 'constants/services'
 
 const CardContainer = styled.div`
