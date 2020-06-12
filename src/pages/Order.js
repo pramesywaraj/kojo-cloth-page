@@ -81,6 +81,10 @@ const OrderSuccessContainer = styled.div`
 	.order-ref-warning {
 		margin: 3vh 0;
 	}
+
+	.re-order-button {
+		min-width: 55vw;
+	}
 `
 
 function OrderSuccess({ orderRef, onReOrderHandler }) {
@@ -120,7 +124,7 @@ OrderSuccess.propTypes = {
 }
 
 export default function Order() {
-	const [order, setOrder] = useState({
+	const initialOrderState = {
 		name: '',
 		address: '',
 		phone_number: '',
@@ -131,7 +135,8 @@ export default function Order() {
 		detail: '',
 		total: '',
 		notes: '',
-	})
+	}
+	const [order, setOrder] = useState(initialOrderState)
 	const [loading, showLoading, hideLoading] = useLoading()
 	const [orderInfo, setOrderInfo] = useState({
 		isOrdered: false,
@@ -205,7 +210,8 @@ export default function Order() {
 				submittedOrderRef: orderPostResponse.data.order_ref,
 			})
 
-			e.target.reset()
+			window.scrollTo({ top: 0, behavior: 'smooth' })
+			setOrder(initialOrderState)
 		} catch (err) {
 			setError({
 				isError: true,
@@ -237,6 +243,8 @@ export default function Order() {
 			isOrdered: false,
 			submittedOrderRef: '',
 		})
+
+		window.scrollTo({ top: 0, behavior: 'smooth' })
 	}
 
 	return (
@@ -264,6 +272,14 @@ export default function Order() {
 									type="text"
 									placeholder="Masukkan nama lengkap Anda"
 									label="Nama"
+									onChange={changeFormValue}
+								/>
+								<TextInput
+									name="phone_number"
+									value={order.phone_number}
+									type="tel"
+									placeholder="Masukkan nomor telepon Anda"
+									label="Nomor Telepon"
 									onChange={changeFormValue}
 								/>
 								<TextArea
