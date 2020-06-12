@@ -31,6 +31,8 @@ const ServicesListContainer = styled.div`
 	grid-gap: 10px;
 	grid-template-columns: auto auto;
 	margin: 3vh 0;
+	justify-items: center;
+	align-items: center;
 `
 
 const OtherServiceContainer = styled.div`
