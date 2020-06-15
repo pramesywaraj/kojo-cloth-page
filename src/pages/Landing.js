@@ -4,7 +4,10 @@ import { useHistory } from 'react-router-dom'
 
 import Wrapper from 'components/Layout/Wrapper'
 import { PrimaryButton } from 'components/Button/Button'
+import ContainedImage from 'components/Images/ContainedImage'
+
 import LandingBackground from 'assets/bg-landing.svg'
+import KojoHuman1 from 'assets/illustrations/kojo-human-1.svg'
 
 const HeaderContainer = styled.header`
 	display: flex;
@@ -42,6 +45,28 @@ const HeaderButtonContainer = styled.div`
 	margin-top: 5vh;
 	padding: 0 20%;
 `
+const Section = styled.section`
+	background-color: ${({ background, theme }) => theme.colors[`${background}`]};
+	height: auto;
+`
+
+const KojoDescriptionContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	min-height: 90vh;
+	.kojo-illust-1 {
+		width: 327px;
+	}
+
+	.kojo-short-description {
+		color: white;
+		text-align: center;
+		margin: 5vh 0;
+	}
+`
 
 export default function Landing() {
 	const history = useHistory()
@@ -68,6 +93,27 @@ export default function Landing() {
 					</HeaderButtonContainer>
 				</Wrapper>
 			</HeaderContainer>
+			<Section aria-label="Penjelasan Kojo Cloth" background="primary">
+				<Wrapper>
+					<KojoDescriptionContainer>
+						<div className="kojo-illust-1">
+							<ContainedImage
+								src={KojoHuman1}
+								alt="Illustrasi Kojo 1"
+								width=""
+							/>
+						</div>
+						<div className="kojo-short-description">
+							<p>
+								<b>Kojo Cloth</b> hadir untuk memenuhi kebutuhan sandang
+								pribadi, organisasi atau komunitasmu. Kami menerima permintaan
+								pembuatan Jaket, Jas, Kaos, Kemeja, Rompi, Toga, Tas Jinjing
+								(Tote Bag), dan lainnya.
+							</p>
+						</div>
+					</KojoDescriptionContainer>
+				</Wrapper>
+			</Section>
 		</main>
 	)
 }

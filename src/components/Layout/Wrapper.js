@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 
 const Wrap = styled.div`
 	padding: 5%;
+	height: auto;
 `
 
 export default function Wrapper({ children }) {
