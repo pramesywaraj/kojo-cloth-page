@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
@@ -74,10 +74,23 @@ function OtherService({ name, description, img }) {
 	)
 }
 
-export function ServicesList() {
+export function ServicesList({ maxItem }) {
+	const [serviceItems, setServiceItem] = useState([])
+
+	useEffect(() => {
+		let items = services
+
+		if (maxItem) {
+			let temp = items.slice(0, maxItem)
+			items = temp
+		}
+
+		setServiceItem(items)
+	}, [])
+
 	return (
 		<ServicesListContainer>
-			{services.map((item, index) => (
+			{serviceItems.map((item, index) => (
 				<ServiceCard key={index} name={item.name} img={item.img} />
 			))}
 		</ServicesListContainer>
@@ -108,4 +121,8 @@ OtherService.propTypes = {
 	name: PropTypes.string.isRequired,
 	description: PropTypes.string.isRequired,
 	img: PropTypes.string.isRequired,
+}
+
+ServicesList.propTypes = {
+	maxItem: PropTypes.number,
 }

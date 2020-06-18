@@ -58,7 +58,21 @@ export function PrimaryButton({ onClickHandler, children, type }) {
 	)
 }
 
+export function OutlinedButton({ onClickHandler, children, type }) {
+	return (
+		<RegularButton outlined onClick={onClickHandler} type={type | 'button'}>
+			{children}
+		</RegularButton>
+	)
+}
+
 PrimaryButton.propTypes = {
+	children: PropTypes.node.isRequired,
+	onClickHandler: PropTypes.func,
+	type: PropTypes.string,
+}
+
+OutlinedButton.propTypes = {
 	children: PropTypes.node.isRequired,
 	onClickHandler: PropTypes.func,
 	type: PropTypes.string,
