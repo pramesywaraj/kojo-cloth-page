@@ -11,6 +11,7 @@ import {
 } from 'components/Misc/SectionTitle'
 import { ServicesList, OtherServicesList } from 'components/Items/ServicesItem'
 import LandingSlideshow from 'components/Slide/LandingSlideshow'
+import ClientItems from 'components/Items/ClientItems'
 
 import LandingBackground from 'assets/bg-landing.svg'
 import KojoHuman1 from 'assets/illustrations/kojo-human-1.svg'
@@ -89,6 +90,11 @@ const PortfolioContainer = styled.div`
 	padding: 4%;
 `
 
+const KojoClientContainer = styled.div`
+	width: 100%;
+	margin: 10vh auto;
+`
+
 export default function Landing() {
 	const history = useHistory()
 
@@ -162,7 +168,7 @@ export default function Landing() {
 					</KojoServicesContainer>
 				</Wrapper>
 			</Section>
-			<Section aria-label="Layanan Kojo Cloth Lainnya" background="primary">
+			<Section aria-label="Portfolio Kojo Cloth" background="primary">
 				<Wrapper>
 					<SecondarySectionTitle>Portfolio</SecondarySectionTitle>
 					<KojoPortfolioContainer>
@@ -170,6 +176,14 @@ export default function Landing() {
 							<LandingSlideshow />
 						</PortfolioContainer>
 					</KojoPortfolioContainer>
+				</Wrapper>
+			</Section>
+			<Section aria-label="Klien Kojo Cloth" background="white">
+				<Wrapper>
+					<PrimarySectionTitle>Klien Kami</PrimarySectionTitle>
+					<KojoClientContainer>
+						<ClientItems />
+					</KojoClientContainer>
 				</Wrapper>
 			</Section>
 		</main>

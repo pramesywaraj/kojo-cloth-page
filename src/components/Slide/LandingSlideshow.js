@@ -35,7 +35,7 @@ export default function LandingSlideshow() {
 		<Slide {...properties}>
 			{images.map((image, index) => (
 				<ImageContainer key={index}>
-					<img src={image} alt={`image-${index}`} />
+					<img src={image} alt={`gambar-${index}`} />
 				</ImageContainer>
 			))}
 		</Slide>
