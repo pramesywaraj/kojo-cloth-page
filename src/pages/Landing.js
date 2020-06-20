@@ -11,6 +11,7 @@ import {
 } from 'components/Misc/SectionTitle'
 import { ServicesList, OtherServicesList } from 'components/Items/ServicesItem'
 import LandingSlideshow from 'components/Slide/LandingSlideshow'
+import TestimonialSlideshow from 'components/Slide/TestimonialSlideshow'
 import ClientItems from 'components/Items/ClientItems'
 
 import LandingBackground from 'assets/bg-landing.svg'
@@ -39,10 +40,12 @@ const HeaderCaptionContainer = styled.div`
 	margin-top: 5vh;
 	line-height: 20px;
 `
+
 const ButtonContainer = styled.div`
 	margin-top: 5vh;
 	width: 50vw;
 `
+
 const Section = styled.section`
 	background-color: ${({ background, theme }) => theme.colors[`${background}`]};
 	height: auto;
@@ -90,9 +93,17 @@ const PortfolioContainer = styled.div`
 	padding: 4%;
 `
 
-const KojoClientContainer = styled.div`
-	width: 100%;
+const KojoClientContainer = styled(KojoLandingContainer)`
 	margin: 10vh auto;
+`
+
+const KojoTestimoniContainer = styled(KojoLandingContainer)`
+	margin: 10vh auto;
+`
+
+const TestimoniSlideContainer = styled.div`
+	width: 100%;
+	height: auto;
 `
 
 export default function Landing() {
@@ -184,6 +195,16 @@ export default function Landing() {
 					<KojoClientContainer>
 						<ClientItems />
 					</KojoClientContainer>
+				</Wrapper>
+			</Section>
+			<Section aria-label="Testimoni Kojo Cloth" background="white">
+				<Wrapper>
+					<PrimarySectionTitle>Testimoni</PrimarySectionTitle>
+					<KojoTestimoniContainer>
+						<TestimoniSlideContainer>
+							<TestimonialSlideshow />
+						</TestimoniSlideContainer>
+					</KojoTestimoniContainer>
 				</Wrapper>
 			</Section>
 		</main>
