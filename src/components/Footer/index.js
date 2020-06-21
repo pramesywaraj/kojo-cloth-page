@@ -159,35 +159,35 @@ function KojoFooter() {
 				<div className="info-social-media">
 					<a
 						target="_blank"
-						rel="noreferrer"
+						rel="noopener noreferrer"
 						href="https://www.facebook.com/kojocloth.id"
 					>
 						<Icon src={Facebook} width="44px" />
 					</a>
 					<a
 						target="_blank"
-						rel="noreferrer"
+						rel="noopener noreferrer"
 						href="https://aboutme.google.com/u/3/?referer=gplus&pageId=none"
 					>
 						<Icon src={Google} width="44px" />
 					</a>
 					<a
 						target="_blank"
-						rel="noreferrer"
+						rel="noopener noreferrer"
 						href="https://twitter.com/kojocloth"
 					>
 						<Icon src={Twitter} width="44px" />
 					</a>
 					<a
 						target="_blank"
-						rel="noreferrer"
+						rel="noopener noreferrer"
 						href="https://www.youtube.com/channel/UCC1E7PUDHA1fuXfTOdfQOEg/featured"
 					>
 						<Icon src={Youtube} width="44px" />
 					</a>
 					<a
 						target="_blank"
-						rel="noreferrer"
+						rel="noopener noreferrer"
 						href="https://instagram.com/kojo.cloth"
 					>
 						<Icon src={Instagram} width="44px" />

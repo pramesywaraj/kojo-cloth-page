@@ -12,7 +12,7 @@ const Backdrop = styled.div`
 	width: 100%;
 	height: 100%;
 
-	z-index: 2;
+	z-index: 1001;
 
 	${({ show }) =>
 		!show &&
@@ -27,7 +27,7 @@ const SidebarContainer = styled.div`
 	width: 70vw;
 	background: white;
 
-	z-index: 99;
+	z-index: 1002;
 	position: fixed;
 
 	display: flex;

@@ -17,8 +17,6 @@ import ContainedImage from 'components/Images/ContainedImage'
 import Loading from 'components/Loading/Loading'
 import { ErrorMessage } from 'components/Message/Message'
 
-import { services, otherServices, materials } from 'constants/services'
-
 import IconCheck from 'assets/icons/ic-check.svg'
 
 const OrderMain = styled.main`
@@ -149,18 +147,53 @@ export default function Order() {
 		isError: false,
 		message: '',
 	})
+	const [types, setTypes] = useState(null)
+	const [materials, setMaterials] = useState(null)
+	const [getSelectLoad, setSelectLoad] = useState(true)
 
 	const [image, setImage] = useState(null)
 	const [currentDate, setCurrentDate] = useState(null)
-	const typeOptions = [...services, ...otherServices]
+	const [selectedTypeId, setSelectedTypeId] = useState(null)
 
 	useEffect(() => {
 		const date = new Date()
 
 		const fullDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
+		const getTypes = async () => {
+			try {
+				const { data } = await axios.get(
+					`${process.env.REACT_APP_API_URL}/clothing/type`
+				)
+
+				setTypes(data.data)
+			} catch (err) {
+				alert('Terjadi kesalahan. Silahkan refresh laman ini.')
+			} finally {
+				setSelectLoad(false)
+			}
+		}
 
 		setCurrentDate(fullDate)
+		getTypes()
 	}, [])
+
+	useEffect(() => {
+		const getMaterials = async () => {
+			try {
+				const { data } = await axios.get(
+					`${process.env.REACT_APP_API_URL}/clothing/type/${selectedTypeId}/material`
+				)
+
+				setMaterials(data.data)
+			} catch (err) {
+				alert('Terjadi kesalahan. Silahkan refresh laman ini.')
+			} finally {
+				setSelectLoad(false)
+			}
+		}
+
+		if (selectedTypeId) getMaterials()
+	}, [selectedTypeId])
 
 	async function onSubmitOrder(e) {
 		e.preventDefault()
@@ -189,12 +222,12 @@ export default function Order() {
 				{ headers: imageUploadOption }
 			)
 
-			if (!imageUploadResponse.url)
-				throw new Error('Terjadi kesalahan. Silahkan ulangi kembali')
+			if (!imageUploadResponse.data.url || !imageUploadResponse.success)
+				throw imageUploadResponse.errors
 
 			let orderData = {
 				...order,
-				design_url: imageUploadResponse.url,
+				design_url: imageUploadResponse.data.url,
 			}
 
 			const {
@@ -226,7 +259,12 @@ export default function Order() {
 	}
 
 	function changeFormValue({ target }) {
-		const { name, value } = target
+		let { name, value } = target
+
+		if (name === 'type') {
+			let temp = types.find((type) => type.code === value)
+			setSelectedTypeId(temp.id)
+		}
 
 		setOrder((prevState) => {
 			return {
@@ -298,7 +336,8 @@ export default function Order() {
 									placeholder="Jenis sandang"
 									label="Jenis"
 									onChange={changeFormValue}
-									options={typeOptions}
+									options={types}
+									onLoading={getSelectLoad}
 								/>
 								<Select
 									name="material"
@@ -307,6 +346,7 @@ export default function Order() {
 									label="Bahan"
 									onChange={changeFormValue}
 									options={materials}
+									onLoading={getSelectLoad}
 								/>
 								<TextInput
 									name="detail"
