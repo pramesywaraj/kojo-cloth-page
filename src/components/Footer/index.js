@@ -40,6 +40,11 @@ const CustomerAreaContainer = styled.div`
 	text-align: center;
 	padding: 5%;
 
+	h2 {
+		font-weight: 600;
+		font-size: 2rem;
+	}
+
 	.kojo-tips {
 		display: flex;
 		flex-direction: column;
@@ -108,6 +113,12 @@ const CopyrightContainer = styled.div`
 `
 
 function KojoFooter() {
+	function goToLocation() {
+		window.open(
+			'https://www.google.com/maps/dir//-6.9491263,107.7411329/@-6.949126,107.741133,15z?hl=en'
+		)
+	}
+
 	return (
 		<Footer>
 			<LogoContainer>
@@ -125,7 +136,7 @@ function KojoFooter() {
 			</CustomerAreaContainer>
 			<AdditionalInfoContainer>
 				<div className="info-operational">
-					<div className="info-element">
+					<div className="info-element" onClick={goToLocation}>
 						<Icon src={Pin} width="26px" />
 						<p>
 							Komplek Taman Cileunyi Blok 2A No.14, Cileunyi Kulon, Cileunyi,
@@ -142,7 +153,7 @@ function KojoFooter() {
 					</div>
 					<div className="info-element">
 						<Icon src={Phone} width="26px" />
-						<p>0857-9792-3565 (Malik)</p>
+						<p>0813-2221-0723 (Faizal)</p>
 					</div>
 				</div>
 				<div className="info-social-media">
