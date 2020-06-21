@@ -47,6 +47,11 @@ const RegularButton = styled.button`
 				background: ${({ theme }) => theme.colors.primary};
 				color: white;
 			}
+
+			&:active {
+				color: ${({ theme }) => theme.colors.primary};
+				background: ${({ theme }) => theme.colors.darkWhite};
+			}
 		`}
 `
 

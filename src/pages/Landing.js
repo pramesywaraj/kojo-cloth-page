@@ -16,6 +16,7 @@ import ClientItems from 'components/Items/ClientItems'
 
 import LandingBackground from 'assets/bg-landing.svg'
 import KojoHuman1 from 'assets/illustrations/kojo-human-1.svg'
+import KojoHuman2 from 'assets/illustrations/kojo-human-2.svg'
 
 const Header = styled.header`
 	color: ${({ theme }) => theme.colors.white};
@@ -106,6 +107,20 @@ const TestimoniSlideContainer = styled.div`
 	height: auto;
 `
 
+const KojoContactContainer = styled(KojoLandingContainer)`
+	margin: 5vh auto;
+	p {
+		font-size: 1.7rem;
+		font-weight: 500;
+		color: white;
+	}
+
+	.kojo-illust-2 {
+		width: 295px;
+		margin-top: 5vh;
+	}
+`
+
 export default function Landing() {
 	const history = useHistory()
 
@@ -115,6 +130,10 @@ export default function Landing() {
 
 	function goToServicesPage() {
 		history.push('/layanan')
+	}
+
+	function goToContact() {
+		window.open('https://wa.me/6281322210723')
 	}
 
 	return (
@@ -141,11 +160,7 @@ export default function Landing() {
 				<Wrapper>
 					<KojoDescriptionContainer>
 						<div className="kojo-illust-1">
-							<ContainedImage
-								src={KojoHuman1}
-								alt="Illustrasi Kojo 1"
-								width=""
-							/>
+							<ContainedImage src={KojoHuman1} alt="Illustrasi Kojo 1" />
 						</div>
 						<div className="kojo-short-description">
 							<p>
@@ -205,6 +220,21 @@ export default function Landing() {
 							<TestimonialSlideshow />
 						</TestimoniSlideContainer>
 					</KojoTestimoniContainer>
+				</Wrapper>
+			</Section>
+			<Section aria-label="Kontak Kojo Cloth" background="primary">
+				<Wrapper>
+					<KojoContactContainer>
+						<p>Ada pertanyaan seputar Kojo Cloth ? Silahkan hubungi kami</p>
+						<ButtonContainer>
+							<OutlinedButton onClickHandler={goToContact}>
+								Hubungi Kami Disini
+							</OutlinedButton>
+						</ButtonContainer>
+						<div className="kojo-illust-2">
+							<ContainedImage src={KojoHuman2} alt="Illustrasi Kojo 1" />
+						</div>
+					</KojoContactContainer>
 				</Wrapper>
 			</Section>
 		</main>

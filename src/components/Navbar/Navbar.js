@@ -18,7 +18,7 @@ const NavbarLayout = styled.nav`
 	border-radius: 0 0 10px 10px;
 
 	position: fixed;
-	z-index: 1;
+	z-index: 100;
 `
 
 const NavbarLinkList = styled.ul`
