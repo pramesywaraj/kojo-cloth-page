@@ -371,6 +371,7 @@ export default function Order() {
 									onChange={changeFormValue}
 									type="date"
 									min={currentDate}
+									placeholder="Minimal tenggat waktu dua minggu dari hari ini"
 								/>
 								<ImageInput
 									name="total"

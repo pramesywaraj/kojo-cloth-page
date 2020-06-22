@@ -30,8 +30,21 @@ const Input = styled.input`
 		outline: none;
 	}
 `
+const DatePlaceholder = styled.p`
+	font-weight: 400;
+	font-size: 0.8rem;
+	margin: 1vh 0;
+`
 
-export default function DateInput({ name, label, onChange, value, min, max }) {
+export default function DateInput({
+	name,
+	label,
+	onChange,
+	value,
+	min,
+	max,
+	placeholder,
+}) {
 	return (
 		<InputContainer>
 			<Label htmlFor={name}>{label}</Label>
@@ -44,6 +57,7 @@ export default function DateInput({ name, label, onChange, value, min, max }) {
 				min={min}
 				max={max}
 			/>
+			{placeholder && <DatePlaceholder>{placeholder}</DatePlaceholder>}
 		</InputContainer>
 	)
 }
@@ -55,4 +69,5 @@ DateInput.propTypes = {
 	value: PropTypes.any.isRequired,
 	min: PropTypes.string,
 	max: PropTypes.string,
+	placeholder: PropTypes.string,
 }
