@@ -139,8 +139,8 @@ function KojoFooter() {
 					<div className="info-element" onClick={goToLocation}>
 						<Icon src={Pin} width="26px" />
 						<p>
-							Komplek Taman Cileunyi Blok 2A No.14, Cileunyi Kulon, Cileunyi,
-							Bandung, Jawa Barat 40622
+							Komplek Perumahan Permata Biru, Jl. Permata III No.72, Cinunuk,
+							Cileunyi, Bandung, Jawa Barat 40624
 						</p>
 					</div>
 					<div className="info-element">
