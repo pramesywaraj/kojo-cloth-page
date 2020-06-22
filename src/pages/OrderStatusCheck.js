@@ -108,6 +108,7 @@ function OrderDetail({ data }) {
 		detail,
 		due_date,
 		status,
+		remark,
 	} = data
 
 	function statusCheck(status) {
@@ -219,6 +220,16 @@ function OrderDetail({ data }) {
 						<p>{statusCheck(status)}</p>
 					</OrderDetailCell>
 				</OrderDetailRow>
+				{status === ORDER_REJECTED && (
+					<OrderDetailRow>
+						<OrderDetailCell width="40%">
+							<p>Alasan Ditolak</p>
+						</OrderDetailCell>
+						<OrderDetailCell width="60%">
+							<p>{remark}</p>
+						</OrderDetailCell>
+					</OrderDetailRow>
+				)}
 			</div>
 		</OrderDetailContainer>
 	)
