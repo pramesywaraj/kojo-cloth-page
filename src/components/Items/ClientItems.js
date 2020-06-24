@@ -28,8 +28,8 @@ const ClientsGrid = styled.div`
 const ClientContainer = styled.div`
 	background-color: white;
 	border-radius: 100%;
-	width: 80px;
-	height: 80px;
+	width: 100px;
+	height: 100px;
 	padding: 5%;
 
 	-webkit-box-shadow: 3px 4px 7px 0px rgba(0, 0, 0, 0.22);

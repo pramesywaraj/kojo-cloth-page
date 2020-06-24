@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 
 const RegularButton = styled.button`
-	padding: 15px;
+	padding: 5%;
 	border: none;
 	border-radius: 20px;
 	text-align: center;
