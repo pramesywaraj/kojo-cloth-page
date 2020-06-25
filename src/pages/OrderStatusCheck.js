@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
 import PropTypes from 'prop-types'
+import mediaQueries from 'theme/mediaQueries'
 
 import useLoading from 'hooks/useLoading'
 
@@ -35,13 +36,16 @@ const OrderMain = styled.main`
 
 	display: flex;
 	flex-direction: column;
-
-	justify-content: center;
 `
 
 const OrderFormSection = styled.section`
 	display: flex;
 	flex-direction: column;
+
+	align-items: center;
+	justify-content: center;
+
+	min-height: 90vh;
 
 	.order-caption {
 		font-size: ${({ theme }) => theme.fontSize.regular};
@@ -52,19 +56,35 @@ const OrderFormSection = styled.section`
 const OrderForm = styled.form`
 	height: auto;
 	width: 100%;
-	padding: 3vh 0;
+	padding: 0 5vw;
+	margin: 3vh 0;
 
 	display: flex;
 	flex-direction: column;
 
+	justify-content: center;
+	align-items: center;
+	max-width: 1000px;
+
 	.submit-button {
-		width: 50vw;
+		width: 80vw;
 		margin: 20px auto;
 
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
+		max-width: 348px;
 	}
+
+	${mediaQueries('phone')`
+		.submit-button {
+			width: 80vw;
+		}
+	`}
+
+	${mediaQueries('small_screen')`
+		padding: 0 7vw;
+	`}
 `
 
 const OrderDetailContainer = styled.section`

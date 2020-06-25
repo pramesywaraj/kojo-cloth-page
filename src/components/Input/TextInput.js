@@ -4,10 +4,10 @@ import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 
 const InputContainer = styled.div`
-	width: auto;
+	width: 100%;
 	height: auto;
 	margin: 1.5vh 0;
-
+	
 	display: inline-block;
 	position: relative;
 

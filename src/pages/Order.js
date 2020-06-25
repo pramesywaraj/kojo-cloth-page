@@ -44,10 +44,12 @@ const OrderForm = styled.form`
 
 	display: flex;
 	flex-direction: column;
+	max-width: 1000px;
 
 	.submit-button {
-		width: 50vw;
+		width: 100%;
 		margin: 20px auto;
+		max-width: 348px;
 	}
 `
 
@@ -58,6 +60,7 @@ const OrderSuccessContainer = styled.div`
 
 	margin: 3vh 0;
 	text-align: center;
+	max-width: 800px;
 
 	.success-message {
 		margin: 3vh 0;
@@ -81,7 +84,8 @@ const OrderSuccessContainer = styled.div`
 	}
 
 	.re-order-button {
-		min-width: 55vw;
+		max-width: 348px;
+		width: 100%;
 	}
 `
 

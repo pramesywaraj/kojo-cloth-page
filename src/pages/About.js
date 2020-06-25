@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import mediaQueries from 'theme/mediaQueries'
 
 import Wrapper from 'components/Layout/Wrapper'
 import { PrimarySectionTitle } from 'components/Misc/SectionTitle'
@@ -31,6 +32,11 @@ const AboutContainer = styled.section`
 			color: ${({ theme }) => theme.colors.font};
 		}
 	}
+
+	${mediaQueries('small_screen')`
+		margin: 0 10vw;
+		max-width: 1000px;
+	`}
 `
 
 export default function About() {

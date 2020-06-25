@@ -134,18 +134,14 @@ const NavbarCallToAction = styled.ul`
 			width: 100%;
 			height: auto;
 
-			transition-duration: 0.5s;
+			transition: background 0.5s;
 			background: ${theme.colors.primary};
-			color: white;
+			color: ${theme.colors.white};
 
 			&:hover {
 				background: ${theme.colors.darkPrimary};
 			}
-
-			&:active {
-				background: ${theme.colors.veryDarkPrimary};
-			}
-
+			
 			&:focus {
 				outline: none;
 			}
