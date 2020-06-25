@@ -148,6 +148,8 @@ const TestimoniSlideContainer = styled.div`
 
 const KojoContactContainer = styled(KojoLandingContainer)`
 	margin: 5vh auto;
+	max-width: 500px;
+
 	p {
 		font-size: 1.7rem;
 		font-weight: 500;
@@ -155,9 +157,16 @@ const KojoContactContainer = styled(KojoLandingContainer)`
 	}
 
 	.kojo-illust-2 {
-		width: 295px;
+		width: 90vw;
+		max-width: 500px;
 		margin-top: 5vh;
 	}
+
+	${mediaQueries('tablet')`
+		.kojo-illust-2 {
+			width: 70vw;
+		}
+	`}
 `
 
 export default function Landing() {

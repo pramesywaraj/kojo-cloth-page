@@ -15,22 +15,25 @@ import ExampleClient11 from 'assets/clients_example/example-11.svg'
 import ExampleClientUnpad from 'assets/clients_example/unpad_example.svg'
 
 const ClientsGrid = styled.div`
-	display: grid;
-	grid-gap: 10px;
-	grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-	justify-items: center;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
 	align-items: center;
 
 	width: 100%;
+	max-width: 900px;
 	height: auto;
 `
 
 const ClientContainer = styled.div`
 	background-color: white;
 	border-radius: 100%;
-	width: 100px;
+	max-width: 100px;
 	height: 100px;
-	padding: 5%;
+	padding: 10px;
+	margin: 4px;
+
+	flex-basis: 100%;
 
 	-webkit-box-shadow: 3px 4px 7px 0px rgba(0, 0, 0, 0.22);
 	-moz-box-shadow: 3px 4px 7px 0px rgba(0, 0, 0, 0.22);
