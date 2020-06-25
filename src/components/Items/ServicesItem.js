@@ -1,33 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import mediaQueries from 'theme/mediaQueries'
 
 import ContainedImage from 'components/Images/ContainedImage'
 import { otherServices, services } from 'constants/services'
 
-const CardContainer = styled.div`
-	width: 156px;
-	height: 156px;
-	border-radius: 20px;
-	border: 2px solid ${({ theme }) => theme.colors.primary};
-
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-
-	p {
-		font-size: ${({ theme }) => theme.fontSize.regular};
-		color: ${({ theme }) => theme.colors.font};
-		margin: 1vh 0;
-	}
-`
-
 const ServicesListContainer = styled.div`
-	display: grid;
-	grid-gap: 10px;
-	grid-template-columns: auto auto;
-	margin: 3vh 0;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	width: 100%;
+	margin: 3vh auto;
 	justify-items: center;
 	align-items: center;
 `
@@ -53,6 +37,47 @@ const OtherServicesListContainer = styled.div`
 	grid-gap: 10px;
 	grid-template-columns: auto;
 	margin: 3vh 0;
+`
+
+const CardContainer = styled.div`
+	max-width: 150px;
+	height: 165px;
+	border-radius: 20px;
+	border: 2px solid ${({ theme }) => theme.colors.primary};
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	flex-basis: 50%;
+
+	-ms-flex: auto;
+  position: relative;
+  box-sizing: border-box;
+
+	margin: 2%;
+
+	p {
+		font-size: ${({ theme }) => theme.fontSize.regular};
+		color: ${({ theme }) => theme.colors.font};
+		margin: 1vh 0;
+	}
+
+	${mediaQueries('tablet')`
+		flex-basis: 40%;
+	`}
+
+	${mediaQueries('small_screen')`
+		margin: 1%;
+		max-width: 200px;
+	`}
+
+	${mediaQueries('desktop')`
+		
+	`}
+
+	${mediaQueries('large_screen')`
+	`}
 `
 
 function ServiceCard({ name, img }) {

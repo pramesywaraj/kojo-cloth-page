@@ -161,7 +161,7 @@ export default function Navbar() {
 			<a href="#" className="menu" onClick={showSidebar} role="button">
 				<FaBars size="1.6em" />
 			</a>
-			<a href="#" className="logo">
+			<a href="/" className="logo">
 				<ContainedImage src={Logo} alt="kojo-logo" width="auto" height="auto" />
 			</a>
 			<NavbarNav>
@@ -178,7 +178,7 @@ export default function Navbar() {
 				</NavbarExtendedList>
 				<NavbarCallToAction>
 					<li className="status-check">
-						<a href="/">Cek Status Pemesanan</a>
+						<a href="/cek-status-pemesanan">Cek Status Pemesanan</a>
 					</li>
 					<li>
 						<a href="/pesan-layanan" role="button" className="order-button">

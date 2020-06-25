@@ -25,7 +25,7 @@ const Container = styled.div`
 
 	hr {
 		height: 4px;
-		width: 30%;
+		max-width: 75px;
 		border: none;
 		${({ primary }) =>
 			primary &&

@@ -25,6 +25,7 @@ const SidebarContainer = styled.div`
 	padding: 10px;
 	min-height: 100vh;
 	width: 70vw;
+	max-width: 350px;
 	background: white;
 
 	z-index: 1002;

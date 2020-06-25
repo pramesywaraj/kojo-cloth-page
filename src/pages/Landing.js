@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
+import mediaQueries from 'theme/mediaQueries'
 
 import Wrapper from 'components/Layout/Wrapper'
 import { PrimaryButton, OutlinedButton } from 'components/Button/Button'
@@ -29,7 +30,7 @@ const HeaderTitleContainer = styled.div`
 	background: transparent;
 	border: 3px solid ${({ theme }) => theme.colors.primary};
 	border-radius: 10px;
-	padding: 10px;
+	padding: 3vh 6vw;
 	text-align: center;
 
 	p {
@@ -38,13 +39,17 @@ const HeaderTitleContainer = styled.div`
 `
 
 const HeaderCaptionContainer = styled.div`
-	margin-top: 5vh;
+	margin-top: 2vh;
 	line-height: 20px;
 `
 
 const ButtonContainer = styled.div`
 	margin-top: 5vh;
-	width: 50vw;
+	width: 75vw;
+
+	${mediaQueries('tablet')`
+		max-width: 318px;
+	`}
 `
 
 const Section = styled.section`
@@ -69,13 +74,45 @@ const KojoDescriptionContainer = styled(KojoLandingContainer)`
 	justify-content: center;
 	min-height: 90vh;
 	.kojo-illust-1 {
-		width: 327px;
+		width: auto;
+		max-width: 300px;
 	}
 
 	.kojo-short-description {
 		color: white;
 		margin: 5vh 0;
+		padding: 0 5vw;
 	}
+
+	${mediaQueries('tablet')`
+		.kojo-illust-1 {
+			width: 70vw;
+			max-width: 525px;
+		}
+	`}
+
+	${mediaQueries('desktop')`
+		flex-direction: row;
+
+		.kojo-illust-1 {
+			width: 60vw;
+			max-width: 500px;
+		}
+
+		.kojo-short-description {
+			flex: 1;
+		}
+	`}
+
+	${mediaQueries('large_screen')`
+		.kojo-illust-1 {
+			max-width: 550px;
+		}
+
+		.kojo-short-description {
+			padding: 0 7vw;
+		}
+	`}
 `
 
 const KojoServicesContainer = styled(KojoLandingContainer)`
