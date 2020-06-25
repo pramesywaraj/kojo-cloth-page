@@ -20,6 +20,7 @@ const OtherServiceContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	flex-basis: 100%;
 
 	h3 {
 		margin: 2vh 0;
@@ -30,13 +31,32 @@ const OtherServiceContainer = styled.div`
 		font-size: ${({ theme }) => theme.fontSize.regular};
 		color: ${({ theme }) => theme.colors.font};
 	}
+
+	${mediaQueries('tablet')`
+		flex-basis: 100%;
+		margin: 15px auto;
+    max-width: 380px;
+	`}
+
+	${mediaQueries('small_screen')`
+		margin: 2%;
+		flex-basis: 45%;
+    max-width: 300px;
+	`}
+
+	${mediaQueries('desktop')`
+		flex-basis: 20%;
+	`}
 `
 
 const OtherServicesListContainer = styled.div`
-	display: grid;
-	grid-gap: 10px;
-	grid-template-columns: auto;
-	margin: 3vh 0;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	width: 100%;
+	margin: 3vh auto;
+	justify-items: center;
+	align-items: center;
 `
 
 const CardContainer = styled.div`

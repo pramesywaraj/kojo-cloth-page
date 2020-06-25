@@ -116,7 +116,9 @@ const KojoDescriptionContainer = styled(KojoLandingContainer)`
 `
 
 const KojoServicesContainer = styled(KojoLandingContainer)`
-	margin-bottom: 10vh;
+	${mediaQueries('small_screen')`
+		margin: 10vh 0;
+	`}
 `
 
 const KojoPortfolioContainer = styled(KojoLandingContainer)`
