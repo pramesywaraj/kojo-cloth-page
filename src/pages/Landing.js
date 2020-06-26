@@ -96,7 +96,8 @@ const KojoDescriptionContainer = styled(KojoLandingContainer)`
 
 		.kojo-illust-1 {
 			width: 60vw;
-			max-width: 500px;
+			max-width: 670px;
+			flex: 2;
 		}
 
 		.kojo-short-description {
@@ -106,7 +107,7 @@ const KojoDescriptionContainer = styled(KojoLandingContainer)`
 
 	${mediaQueries('large_screen')`
 		.kojo-illust-1 {
-			max-width: 550px;
+			max-width: 900px;
 		}
 
 		.kojo-short-description {

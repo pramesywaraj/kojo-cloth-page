@@ -17,6 +17,8 @@ import Google from 'assets/icons/ic-google.svg'
 import Instagram from 'assets/icons/ic-instagram.svg'
 import Twitter from 'assets/icons/ic-twitter.svg'
 import Youtube from 'assets/icons/ic-youtube.svg'
+import Logo from 'assets/kojo-primary-logo.svg'
+import ContainedImage from 'components/Images/ContainedImage'
 
 const Footer = styled.footer`
 	width: 100%;
@@ -24,22 +26,50 @@ const Footer = styled.footer`
 
 	background: ${({ theme }) => theme.colors.primary};
 	color: white;
+`
 
+const FooterContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
 	align-items: center;
+
+	margin: 0 2vw;
+
+	${mediaQueries('desktop')`
+		flex-direction: row;
+		justify-content: center;
+		padding: 10vh 0;
+	`}
+`
+
+const FooterStandard = styled.div`
+	max-width: 400px;
+	padding: 5%;
+	text-align: center;
+	${mediaQueries('desktop')`
+		padding: 2%;
+		text-align: left;
+	`}
 `
 
 const LogoContainer = styled.div`
 	display: none;
+
+	${mediaQueries('desktop')`
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: white;
+		min-width: 20vw;
+		min-height: 210px;
+		padding: 10px;
+	`}
 `
 
-const CustomerAreaContainer = styled.div`
+const CustomerAreaContainer = styled(FooterStandard)`
 	width: 100%;
 	height: auto;
-	text-align: center;
-	padding: 5%;
 
 	h2 {
 		font-weight: 600;
@@ -58,16 +88,26 @@ const CustomerAreaContainer = styled.div`
 			font-size: ${({ theme }) => theme.fontSize.regular};
 		}
 	}
+
+	${mediaQueries('desktop')`
+		h2 {
+			font-size: 1.5rem;
+		}
+
+		.kojo-tips {
+			a {
+				margin-top: 2vh;
+			}
+		}
+	`}
 `
 
-const AdditionalInfoContainer = styled.div`
+const AdditionalInfoContainer = styled(FooterStandard)`
 	width: 100%;
 	height: auto;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding: 5%;
-	margin-top: 5vh;
 
 	.info-operational {
 		flex: 1 0 auto;
@@ -79,6 +119,7 @@ const AdditionalInfoContainer = styled.div`
 			flex-direction: column;
 			align-items: center;
 			text-align: center;
+			width: 100%;
 
 			p {
 				margin-top: 2vh;
@@ -100,6 +141,21 @@ const AdditionalInfoContainer = styled.div`
 			display: block;
 		}
 	}
+
+	${mediaQueries('desktop')`
+		.info-operational {
+			.info-element {
+				flex-direction: row;
+				text-align: left;
+
+				p {
+					flex: 2;
+					margin-left: 10px;
+					margin-top: 0;
+				}
+			}
+		}
+	`}
 `
 
 const CopyrightContainer = styled.div`
@@ -122,79 +178,81 @@ function KojoFooter() {
 
 	return (
 		<Footer>
-			<LogoContainer>
-				<p>Logo</p>
-			</LogoContainer>
-			<CustomerAreaContainer>
-				<h2>Customer Area</h2>
-				<div className="kojo-tips">
-					{KojoTips.map((tip, index) => (
-						<a key={index} href={tip.link}>
-							{tip.tips}
+			<FooterContainer>
+				<LogoContainer>
+					<ContainedImage src={Logo} alt="Logo Kojo" width="210px" />
+				</LogoContainer>
+				<CustomerAreaContainer>
+					<h2>Customer Area</h2>
+					<div className="kojo-tips">
+						{KojoTips.map((tip, index) => (
+							<a key={index} href={tip.link}>
+								{tip.tips}
+							</a>
+						))}
+					</div>
+				</CustomerAreaContainer>
+				<AdditionalInfoContainer>
+					<div className="info-operational">
+						<div className="info-element" onClick={goToLocation}>
+							<Icon src={Pin} width="26px" />
+							<p>
+								Komplek Perumahan Permata Biru, Jl. Permata III No.72, Cinunuk,
+								Cileunyi, Bandung, Jawa Barat 40624
+							</p>
+						</div>
+						<div className="info-element">
+							<Icon src={Email} width="26px" />
+							<p>kojo.cloth@gmail.com</p>
+						</div>
+						<div className="info-element">
+							<Icon src={Hours} width="26px" />
+							<p>08:00 - 23:00 WIB</p>
+						</div>
+						<div className="info-element">
+							<Icon src={Phone} width="26px" />
+							<p>0813-2221-0723 (Faizal)</p>
+						</div>
+					</div>
+					<div className="info-social-media">
+						<a
+							target="_blank"
+							rel="noopener noreferrer"
+							href="https://www.facebook.com/kojocloth.id"
+						>
+							<Icon src={Facebook} width="44px" />
 						</a>
-					))}
-				</div>
-			</CustomerAreaContainer>
-			<AdditionalInfoContainer>
-				<div className="info-operational">
-					<div className="info-element" onClick={goToLocation}>
-						<Icon src={Pin} width="26px" />
-						<p>
-							Komplek Perumahan Permata Biru, Jl. Permata III No.72, Cinunuk,
-							Cileunyi, Bandung, Jawa Barat 40624
-						</p>
+						<a
+							target="_blank"
+							rel="noopener noreferrer"
+							href="https://aboutme.google.com/u/3/?referer=gplus&pageId=none"
+						>
+							<Icon src={Google} width="44px" />
+						</a>
+						<a
+							target="_blank"
+							rel="noopener noreferrer"
+							href="https://twitter.com/kojocloth"
+						>
+							<Icon src={Twitter} width="44px" />
+						</a>
+						<a
+							target="_blank"
+							rel="noopener noreferrer"
+							href="https://www.youtube.com/channel/UCC1E7PUDHA1fuXfTOdfQOEg/featured"
+						>
+							<Icon src={Youtube} width="44px" />
+						</a>
+						<a
+							target="_blank"
+							rel="noopener noreferrer"
+							href="https://instagram.com/kojo.cloth"
+						>
+							<Icon src={Instagram} width="44px" />
+						</a>
 					</div>
-					<div className="info-element">
-						<Icon src={Email} width="26px" />
-						<p>kojo.cloth@gmail.com</p>
-					</div>
-					<div className="info-element">
-						<Icon src={Hours} width="26px" />
-						<p>08:00 - 23:00 WIB</p>
-					</div>
-					<div className="info-element">
-						<Icon src={Phone} width="26px" />
-						<p>0813-2221-0723 (Faizal)</p>
-					</div>
-				</div>
-				<div className="info-social-media">
-					<a
-						target="_blank"
-						rel="noopener noreferrer"
-						href="https://www.facebook.com/kojocloth.id"
-					>
-						<Icon src={Facebook} width="44px" />
-					</a>
-					<a
-						target="_blank"
-						rel="noopener noreferrer"
-						href="https://aboutme.google.com/u/3/?referer=gplus&pageId=none"
-					>
-						<Icon src={Google} width="44px" />
-					</a>
-					<a
-						target="_blank"
-						rel="noopener noreferrer"
-						href="https://twitter.com/kojocloth"
-					>
-						<Icon src={Twitter} width="44px" />
-					</a>
-					<a
-						target="_blank"
-						rel="noopener noreferrer"
-						href="https://www.youtube.com/channel/UCC1E7PUDHA1fuXfTOdfQOEg/featured"
-					>
-						<Icon src={Youtube} width="44px" />
-					</a>
-					<a
-						target="_blank"
-						rel="noopener noreferrer"
-						href="https://instagram.com/kojo.cloth"
-					>
-						<Icon src={Instagram} width="44px" />
-					</a>
-				</div>
-			</AdditionalInfoContainer>
+				</AdditionalInfoContainer>
+			</FooterContainer>
 			<CopyrightContainer>
 				<p>&copy; CV. Kojo Group Indonesia 2020</p>
 			</CopyrightContainer>
