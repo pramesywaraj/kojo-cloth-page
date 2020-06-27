@@ -23,6 +23,7 @@ export default function TestimonialSlideshow() {
 					name={item.name}
 					quotes={item.quotes}
 					img={item.img}
+					from={item.from}
 				/>
 			))}
 		</Slide>
