@@ -2,12 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import { Slide } from 'react-slideshow-image'
 
-import img1 from 'assets/portfolio_example/img1.jpg'
-import img2 from 'assets/portfolio_example/img2.jpg'
-import img3 from 'assets/portfolio_example/img3.jpg'
-import img4 from 'assets/portfolio_example/img4.jpg'
+import { portofolios } from 'constants/portofolio'
 
-const images = [img1, img2, img3, img4]
+const images = [...portofolios]
 
 const properties = {
 	duration: 5000,
@@ -33,9 +30,9 @@ const ImageContainer = styled.div`
 export default function LandingSlideshow() {
 	return (
 		<Slide {...properties}>
-			{images.map((image, index) => (
+			{images.map((item, index) => (
 				<ImageContainer key={index}>
-					<img src={image} alt={`gambar-${index}`} />
+					<img src={item.img} alt={`gambar-${index}`} />
 				</ImageContainer>
 			))}
 		</Slide>

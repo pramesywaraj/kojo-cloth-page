@@ -14,6 +14,7 @@ import { ServicesList, OtherServicesList } from 'components/Items/ServicesItem'
 import LandingSlideshow from 'components/Slide/LandingSlideshow'
 import TestimonialSlideshow from 'components/Slide/TestimonialSlideshow'
 import ClientItems from 'components/Items/ClientItems'
+import PortoItems from 'components/Items/PortoItems'
 
 import LandingBackground from 'assets/bg-landing.svg'
 import KojoHuman1 from 'assets/illustrations/kojo-human-1.svg'
@@ -123,7 +124,7 @@ const KojoServicesContainer = styled(KojoLandingContainer)`
 `
 
 const KojoPortfolioContainer = styled(KojoLandingContainer)`
-	margin: 10vh auto;
+	margin: 5vh auto;
 `
 
 const PortfolioContainer = styled.div`
@@ -132,6 +133,10 @@ const PortfolioContainer = styled.div`
 	width: 100%;
 	height: auto;
 	padding: 4%;
+
+	${mediaQueries('small_screen')`
+		display: none;
+	`}
 `
 
 const KojoClientContainer = styled(KojoLandingContainer)`
@@ -250,6 +255,7 @@ export default function Landing() {
 						<PortfolioContainer>
 							<LandingSlideshow />
 						</PortfolioContainer>
+						<PortoItems />
 					</KojoPortfolioContainer>
 				</Wrapper>
 			</Section>
