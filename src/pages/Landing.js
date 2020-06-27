@@ -104,7 +104,7 @@ const KojoDescriptionContainer = styled(KojoLandingContainer)`
 			flex: 1;
 		}
 	`}
-
+	
 	${mediaQueries('large_screen')`
 		.kojo-illust-1 {
 			max-width: 900px;

@@ -11,7 +11,7 @@ const LoadingContainer = styled.div`
 	display: flex;
 	flex-direction: row;
 
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
 
 	p {
@@ -25,6 +25,7 @@ const LoadingSpinner = styled.div`
 	border-radius: 50%;
 	background-color: ${({ theme }) => theme.colors.white};
 	opacity: 0.5;
+	margin: 0 10px;
 
 	-webkit-animation: loading-bounce 2s infinite ease-in-out;
 	animation: loading-bounce 2s infinite ease-in-out;

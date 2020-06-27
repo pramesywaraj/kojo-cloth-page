@@ -7,6 +7,7 @@ export default {
 		white: '#FFFFFF',
 		darkWhite: '#f5f5f5',
 		error: '#f02213',
+		success: '#00b503',
 	},
 	fontSize: {
 		extraSmall: '10px',

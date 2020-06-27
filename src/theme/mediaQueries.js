@@ -7,7 +7,8 @@ const breakpoints = {
 }
 
 const mediaQueries = (key) => {
-	return (style) => `@media (min-width: ${breakpoints[key]}px) { ${style} }`
+	return (style) =>
+		`@media only screen and (min-width: ${breakpoints[key]}px) { ${style} }`
 }
 
 export default mediaQueries

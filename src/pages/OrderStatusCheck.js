@@ -10,9 +10,10 @@ import Wrapper from 'components/Layout/Wrapper'
 import { PrimarySectionTitle } from 'components/Misc/SectionTitle'
 import { TextInput } from 'components/Input/TextInput'
 import { PrimaryButton } from 'components/Button/Button'
+import ImageInput from 'components/Input/ImageInput'
 
 import Loading from 'components/Loading/Loading'
-import { ErrorMessage } from 'components/Message/Message'
+import { ErrorMessage, SuccessMessage } from 'components/Message/Message'
 
 import {
 	ORDER_NEW,
@@ -106,6 +107,12 @@ const OrderDetailContainer = styled.section`
 		text-align: initial;
 		margin: 0 auto;
 	}
+
+	${mediaQueries('desktop')`
+		.detail-table {
+			table-layout: auto;			
+		}
+	`}
 `
 
 const OrderDetailRow = styled.div`
@@ -116,10 +123,29 @@ const OrderDetailCell = styled.div`
 	display: table-cell;
 	width: ${({ width }) => width || '100%'};
 `
+const OrderPaymentContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	margin: 10vh 0;
+`
+const UploadPaymentContainer = styled.div`
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	max-width: 500px;
+
+	.image-upload-button {
+		width: 200px;
+		float: right;
+		margin: 2vh 0;
+	}
+`
 
 function OrderDetail({ data }) {
 	const {
-		order_ref,
 		name,
 		address,
 		type,
@@ -168,14 +194,6 @@ function OrderDetail({ data }) {
 				<h4>Pesanan Saya</h4>
 			</div>
 			<div className="detail-table">
-				<OrderDetailRow>
-					<OrderDetailCell width="40%">
-						<p>Kode Pesanan</p>
-					</OrderDetailCell>
-					<OrderDetailCell width="60%">
-						<p style={{ fontWeight: 700 }}>{order_ref}</p>
-					</OrderDetailCell>
-				</OrderDetailRow>
 				<OrderDetailRow>
 					<OrderDetailCell width="40%">
 						<p>Nama Pemesan</p>
@@ -246,7 +264,7 @@ function OrderDetail({ data }) {
 							<p>Alasan Ditolak</p>
 						</OrderDetailCell>
 						<OrderDetailCell width="60%">
-							<p>{remark}</p>
+							<p color="red">{remark}</p>
 						</OrderDetailCell>
 					</OrderDetailRow>
 				)}
@@ -262,19 +280,37 @@ OrderDetail.propTypes = {
 export default function OrderStatusCheck() {
 	const [orderRef, setOrderRef] = useState('')
 	const [orderDetail, setOrderDetail] = useState(null)
+	const [downPayment, setDownPayment] = useState(null)
+	const [payOff, setPayOff] = useState(null)
+	const [successUploadingPayment, setSuccessUploadingPayment] = useState(false)
 	const [error, setError] = useState({
 		isError: false,
 		message: '',
 	})
+	const [errorPayment, setErrorPayment] = useState({
+		isError: false,
+		message: '',
+	})
 
-	const [loading, showLoading, hideLoading] = useLoading()
+	const [mainLoading, showMainLoading, hideMainLoading] = useLoading()
+	const [
+		downPaymentLoading,
+		showDownPaymentLoading,
+		hideDownPaymentLoading,
+	] = useLoading()
+	const [paidOffLoading, showPaidOffLoading, hidePaidOffLoading] = useLoading()
 
 	async function onSubmitSearchStatus(e) {
 		e.preventDefault()
 
+		setError({
+			isError: false,
+			message: '',
+		})
+
 		if (orderDetail) setOrderDetail(null)
 
-		showLoading()
+		showMainLoading()
 
 		try {
 			const { data } = await axios.get(
@@ -290,13 +326,73 @@ export default function OrderStatusCheck() {
 				message: err,
 			})
 		} finally {
-			hideLoading()
+			hideMainLoading()
+		}
+	}
+
+	async function onSubmitUploadImage(paymentType) {
+		let imageData = new FormData()
+		setErrorPayment({
+			isError: false,
+			message: '',
+		})
+
+		setSuccessUploadingPayment(false)
+
+		if (paymentType === 'pay_dp') {
+			imageData.append('dp_proof', downPayment)
+			showDownPaymentLoading()
+		}
+		if (paymentType === 'pay_off') {
+			imageData.append('pay_off_proof', payOff)
+			showPaidOffLoading()
+		}
+
+		const imageUploadOption = {
+			headers: {
+				'Content-Type': 'multipart/form-data',
+			},
+		}
+
+		try {
+			const {
+				data,
+			} = await axios.post(
+				`${process.env.REACT_APP_API_URL}/order/${orderRef}/${paymentType}`,
+				imageData,
+				{ headers: imageUploadOption }
+			)
+
+			if (!data.success || data.errors) throw data.errors
+
+			setSuccessUploadingPayment(true)
+			if (paymentType === 'pay_dp') {
+				setDownPayment(null)
+			}
+			if (paymentType === 'pay_off') {
+				setPayOff(null)
+			}
+		} catch (err) {
+			setErrorPayment({
+				isError: false,
+				message: '',
+			})
+		} finally {
+			if (paymentType === 'pay_dp') hideDownPaymentLoading()
+			if (paymentType === 'pay_off') hidePaidOffLoading()
 		}
 	}
 
 	function changeFormValue({ target }) {
 		const { value } = target
 		setOrderRef(value)
+	}
+
+	function changeImageValue({ target }) {
+		const { files, name } = target
+
+		if (name === 'downPayment') setDownPayment(files[0])
+		if (name === 'payOff') setPayOff(files[0])
 	}
 
 	return (
@@ -316,12 +412,74 @@ export default function OrderStatusCheck() {
 						/>
 						<div className="submit-button">
 							<PrimaryButton type="submit">
-								{loading && <Loading />}
-								{!loading && 'Periksa Pesanan Saya'}
+								{mainLoading && <Loading />}
+								{!mainLoading && 'Periksa Pesanan Saya'}
 							</PrimaryButton>
 						</div>
 					</OrderForm>
 					{orderDetail && <OrderDetail data={orderDetail} />}
+					{orderDetail && (
+						<OrderPaymentContainer>
+							{errorPayment.isError && (
+								<ErrorMessage message={errorPayment.message} />
+							)}
+							{successUploadingPayment && (
+								<SuccessMessage message="Bukti pembayaran telah terkirim. Mohon tunggu konfirmasi selanjutnya" />
+							)}
+							{orderDetail.status === ORDER_NEW ||
+							orderDetail.status !== ORDER_REJECTED ||
+							!orderDetail.is_dp_paid ||
+							!orderDetail.is_paid_off ? (
+								<p>
+									Silahkan lakukan pembayaran, kemudian kirimkan foto bukti
+									bayar.
+								</p>
+							) : (
+								''
+							)}
+
+							{!orderDetail.is_dp_paid && (
+								<UploadPaymentContainer>
+									<ImageInput
+										name="downPayment"
+										value={downPayment}
+										label="Upload bukti pembayaran uang muka"
+										onChange={changeImageValue}
+									>
+										<div className="image-upload-button">
+											<PrimaryButton
+												type="button"
+												onClickHandler={() => onSubmitUploadImage('pay_dp')}
+											>
+												{downPaymentLoading && <Loading />}
+												{!downPaymentLoading && 'Kirim'}
+											</PrimaryButton>
+										</div>
+									</ImageInput>
+								</UploadPaymentContainer>
+							)}
+							{!orderDetail.is_paid_off && (
+								<UploadPaymentContainer>
+									<ImageInput
+										name="payOff"
+										value={payOff}
+										label="Upload bukti pembayaran lunas"
+										onChange={changeImageValue}
+									>
+										<div className="image-upload-button">
+											<PrimaryButton
+												type="button"
+												onClickHandler={() => onSubmitUploadImage('pay_off')}
+											>
+												{paidOffLoading && <Loading />}
+												{!paidOffLoading && 'Kirim'}
+											</PrimaryButton>
+										</div>
+									</ImageInput>
+								</UploadPaymentContainer>
+							)}
+						</OrderPaymentContainer>
+					)}
 				</OrderFormSection>
 			</Wrapper>
 		</OrderMain>

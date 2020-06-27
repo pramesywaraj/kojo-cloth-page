@@ -31,7 +31,13 @@ const Input = styled.input`
 	}
 `
 
-export default function TextInput({ name, placeholder, label, onChange }) {
+export default function TextInput({
+	name,
+	placeholder,
+	label,
+	onChange,
+	children,
+}) {
 	return (
 		<InputContainer>
 			<Label htmlFor={name}>{label}</Label>
@@ -43,6 +49,7 @@ export default function TextInput({ name, placeholder, label, onChange }) {
 				onChange={onChange}
 				accept="image/*"
 			/>
+			{children}
 		</InputContainer>
 	)
 }
@@ -52,4 +59,5 @@ TextInput.propTypes = {
 	placeholder: PropTypes.string,
 	label: PropTypes.string,
 	onChange: PropTypes.func.isRequired,
+	children: PropTypes.node,
 }

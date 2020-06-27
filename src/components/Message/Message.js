@@ -13,14 +13,37 @@ const ErrorText = styled.p`
 	font-size: 1rem;
 `
 
+const SuccessText = styled.p`
+	color: ${({ theme }) => theme.colors.success};
+	font-size: 1rem;
+`
+
 export function ErrorMessage({ message }) {
+	function checkMessageType(message) {
+		if (typeof message !== 'string') return 'Terjadi kesalahan'
+
+		return message
+	}
+
 	return (
 		<TextContainer>
-			<ErrorText>{message}</ErrorText>
+			<ErrorText>{checkMessageType(message)}</ErrorText>
 		</TextContainer>
 	)
 }
 
 ErrorMessage.propTypes = {
+	message: PropTypes.any.isRequired,
+}
+
+export function SuccessMessage({ message }) {
+	return (
+		<TextContainer>
+			<SuccessText>{message}</SuccessText>
+		</TextContainer>
+	)
+}
+
+SuccessMessage.propTypes = {
 	message: PropTypes.string.isRequired,
 }
