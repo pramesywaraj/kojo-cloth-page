@@ -4,7 +4,6 @@ import mediaQueries from 'theme/mediaQueries'
 
 import { portofolios } from 'constants/portofolio'
 import ContainedImage from 'components/Images/ContainedImage'
-import img1 from 'assets/portfolio_example/1.jpeg'
 
 const PortoContainer = styled.div`
 	display: none;
