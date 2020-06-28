@@ -16,9 +16,6 @@ const PortoContainer = styled.div`
     margin: 3vh auto;
     justify-items: center;
     align-items: center;
-    background: white;
-    padding: 3%;
-	  border-radius: 20px;
   `}
 `
 

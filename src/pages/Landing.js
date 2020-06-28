@@ -128,14 +128,16 @@ const KojoPortfolioContainer = styled(KojoLandingContainer)`
 `
 
 const PortfolioContainer = styled.div`
-	background-color: white;
-	border-radius: 5%;
 	width: 100%;
 	height: auto;
-	padding: 4%;
+	padding: 0 4%;
 
 	${mediaQueries('small_screen')`
-		display: none;
+		padding: 0 7%;
+	`}
+
+	${mediaQueries('desktop')`
+		padding: 0 25%;
 	`}
 `
 
@@ -255,7 +257,6 @@ export default function Landing() {
 						<PortfolioContainer>
 							<LandingSlideshow />
 						</PortfolioContainer>
-						<PortoItems />
 					</KojoPortfolioContainer>
 				</Wrapper>
 			</Section>

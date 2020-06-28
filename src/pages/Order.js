@@ -183,6 +183,7 @@ export default function Order() {
 
 	useEffect(() => {
 		const getMaterials = async () => {
+			setMaterials(null)
 			try {
 				const { data } = await axios.get(
 					`${process.env.REACT_APP_API_URL}/clothing/type/${selectedTypeId}/material`
@@ -247,7 +248,7 @@ export default function Order() {
 
 			setOrderInfo({
 				isOrdered: true,
-				submittedOrderRef: orderPostResponse.data.order_ref,
+				submittedOrderRef: orderPostResponse.data.code,
 			})
 
 			window.scrollTo({ top: 0, behavior: 'smooth' })
