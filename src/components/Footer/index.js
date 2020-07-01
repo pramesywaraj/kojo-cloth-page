@@ -232,7 +232,7 @@ function KojoFooter() {
 						<a
 							target="_blank"
 							rel="noopener noreferrer"
-							href="https://twitter.com/kojocloth"
+							href="https://twitter.com/tw_kojocloth"
 						>
 							<Icon src={Twitter} width="44px" />
 						</a>
