@@ -31,6 +31,9 @@ const NavbarLayout = styled.header`
 		color: ${({ theme }) => theme.colors.primary};
 		-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 		cursor: pointer;
+		border: none;
+		text-decoration: none;
+		background: transparent;
 	}
 
 	.logo {
@@ -154,9 +157,9 @@ export default function Navbar() {
 
 	return (
 		<NavbarLayout>
-			<a href="#" className="menu" onClick={showSidebar} role="button">
+			<button className="menu" onClick={showSidebar}>
 				<FaBars size="1.6em" />
-			</a>
+			</button>
 			<a href="/" className="logo">
 				<ContainedImage src={Logo} alt="kojo-logo" width="auto" height="auto" />
 			</a>

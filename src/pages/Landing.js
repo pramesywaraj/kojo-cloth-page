@@ -14,7 +14,6 @@ import { ServicesList, OtherServicesList } from 'components/Items/ServicesItem'
 import LandingSlideshow from 'components/Slide/LandingSlideshow'
 import TestimonialSlideshow from 'components/Slide/TestimonialSlideshow'
 import ClientItems from 'components/Items/ClientItems'
-import PortoItems from 'components/Items/PortoItems'
 
 import LandingBackground from 'assets/bg-landing.svg'
 import KojoHuman1 from 'assets/illustrations/kojo-human-1.svg'
