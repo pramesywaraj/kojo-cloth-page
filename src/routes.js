@@ -1,6 +1,7 @@
 import React from 'react'
-import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
+import { Route, Switch, Router } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import history from 'utils/history'
 
 import Landing from './pages/Landing'
 import About from './pages/About'
@@ -22,7 +23,7 @@ function RouteWithLayout(route) {
 
 export function RenderRoutes({ routes }) {
 	return (
-		<Router>
+		<Router history={history}>
 			<Switch>
 				{routes.map((route) => {
 					return <RouteWithLayout key={route.key} {...route} />

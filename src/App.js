@@ -6,7 +6,6 @@ import Navbar from 'components/Navbar/Navbar'
 import KojoFooter from 'components/Footer'
 
 function App() {
-	console.log('Vars', process.env.REACT_APP_API_URL)
 	return (
 		<div className="App">
 			<SidebarProvider>
