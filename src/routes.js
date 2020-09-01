@@ -3,11 +3,11 @@ import { Route, Switch, Router } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from 'utils/history'
 
-import Landing from './pages/Landing'
-import About from './pages/About'
-import Services from './pages/Services'
-import Order from './pages/Order'
-import OrderStatusCheck from './pages/OrderStatusCheck'
+import Landing from 'pages/Landing/Landing'
+import About from 'pages/About/About'
+import Services from 'pages/Services/Services'
+import Order from 'pages/Order/Order'
+import OrderStatusCheck from 'pages/Status/OrderStatusCheck'
 
 function RouteWithLayout(route) {
 	return (
