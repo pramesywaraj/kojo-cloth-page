@@ -3,6 +3,17 @@ import styled from 'styled-components'
 import axios from 'axios'
 
 import useLoading from 'hooks/useLoading'
+import { dateFormatParse } from 'utils/date'
+import { fetch, post } from 'utils/api'
+import {
+	initialOrderState,
+	initialProvinces,
+	initialRegencies,
+	initialDistricts,
+	initialSubDistricts,
+	initialMaterials,
+	initialTypes,
+} from 'utils/initialState'
 
 import OrderSuccess from './OrderSuccess'
 import Wrapper from 'components/Layout/Wrapper'
@@ -29,30 +40,6 @@ const OrderSection = styled.section`
 `
 
 export default function Order() {
-	const initialOrderState = {
-		name: '',
-		address_street: '',
-		address_village: '',
-		address_kecamatan: '',
-		address_city: '',
-		address_postal_code: '',
-		email: '',
-		institution: '',
-		phone_number: '',
-		type: 'DEFAULT',
-		material: 'DEFAULT',
-		design_url: '',
-		due_date: '',
-		detail: [
-			{
-				size: 'DEFAULT',
-				type: 'DEFAULT',
-				quantity: '',
-			},
-		],
-		total: '',
-		notes: '',
-	}
 	const [order, setOrder] = useState(initialOrderState)
 	const [loading, showLoading, hideLoading] = useLoading()
 	const [orderInfo, setOrderInfo] = useState({
@@ -63,104 +50,188 @@ export default function Order() {
 		isError: false,
 		message: '',
 	})
-	const [types, setTypes] = useState(null)
-	const [materials, setMaterials] = useState(null)
+	const [types, setTypes] = useState(initialTypes)
+	const [materials, setMaterials] = useState(initialMaterials)
+
+	const [provinces, setProvinces] = useState(initialProvinces)
+	const [regencies, setRegencies] = useState(initialRegencies)
+	const [districts, setDistricts] = useState(initialDistricts)
+	const [subDistricts, setSubDistricts] = useState(initialSubDistricts)
+
 	const [getSelectLoad, setSelectLoad] = useState(true)
 
 	const [image, setImage] = useState(null)
 	const [currentDate, setCurrentDate] = useState(null)
 	const [selectedTypeId, setSelectedTypeId] = useState(null)
 
+	const [firstLoad, setFirstLoad] = useState(true)
+
+	async function getTypes() {
+		try {
+			const { data: types } = await fetch('clothing/type')
+
+			setTypes([...types])
+		} catch (err) {
+			alert(err.message)
+		} finally {
+			setSelectLoad(false)
+		}
+	}
+
+	async function getMaterials() {
+		try {
+			const { data: materials } = await fetch(
+				`clothing/type/${selectedTypeId}/material`
+			)
+
+			setMaterials([...materials])
+		} catch (err) {
+			alert(err.message)
+		} finally {
+			setSelectLoad(false)
+		}
+	}
+
+	// Address ///////////////////////
+	async function getProvinces() {
+		try {
+			const { data: provinces } = await fetch(`master/provinces`)
+
+			setProvinces([...provinces])
+		} catch (err) {
+			alert(err.message)
+		} finally {
+			setSelectLoad(false)
+		}
+	}
+
+	async function getRegencies(province) {
+		try {
+			const { data: regencies } = await fetch(
+				`master/cities?province=${province}`
+			)
+
+			setRegencies([...regencies])
+		} catch (err) {
+			alert(err.message)
+		} finally {
+			setSelectLoad(false)
+		}
+	}
+
+	async function getDistricts(regency) {
+		try {
+			const { data: districts } = await fetch(
+				`master/kecamatan?province=${order.address_province}&city=${regency}`
+			)
+
+			setDistricts([...districts])
+		} catch (err) {
+			alert(err.message)
+		} finally {
+			setSelectLoad(false)
+		}
+	}
+
+	async function getSubDistricts(district) {
+		try {
+			const { data: subDistricts } = await fetch(
+				`master/kelurahan?province=${order.address_province}&city=${order.address_city}&kecamatan=${district}`
+			)
+
+			setSubDistricts([...subDistricts])
+		} catch (err) {
+			alert(err.message)
+		} finally {
+			setSelectLoad(false)
+		}
+	}
+	// Address ///////////////////////
+
 	useEffect(() => {
 		const date = new Date()
 
-		const fullDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
-		const getTypes = async () => {
-			try {
-				const { data } = await axios.get(
-					`${process.env.REACT_APP_API_URL}/clothing/type`
-				)
+		Promise.all([getTypes(), getProvinces()])
 
-				setTypes(data.data)
-			} catch (err) {
-				alert('Terjadi kesalahan. Silahkan refresh laman ini.')
-			} finally {
-				setSelectLoad(false)
-			}
-		}
+		setCurrentDate(dateFormatParse(date))
 
-		setCurrentDate(fullDate)
-		getTypes()
+		if (firstLoad) setFirstLoad(false)
 	}, [])
 
 	useEffect(() => {
-		const getMaterials = async () => {
-			setMaterials(null)
-			try {
-				const { data } = await axios.get(
-					`${process.env.REACT_APP_API_URL}/clothing/type/${selectedTypeId}/material`
-				)
-
-				setMaterials(data.data)
-			} catch (err) {
-				alert('Terjadi kesalahan. Silahkan refresh laman ini.')
-			} finally {
-				setSelectLoad(false)
-			}
-		}
-
 		if (selectedTypeId) getMaterials()
 	}, [selectedTypeId])
+
+	useEffect(() => {
+		if (firstLoad) return
+
+		getRegencies(order.address_province)
+	}, [order.address_province])
+
+	useEffect(() => {
+		if (firstLoad) return
+
+		getDistricts(order.address_city)
+	}, [order.address_city])
+
+	useEffect(() => {
+		if (firstLoad) return
+
+		getSubDistricts(order.address_kecamatan)
+	}, [order.address_kecamatan])
+
+	async function uploadImageRequest() {
+		const imageUploadOption = {
+			'Content-Type': 'multipart/form-data',
+		}
+
+		let imageData = new FormData()
+		imageData.append('design', image)
+
+		try {
+			const {
+				data: { url },
+				errors,
+			} = await post(`order/design/upload`, imageData, imageUploadOption)
+
+			if (!url) throw errors
+
+			return url
+		} catch (err) {
+			setError({
+				isError: true,
+				message: err.message,
+			})
+		}
+	}
 
 	async function onSubmitOrder(e) {
 		e.preventDefault()
 
 		showLoading()
 
-		const imageUploadOption = {
-			headers: {
-				'Content-Type': 'multipart/form-data',
-			},
-		}
-		const orderPostOption = {
-			headers: {
-				'Content-Type': 'application/json',
-			},
-		}
 		let imageData = new FormData()
 		imageData.append('design', image)
 
 		try {
-			const {
-				data: imageUploadResponse,
-			} = await axios.post(
-				`${process.env.REACT_APP_API_URL}/order/design/upload`,
-				imageData,
-				{ headers: imageUploadOption }
-			)
-
-			if (!imageUploadResponse.data.url || !imageUploadResponse.success)
-				throw imageUploadResponse.errors
+			const imageUrl = await uploadImageRequest()
 
 			let orderData = {
 				...order,
-				design_url: imageUploadResponse.data.url,
+				design_url: imageUrl,
 			}
 
 			const {
-				data: orderPostResponse,
-			} = await axios.post(
-				`${process.env.REACT_APP_API_URL}/order`,
-				orderData,
-				{ headers: orderPostOption }
-			)
+				success,
+				errors,
+				data: { code },
+			} = await post('order', orderData)
 
-			if (!orderPostResponse.success || orderPostResponse.errors)
-				throw orderPostResponse.errors
+			if (!success || errors) throw errors
 
 			setOrderInfo({
 				isOrdered: true,
-				submittedOrderRef: orderPostResponse.data.code,
+				submittedOrderRef: code,
 			})
 
 			window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -168,7 +239,7 @@ export default function Order() {
 		} catch (err) {
 			setError({
 				isError: true,
-				message: err,
+				message: err.message,
 			})
 		} finally {
 			hideLoading()
@@ -230,7 +301,17 @@ export default function Order() {
 									handleChangeImageValue,
 								}}
 								status={{ loading, getSelectLoad }}
-								value={{ ...order, image, currentDate, types, materials }}
+								value={{
+									...order,
+									image,
+									currentDate,
+									types,
+									materials,
+									provinces,
+									regencies,
+									districts,
+									subDistricts,
+								}}
 							/>
 						</>
 					)}

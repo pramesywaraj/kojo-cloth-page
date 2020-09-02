@@ -44,7 +44,7 @@ export default function Select({
 	label,
 	onChange,
 	value,
-	options,
+	children,
 	onLoading,
 	isShown,
 }) {
@@ -55,13 +55,9 @@ export default function Select({
 				<option value="DEFAULT" disabled>
 					{placeholder}
 				</option>
-				{!onLoading && options !== null
-					? options.map((option, index) => (
-							<option key={index} value={option.code}>
-								{option.name}
-							</option>
-					  ))
-					: ''}
+				{children}
+				{onLoading && <option>Loading...</option>}
+				<option value="OTHER">Lainnya</option>
 			</SelectInput>
 		</SelectContainer>
 	)
@@ -73,11 +69,12 @@ Select.propTypes = {
 	label: PropTypes.string,
 	onChange: PropTypes.func.isRequired,
 	value: PropTypes.any.isRequired,
-	options: PropTypes.array,
+	children: PropTypes.node,
 	onLoading: PropTypes.bool,
 	isShown: PropTypes.bool,
 }
 
 Select.defaultProps = {
 	isShown: true,
+	children: <option>---</option>,
 }

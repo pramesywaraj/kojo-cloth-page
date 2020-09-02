@@ -40,18 +40,22 @@ export default function OrderForm({ functions, status, value }) {
 		address_kecamatan,
 		address_city,
 		address_postal_code,
+		address_province,
 		email,
 		institution,
 		type,
 		material,
 		detail,
-		total,
 		due_date,
 		notes,
 		currentDate,
 		image,
 		types,
 		materials,
+		provinces,
+		regencies,
+		districts,
+		subDistricts,
 	} = value
 
 	return (
@@ -88,6 +92,75 @@ export default function OrderForm({ functions, status, value }) {
 				onChange={handleChangeFormValue}
 			/>
 			<Select
+				name="address_province"
+				value={address_province}
+				placeholder="Pilih Provinsi"
+				label="Provinsi"
+				onChange={handleChangeFormValue}
+				onLoading={getSelectLoad}
+			>
+				{provinces.length > 0 &&
+					provinces.map(({ province }, index) => (
+						<option key={index} value={province}>
+							{province}
+						</option>
+					))}
+			</Select>
+			<Select
+				name="address_city"
+				value={address_city}
+				placeholder="Pilih Kota/Kabupaten"
+				label="Kota/Kabupaten"
+				onChange={handleChangeFormValue}
+				onLoading={getSelectLoad}
+			>
+				{regencies.length > 0 &&
+					regencies.map(({ city }, index) => (
+						<option key={index} value={city}>
+							{city}
+						</option>
+					))}
+			</Select>
+			<Select
+				name="address_kecamatan"
+				value={address_kecamatan}
+				placeholder="Pilih Kecamatan"
+				label="Kecamatan"
+				onChange={handleChangeFormValue}
+				onLoading={getSelectLoad}
+			>
+				{districts.length > 0 &&
+					districts.map(({ kecamatan }, index) => (
+						<option key={index} value={kecamatan}>
+							{kecamatan}
+						</option>
+					))}
+			</Select>
+			<Select
+				name="address_village"
+				value={address_village}
+				placeholder="Pilih Kelurahan/Desa"
+				label="Kelurahan/Desa"
+				onChange={handleChangeFormValue}
+				onLoading={getSelectLoad}
+			>
+				{subDistricts.length > 0 &&
+					subDistricts.map(({ kelurahan }, index) => (
+						<option key={index} value={kelurahan}>
+							{kelurahan}
+						</option>
+					))}
+			</Select>
+			{/* <Select
+				name="type"
+				value={type}
+				placeholder="Jenis sandang"
+				label="Jenis"
+				onChange={handleChangeFormValue}
+				options={types}
+				onLoading={getSelectLoad}
+			/> */}
+			{/* <Select
 				name="type"
 				value={type}
 				placeholder="Jenis sandang"
@@ -104,22 +177,13 @@ export default function OrderForm({ functions, status, value }) {
 				onChange={handleChangeFormValue}
 				options={materials}
 				onLoading={getSelectLoad}
-			/>
+			/> */}
 			<TextInput
 				name="detail"
 				value={detail}
 				placeholder="Contoh : S - 12pcs, M-13pcs, L-20pcs"
 				label="Deskripsi Detail Jumlah dan Ukuran"
 				onChange={handleChangeFormValue}
-			/>
-			<TextInput
-				name="total"
-				value={total}
-				placeholder="Jumlah sandang yang akan dipesan"
-				label="Jumlah Seluruhnya"
-				onChange={handleChangeFormValue}
-				type="number"
-				unit="pcs"
 			/>
 			<DateInput
 				name="due_date"
