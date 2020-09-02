@@ -31,13 +31,25 @@ const OrderSection = styled.section`
 export default function Order() {
 	const initialOrderState = {
 		name: '',
-		address: '',
+		address_street: '',
+		address_village: '',
+		address_kecamatan: '',
+		address_city: '',
+		address_postal_code: '',
+		email: '',
+		institution: '',
 		phone_number: '',
 		type: 'DEFAULT',
 		material: 'DEFAULT',
 		design_url: '',
 		due_date: '',
-		detail: '',
+		detail: [
+			{
+				size: 'DEFAULT',
+				type: 'DEFAULT',
+				quantity: '',
+			},
+		],
 		total: '',
 		notes: '',
 	}
