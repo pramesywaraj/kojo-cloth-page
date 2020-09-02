@@ -8,7 +8,7 @@ const InputContainer = styled.div`
 	height: auto;
 	margin: 1.5vh 0;
 	
-	display: inline-block;
+	display: ${(props) => (props.isShown ? 'inline-block' : 'none')};
 	position: relative;
 
 	&::after {
@@ -69,9 +69,10 @@ export function TextInput({
 	value,
 	unit,
 	centered,
+	isShown,
 }) {
 	return (
-		<InputContainer suffix={unit}>
+		<InputContainer suffix={unit} isShown={isShown}>
 			<Label htmlFor={name}>{label}</Label>
 			<Input
 				centered={centered}
@@ -86,9 +87,16 @@ export function TextInput({
 	)
 }
 
-export function TextArea({ name, placeholder, label, onChange, value }) {
+export function TextArea({
+	name,
+	placeholder,
+	label,
+	onChange,
+	value,
+	isShown,
+}) {
 	return (
-		<InputContainer>
+		<InputContainer isShown={isShown}>
 			<Label htmlFor={name}>{label}</Label>
 			<TextAreaInput
 				rows="4"
@@ -111,6 +119,7 @@ TextInput.propTypes = {
 	value: PropTypes.any.isRequired,
 	unit: PropTypes.string,
 	centered: PropTypes.bool,
+	isShown: PropTypes.bool,
 }
 
 TextArea.propTypes = {
@@ -119,4 +128,13 @@ TextArea.propTypes = {
 	label: PropTypes.string,
 	onChange: PropTypes.func.isRequired,
 	value: PropTypes.any.isRequired,
+	isShown: PropTypes.bool,
+}
+
+TextInput.defaultProps = {
+	isShown: true,
+}
+
+TextArea.defaultProps = {
+	isShown: true,
 }

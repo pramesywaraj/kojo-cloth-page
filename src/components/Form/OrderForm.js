@@ -35,7 +35,13 @@ export default function OrderForm({ functions, status, value }) {
 	const {
 		name,
 		phone_number,
-		address,
+		address_street,
+		address_village,
+		address_kecamatan,
+		address_city,
+		address_postal_code,
+		email,
+		institution,
 		type,
 		material,
 		detail,
@@ -66,11 +72,19 @@ export default function OrderForm({ functions, status, value }) {
 				label="Nomor Telepon"
 				onChange={handleChangeFormValue}
 			/>
+			<TextInput
+				name="institution"
+				value={institution}
+				type="text"
+				placeholder="Sebutkan Nama Komunitas atau Instansi Kamu/Perorangan"
+				label="Komunitas/Instansi/Perorangan"
+				onChange={handleChangeFormValue}
+			/>
 			<TextArea
-				name="address"
-				value={address}
+				name="address_street"
+				value={address_street}
 				placeholder="Masukkan alamat lengkap Anda"
-				label="Alamat"
+				label="Alamat Lengkap"
 				onChange={handleChangeFormValue}
 			/>
 			<Select

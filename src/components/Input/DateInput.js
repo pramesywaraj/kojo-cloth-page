@@ -8,7 +8,7 @@ const InputContainer = styled.div`
 	height: auto;
 	margin: 1.5vh 0;
 
-	display: inline-block;
+	display: ${({ isShown }) => (isShown ? 'inline-block' : 'none')};
 	position: relative;
 `
 
@@ -44,9 +44,10 @@ export default function DateInput({
 	min,
 	max,
 	placeholder,
+	isShown,
 }) {
 	return (
-		<InputContainer>
+		<InputContainer isShown={isShown}>
 			<Label htmlFor={name}>{label}</Label>
 			<Input
 				id={name}
@@ -70,4 +71,9 @@ DateInput.propTypes = {
 	min: PropTypes.string,
 	max: PropTypes.string,
 	placeholder: PropTypes.string,
+	isShown: PropTypes.bool,
+}
+
+DateInput.defaultProps = {
+	isShown: true,
 }

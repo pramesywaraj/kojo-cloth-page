@@ -8,7 +8,7 @@ const InputContainer = styled.div`
 	height: auto;
 	margin: 1.5vh 0;
 
-	display: inline-block;
+	display: ${({ isShown }) => (isShown ? 'inline-block' : 'none')};
 	position: relative;
 `
 
@@ -31,15 +31,16 @@ const Input = styled.input`
 	}
 `
 
-export default function TextInput({
+export default function ImageInput({
 	name,
 	placeholder,
 	label,
 	onChange,
 	children,
+	isShown,
 }) {
 	return (
-		<InputContainer>
+		<InputContainer isShown={isShown}>
 			<Label htmlFor={name}>{label}</Label>
 			<Input
 				id={name}
@@ -54,10 +55,15 @@ export default function TextInput({
 	)
 }
 
-TextInput.propTypes = {
+ImageInput.propTypes = {
 	name: PropTypes.string.isRequired,
 	placeholder: PropTypes.string,
 	label: PropTypes.string,
 	onChange: PropTypes.func.isRequired,
 	children: PropTypes.node,
+	isShown: PropTypes.bool,
+}
+
+ImageInput.defaultProps = {
+	isShown: true,
 }

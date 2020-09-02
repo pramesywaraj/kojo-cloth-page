@@ -8,7 +8,7 @@ const SelectContainer = styled.div`
 	height: auto;
 	margin: 1.5vh 0;
 
-	display: block;
+	display: ${({ isShown }) => (isShown ? 'inline-block' : 'none')};
 	position: relative;
 `
 
@@ -46,9 +46,10 @@ export default function Select({
 	value,
 	options,
 	onLoading,
+	isShown,
 }) {
 	return (
-		<SelectContainer>
+		<SelectContainer isShown={isShown}>
 			<Label htmlFor={name}>{label}</Label>
 			<SelectInput id={name} name={name} onChange={onChange} value={value}>
 				<option value="DEFAULT" disabled>
@@ -74,4 +75,9 @@ Select.propTypes = {
 	value: PropTypes.any.isRequired,
 	options: PropTypes.array,
 	onLoading: PropTypes.bool,
+	isShown: PropTypes.bool,
+}
+
+Select.defaultProps = {
+	isShown: true,
 }
