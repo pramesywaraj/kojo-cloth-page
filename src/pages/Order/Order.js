@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import axios from 'axios'
 
 import useLoading from 'hooks/useLoading'
 import { dateFormatParse } from 'utils/date'
@@ -248,6 +247,8 @@ export default function Order() {
 
 	function handleChangeFormValue({ target }) {
 		let { name, value } = target
+
+		console.log(name, value)
 
 		if (name === 'type') {
 			let temp = types.find((type) => type.code === value)

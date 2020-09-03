@@ -82,6 +82,7 @@ export function TextInput({
 				placeholder={placeholder}
 				type={type}
 				onChange={onChange}
+				required={true}
 			/>
 		</InputContainer>
 	)

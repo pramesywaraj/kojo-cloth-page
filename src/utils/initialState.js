@@ -9,6 +9,7 @@ export const initialOrderState = {
 	email: '',
 	institution: '',
 	phone_number: '',
+	order_status: '',
 	type: 'DEFAULT',
 	material: 'DEFAULT',
 	design_url: '',

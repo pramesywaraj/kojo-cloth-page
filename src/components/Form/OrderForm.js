@@ -6,6 +6,7 @@ import { TextInput, TextArea } from 'components/Input/TextInput'
 import { PrimaryButton } from 'components/Button/Button'
 import ImageInput from 'components/Input/ImageInput'
 import DateInput from 'components/Input/DateInput'
+import { RadioInput, RadioInputContainer } from 'components/Input/RadioInput'
 import Select from 'components/Input/Select'
 import Loading from 'components/Loading/Loading'
 
@@ -45,6 +46,7 @@ export default function OrderForm({ functions, status, value }) {
 		institution,
 		type,
 		material,
+		order_status,
 		detail,
 		due_date,
 		notes,
@@ -64,7 +66,7 @@ export default function OrderForm({ functions, status, value }) {
 				name="name"
 				value={name}
 				type="text"
-				placeholder="Masukkan nama lengkap Anda"
+				placeholder="Masukkan nama lengkap kamu"
 				label="Nama"
 				onChange={handleChangeFormValue}
 			/>
@@ -72,22 +74,30 @@ export default function OrderForm({ functions, status, value }) {
 				name="phone_number"
 				value={phone_number}
 				type="tel"
-				placeholder="Masukkan nomor telepon Anda"
+				placeholder="Masukkan nomor telepon kamu (WA)"
 				label="Nomor Telepon"
+				onChange={handleChangeFormValue}
+			/>
+			<TextInput
+				name="email"
+				value={email}
+				type="text"
+				placeholder="Masukkan email kamu"
+				label="Email"
 				onChange={handleChangeFormValue}
 			/>
 			<TextInput
 				name="institution"
 				value={institution}
 				type="text"
-				placeholder="Sebutkan Nama Komunitas atau Instansi Kamu/Perorangan"
+				placeholder="Sebutkan nama komunitas atau instansi kamu/perorangan"
 				label="Komunitas/Instansi/Perorangan"
 				onChange={handleChangeFormValue}
 			/>
 			<TextArea
 				name="address_street"
 				value={address_street}
-				placeholder="Masukkan alamat lengkap Anda"
+				placeholder="Masukkan alamat lengkap kamu"
 				label="Alamat Lengkap"
 				onChange={handleChangeFormValue}
 			/>
@@ -151,16 +161,15 @@ export default function OrderForm({ functions, status, value }) {
 						</option>
 					))}
 			</Select>
-			{/* <Select
-				name="type"
-				value={type}
-				placeholder="Jenis sandang"
-				label="Jenis"
+			<TextInput
+				name="address_postal_code"
+				value={address_postal_code}
+				type="text"
+				placeholder="Masukkan kode pos daerah kamu"
+				label="Kode Pos"
 				onChange={handleChangeFormValue}
-				options={types}
-				onLoading={getSelectLoad}
-			/> */}
-			{/* <Select
+			/>
+			<Select
 				name="type"
 				value={type}
 				placeholder="Jenis sandang"
@@ -177,8 +186,27 @@ export default function OrderForm({ functions, status, value }) {
 				onChange={handleChangeFormValue}
 				options={materials}
 				onLoading={getSelectLoad}
-			/> */}
-			<TextInput
+			/>
+			<RadioInputContainer
+				label="Status Pesanan"
+				name="order_status"
+				onChangeValue={handleChangeFormValue}
+				selectedValue={order_status}
+				isColumned={true}
+			>
+				<RadioInput
+					label="Full Order (Pemesanan Keseluruhan)"
+					id="FULL_ORDER"
+					value="FULL_ORDER"
+				/>
+				<RadioInput
+					label="Makloon (Hanya bagian tertentu saja)"
+					id="MAKLOON"
+					value="MAKLOON"
+				/>
+			</RadioInputContainer>
+
+			{/* <TextInput
 				name="detail"
 				value={detail}
 				placeholder="Contoh : S - 12pcs, M-13pcs, L-20pcs"
@@ -206,7 +234,7 @@ export default function OrderForm({ functions, status, value }) {
 				placeholder="Catatan tambahan mengenai pesanan yang akan dibuat"
 				label="Catatan Tambahan"
 				onChange={handleChangeFormValue}
-			/>
+			/> */}
 			<div className="submit-button">
 				<PrimaryButton type="submit">
 					{loading && <Loading />}
