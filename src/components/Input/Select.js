@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-
 import PropTypes from 'prop-types'
+
+import { TextInput } from 'components/Input/TextInput'
 
 const SelectContainer = styled.div`
 	width: auto;
@@ -47,7 +48,15 @@ export default function Select({
 	children,
 	onLoading,
 	isShown,
+	isOtherOption,
 }) {
+	const [selectedValue, setSelectedValue] = useState('DEFAULT')
+	const [isOther, setIsOther] = useState(false)
+
+	function selectAnOption(e) {
+		const { value } = e.target
+	}
+
 	return (
 		<SelectContainer isShown={isShown}>
 			<Label htmlFor={name}>{label}</Label>
@@ -57,8 +66,19 @@ export default function Select({
 				</option>
 				{children}
 				{onLoading && <option>Loading...</option>}
-				<option value="OTHER">Lainnya</option>
+				{isOtherOption && <option value="OTHER">Lainnya</option>}
 			</SelectInput>
+			{isOtherOption && isOther ? (
+				<TextInput
+					name={name}
+					type="text"
+					placeholder={`${placeholder} lainnya`}
+					onChange={() => {}}
+					value={value}
+				/>
+			) : (
+				''
+			)}
 		</SelectContainer>
 	)
 }
@@ -72,9 +92,11 @@ Select.propTypes = {
 	children: PropTypes.node,
 	onLoading: PropTypes.bool,
 	isShown: PropTypes.bool,
+	isOtherOption: PropTypes.bool,
 }
 
 Select.defaultProps = {
 	isShown: true,
-	children: <option>---</option>,
+	children: <option disabled>---</option>,
+	isOtherOption: false,
 }

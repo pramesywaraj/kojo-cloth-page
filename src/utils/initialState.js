@@ -2,10 +2,10 @@ export const initialOrderState = {
 	name: '',
 	address_street: '',
 	address_province: 'DEFAULT',
-	address_village: 'DEFAULT',
-	address_kecamatan: 'DEFAULT',
 	address_city: 'DEFAULT',
-	address_postal_code: '',
+	address_kecamatan: 'DEFAULT',
+	address_village: 'DEFAULT',
+	address_postal_code: 'DEFAULT',
 	email: '',
 	institution: '',
 	phone_number: '',
@@ -24,10 +24,4 @@ export const initialOrderState = {
 	notes: '',
 }
 
-export const initialProvinces = []
-export const initialRegencies = []
-export const initialDistricts = []
-export const initialSubDistricts = []
-
-export const initialTypes = []
-export const initialMaterials = []
+export const emptyArray = []

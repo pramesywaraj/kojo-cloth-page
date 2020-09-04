@@ -12,7 +12,7 @@ import Loading from 'components/Loading/Loading'
 
 const OrderFormContainer = styled.form`
 	height: auto;
-	width: 100%;
+	width: 60%;
 	padding: 3vh 0;
 
 	display: flex;
@@ -54,10 +54,18 @@ export default function OrderForm({ functions, status, value }) {
 		image,
 		types,
 		materials,
+		buttons,
+		jacketTypes,
+		kurRopes,
+		purings,
+		screenPrintings,
+		stoppers,
+		zippers,
 		provinces,
 		regencies,
 		districts,
 		subDistricts,
+		postalCodes,
 	} = value
 
 	return (
@@ -161,32 +169,21 @@ export default function OrderForm({ functions, status, value }) {
 						</option>
 					))}
 			</Select>
-			<TextInput
+			<Select
 				name="address_postal_code"
 				value={address_postal_code}
-				type="text"
-				placeholder="Masukkan kode pos daerah kamu"
+				placeholder="Pilih kode pos daerah kamu"
 				label="Kode Pos"
 				onChange={handleChangeFormValue}
-			/>
-			<Select
-				name="type"
-				value={type}
-				placeholder="Jenis sandang"
-				label="Jenis"
-				onChange={handleChangeFormValue}
-				options={types}
 				onLoading={getSelectLoad}
-			/>
-			<Select
-				name="material"
-				value={material}
-				placeholder="Jenis bahan"
-				label="Bahan"
-				onChange={handleChangeFormValue}
-				options={materials}
-				onLoading={getSelectLoad}
-			/>
+			>
+				{postalCodes.length > 0 &&
+					postalCodes.map(({ postal_code }, index) => (
+						<option key={index} value={postal_code}>
+							{postal_code}
+						</option>
+					))}
+			</Select>
 			<RadioInputContainer
 				label="Status Pesanan"
 				name="order_status"
@@ -205,6 +202,38 @@ export default function OrderForm({ functions, status, value }) {
 					value="MAKLOON"
 				/>
 			</RadioInputContainer>
+			<Select
+				name="type"
+				value={type}
+				placeholder="Jenis sandang"
+				label="Jenis"
+				onChange={handleChangeFormValue}
+				options={types}
+				onLoading={getSelectLoad}
+			>
+				{types.length > 0 &&
+					types.map(({ code, name }, index) => (
+						<option key={index} value={code}>
+							{name}
+						</option>
+					))}
+			</Select>
+			<Select
+				name="material"
+				value={material}
+				placeholder="Jenis bahan"
+				label="Bahan"
+				onChange={handleChangeFormValue}
+				options={materials}
+				onLoading={getSelectLoad}
+			>
+				{materials.length > 0 &&
+					materials.map(({ code, name }, index) => (
+						<option key={index} value={code}>
+							{name}
+						</option>
+					))}
+			</Select>
 
 			{/* <TextInput
 				name="detail"

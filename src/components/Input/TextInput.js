@@ -73,7 +73,7 @@ export function TextInput({
 }) {
 	return (
 		<InputContainer suffix={unit} isShown={isShown}>
-			<Label htmlFor={name}>{label}</Label>
+			{label && <Label htmlFor={name}>{label}</Label>}
 			<Input
 				centered={centered}
 				id={name}

@@ -4,15 +4,7 @@ import styled from 'styled-components'
 import useLoading from 'hooks/useLoading'
 import { dateFormatParse } from 'utils/date'
 import { fetch, post } from 'utils/api'
-import {
-	initialOrderState,
-	initialProvinces,
-	initialRegencies,
-	initialDistricts,
-	initialSubDistricts,
-	initialMaterials,
-	initialTypes,
-} from 'utils/initialState'
+import { initialOrderState, emptyArray } from 'utils/initialState'
 
 import OrderSuccess from './OrderSuccess'
 import Wrapper from 'components/Layout/Wrapper'
@@ -49,13 +41,21 @@ export default function Order() {
 		isError: false,
 		message: '',
 	})
-	const [types, setTypes] = useState(initialTypes)
-	const [materials, setMaterials] = useState(initialMaterials)
+	const [types, setTypes] = useState(emptyArray)
+	const [materials, setMaterials] = useState(emptyArray)
+	const [buttons, setButtons] = useState(emptyArray)
+	const [jacketTypes, setJacketTypes] = useState(emptyArray)
+	const [kurRopes, setKurRopes] = useState(emptyArray)
+	const [purings, setPurings] = useState(emptyArray)
+	const [screenPrintings, setScreenPrintings] = useState(emptyArray)
+	const [stoppers, setStoppers] = useState(emptyArray)
+	const [zippers, setZippers] = useState(emptyArray)
 
-	const [provinces, setProvinces] = useState(initialProvinces)
-	const [regencies, setRegencies] = useState(initialRegencies)
-	const [districts, setDistricts] = useState(initialDistricts)
-	const [subDistricts, setSubDistricts] = useState(initialSubDistricts)
+	const [provinces, setProvinces] = useState(emptyArray)
+	const [regencies, setRegencies] = useState(emptyArray)
+	const [districts, setDistricts] = useState(emptyArray)
+	const [subDistricts, setSubDistricts] = useState(emptyArray)
+	const [postalCodes, setPostalCodes] = useState(emptyArray)
 
 	const [getSelectLoad, setSelectLoad] = useState(true)
 
@@ -77,13 +77,29 @@ export default function Order() {
 		}
 	}
 
-	async function getMaterials() {
+	async function getAttributes() {
 		try {
-			const { data: materials } = await fetch(
-				`clothing/type/${selectedTypeId}/material`
-			)
+			const {
+				data: {
+					materials,
+					buttons,
+					jacket_types,
+					kur_ropes,
+					purings,
+					screen_printings,
+					stoppers,
+					zippers,
+				},
+			} = await fetch(`clothing/type/${selectedTypeId}/attributes`)
 
 			setMaterials([...materials])
+			setButtons([...buttons])
+			setJacketTypes([...jacket_types])
+			setKurRopes([...kur_ropes])
+			setPurings([...purings])
+			setScreenPrintings([...screen_printings])
+			setStoppers([...stoppers])
+			setZippers([...zippers])
 		} catch (err) {
 			alert(err.message)
 		} finally {
@@ -145,6 +161,20 @@ export default function Order() {
 			setSelectLoad(false)
 		}
 	}
+
+	async function getPostalCodes(subDistricts) {
+		try {
+			const { data: postalCodes } = await fetch(
+				`master/postal_codes?province=${order.address_province}&city=${order.address_city}&kecamatan=${order.address_kecamatan}&kelurahan=${subDistricts}`
+			)
+
+			setPostalCodes([...postalCodes])
+		} catch (err) {
+			alert(err.message)
+		} finally {
+			setSelectLoad(false)
+		}
+	}
 	// Address ///////////////////////
 
 	useEffect(() => {
@@ -158,26 +188,60 @@ export default function Order() {
 	}, [])
 
 	useEffect(() => {
-		if (selectedTypeId) getMaterials()
+		if (selectedTypeId) getAttributes()
 	}, [selectedTypeId])
 
 	useEffect(() => {
 		if (firstLoad) return
+		if (order.address_city !== 'DEFAULT')
+			setOrder({
+				...order,
+				address_city: 'DEFAULT',
+				address_kecamatan: 'DEFAULT',
+				address_village: 'DEFAULT',
+				address_postal_code: 'DEFAULT',
+			})
 
 		getRegencies(order.address_province)
 	}, [order.address_province])
 
 	useEffect(() => {
 		if (firstLoad) return
+		if (order.address_kecamatan !== 'DEFAULT')
+			setOrder({
+				...order,
+				address_kecamatan: 'DEFAULT',
+				address_village: 'DEFAULT',
+				address_postal_code: 'DEFAULT',
+			})
 
 		getDistricts(order.address_city)
 	}, [order.address_city])
 
 	useEffect(() => {
 		if (firstLoad) return
+		if (order.address_village !== 'DEFAULT')
+			setOrder({
+				...order,
+				address_village: 'DEFAULT',
+				address_postal_code: 'DEFAULT',
+			})
 
 		getSubDistricts(order.address_kecamatan)
 	}, [order.address_kecamatan])
+
+	useEffect(() => {
+		if (firstLoad) return
+		if (order.address_postal_code !== 'DEFAULT')
+			setOrder({
+				...order,
+				address_postal_code: 'DEFAULT',
+			})
+
+		getPostalCodes(order.address_village)
+	}, [order.address_village])
+
+	// ////////////////////////////////////
 
 	async function uploadImageRequest() {
 		const imageUploadOption = {
@@ -248,8 +312,6 @@ export default function Order() {
 	function handleChangeFormValue({ target }) {
 		let { name, value } = target
 
-		console.log(name, value)
-
 		if (name === 'type') {
 			let temp = types.find((type) => type.code === value)
 			setSelectedTypeId(temp.id)
@@ -308,10 +370,18 @@ export default function Order() {
 									currentDate,
 									types,
 									materials,
+									buttons,
+									jacketTypes,
+									kurRopes,
+									purings,
+									screenPrintings,
+									stoppers,
+									zippers,
 									provinces,
 									regencies,
 									districts,
 									subDistricts,
+									postalCodes,
 								}}
 							/>
 						</>
