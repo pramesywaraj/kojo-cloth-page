@@ -79,7 +79,7 @@ export default function Order() {
 
 	async function getAttributes() {
 		try {
-			const {
+			let {
 				data: {
 					materials,
 					buttons,
@@ -91,6 +91,8 @@ export default function Order() {
 					zippers,
 				},
 			} = await fetch(`clothing/type/${selectedTypeId}/attributes`)
+
+			if (selectedTypeId === 'OTHER' || !jacket_types) jacket_types = []
 
 			setMaterials([...materials])
 			setButtons([...buttons])
@@ -313,9 +315,19 @@ export default function Order() {
 		let { name, value } = target
 
 		if (name === 'type') {
-			let temp = types.find((type) => type.code === value)
-			setSelectedTypeId(temp.id)
+			switch (value) {
+				case 'OTHER':
+					setSelectedTypeId('OTHER')
+					break
+				default: {
+					let type = types.find((type) => type.code === value)
+					if (!type) break
+					setSelectedTypeId(type.id)
+				}
+			}
 		}
+
+		if (value === 'OTHER') value = ''
 
 		setOrder((prevState) => {
 			return {

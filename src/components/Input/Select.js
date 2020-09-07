@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
@@ -50,22 +50,34 @@ export default function Select({
 	isShown,
 	isOtherOption,
 }) {
-	const [selectedValue, setSelectedValue] = useState('DEFAULT')
 	const [isOther, setIsOther] = useState(false)
 
 	function selectAnOption(e) {
 		const { value } = e.target
+
+		if (isOther && value !== 'OTHER') setIsOther(false)
+
+		if (value === 'OTHER') {
+			setIsOther(true)
+		}
+
+		onChange(e)
 	}
 
 	return (
 		<SelectContainer isShown={isShown}>
 			<Label htmlFor={name}>{label}</Label>
-			<SelectInput id={name} name={name} onChange={onChange} value={value}>
+			<SelectInput
+				id={name}
+				name={name}
+				onChange={selectAnOption}
+				value={isOther ? 'OTHER' : value}
+			>
 				<option value="DEFAULT" disabled>
 					{placeholder}
 				</option>
 				{children}
-				{onLoading && <option>Loading...</option>}
+				{onLoading && <option disabled>Loading...</option>}
 				{isOtherOption && <option value="OTHER">Lainnya</option>}
 			</SelectInput>
 			{isOtherOption && isOther ? (
@@ -73,7 +85,7 @@ export default function Select({
 					name={name}
 					type="text"
 					placeholder={`${placeholder} lainnya`}
-					onChange={() => {}}
+					onChange={onChange}
 					value={value}
 				/>
 			) : (

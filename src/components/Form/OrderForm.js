@@ -210,6 +210,7 @@ export default function OrderForm({ functions, status, value }) {
 				onChange={handleChangeFormValue}
 				options={types}
 				onLoading={getSelectLoad}
+				isOtherOption
 			>
 				{types.length > 0 &&
 					types.map(({ code, name }, index) => (
@@ -226,6 +227,7 @@ export default function OrderForm({ functions, status, value }) {
 				onChange={handleChangeFormValue}
 				options={materials}
 				onLoading={getSelectLoad}
+				isOtherOption
 			>
 				{materials.length > 0 &&
 					materials.map(({ code, name }, index) => (
