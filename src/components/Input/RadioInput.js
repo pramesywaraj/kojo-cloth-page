@@ -12,6 +12,8 @@ const RadioContainer = styled.div`
 	align-items: baseline;
 
 	position: relative;
+
+	text-align: initial;
 `
 
 const RadioInnerContainer = styled.div`
@@ -20,6 +22,7 @@ const RadioInnerContainer = styled.div`
 `
 
 const InputLabel = styled.label`
+	display: block;
 	margin-bottom: 1vh;
 	color: ${({ theme }) => theme.colors.primary};
 	font-weight: 600;

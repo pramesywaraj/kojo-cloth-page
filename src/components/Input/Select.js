@@ -1,20 +1,22 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
 import { TextInput } from 'components/Input/TextInput'
 
 const SelectContainer = styled.div`
-	width: auto;
+	width: 100%;
 	height: auto;
 	margin: 1.5vh 0;
 
 	display: ${({ isShown }) => (isShown ? 'inline-block' : 'none')};
 	position: relative;
+
+	text-align: initial;
 `
 
 const Label = styled.label`
-	float: left;
+	display: block;
 	margin-bottom: 1vh;
 	color: ${({ theme }) => theme.colors.primary};
 	font-weight: 600;
@@ -71,7 +73,7 @@ export default function Select({
 				id={name}
 				name={name}
 				onChange={selectAnOption}
-				value={isOther ? 'OTHER' : value}
+				value={isOther ? 'OTHER' : value === '' ? 'DEFAULT' : value}
 			>
 				<option value="DEFAULT" disabled>
 					{placeholder}

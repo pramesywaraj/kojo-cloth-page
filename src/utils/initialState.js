@@ -12,8 +12,6 @@ export const initialOrderState = {
 	order_status: '',
 	type: 'DEFAULT',
 	material: 'DEFAULT',
-	design_url: '',
-	due_date: '',
 	detail: [
 		{
 			size: 'DEFAULT',
@@ -21,7 +19,22 @@ export const initialOrderState = {
 			quantity: '',
 		},
 	],
+	order_detail: {
+		embroidery_point: '',
+		embroidery_notes: '',
+		screen_printing: '',
+		screen_printing_notes: '',
+		button: '',
+		use_perepet: '',
+		kur_rope: '',
+		stopper: '',
+		zipper: '',
+		puring: '',
+		jacket_type: '',
+	},
 	notes: '',
+	design_url: '',
+	due_date: '',
 }
 
 export const emptyArray = []

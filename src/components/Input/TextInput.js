@@ -4,28 +4,32 @@ import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 
 const InputContainer = styled.div`
-	width: auto;
+	width: 100%;
 	height: auto;
 	margin: 1.5vh 0;
-	
-	display: ${(props) => (props.isShown ? 'inline-block' : 'none')};
-	position: relative;
 
-	&::after {
-		position: absolute;
-		top: 33px;
-		right: 1em;
-	}
+	display: ${(props) => (props.isShown ? 'inline-block' : 'none')};
+	text-align: initial;
+`
+
+const Container = styled.div`
+	position: relative;
+	width: auto;
+	height: auto;
 
 	&::after {
 		content: '${(props) => props.suffix}';
 		position: absolute;
-		top: 10px;
+		top: 50%;
+		right: 1vw;
+
+		transform: translateY(-50%);
+		
 	}
 `
 
 const Label = styled.label`
-	float: left;
+	display: block;
 	margin-bottom: 1vh;
 	color: ${({ theme }) => theme.colors.primary};
 	font-weight: 600;
@@ -74,18 +78,20 @@ export function TextInput({
 	isShown,
 }) {
 	return (
-		<InputContainer suffix={unit} isShown={isShown}>
+		<InputContainer isShown={isShown}>
 			{label && <Label htmlFor={name}>{label}</Label>}
-			<Input
-				centered={centered}
-				id={name}
-				name={name}
-				value={value}
-				placeholder={placeholder}
-				type={type}
-				onChange={onChange}
-				required={true}
-			/>
+			<Container suffix={unit}>
+				<Input
+					centered={centered}
+					id={name}
+					name={name}
+					value={value}
+					placeholder={placeholder}
+					type={type}
+					onChange={onChange}
+					required={true}
+				/>
+			</Container>
 		</InputContainer>
 	)
 }

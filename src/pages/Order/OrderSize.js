@@ -19,6 +19,8 @@ const OrderSizeInputContainer = styled.div`
 
 	display: ${({ isShown }) => (isShown ? 'inline-block' : 'none')};
 	position: relative;
+
+	text-align: initial;
 `
 
 const Container = styled.div`
@@ -51,7 +53,7 @@ const ButtonContainer = styled(Container)`
 `
 
 const Label = styled.label`
-	float: left;
+	display: block;
 	margin-bottom: 1vh;
 	color: ${({ theme }) => theme.colors.primary};
 	font-weight: 600;

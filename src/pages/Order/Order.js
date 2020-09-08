@@ -376,6 +376,18 @@ export default function Order() {
 		setOrder({ ...order, detail: [...list] })
 	}
 
+	function handleChangeOrderDetailValue(e) {
+		let { name, value } = e.target
+
+		if (value === 'OTHER') value = ''
+
+		const attribute = { ...order.order_detail }
+
+		attribute[name] = value
+
+		setOrder({ ...order, order_detail: { ...attribute } })
+	}
+
 	return (
 		<OrderMain>
 			<Wrapper>
@@ -402,6 +414,7 @@ export default function Order() {
 									handleAddDetailField,
 									handleRemoveDetailField,
 									handleChangeDetailField,
+									handleChangeOrderDetailValue,
 								}}
 								status={{ loading, getSelectLoad }}
 								value={{

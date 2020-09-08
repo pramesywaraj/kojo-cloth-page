@@ -41,6 +41,7 @@ export default function OrderForm({ functions, status, value }) {
 		handleAddDetailField,
 		handleRemoveDetailField,
 		handleChangeDetailField,
+		handleChangeOrderDetailValue,
 	} = functions
 	const { loading, getSelectLoad } = status
 	const {
@@ -58,6 +59,7 @@ export default function OrderForm({ functions, status, value }) {
 		material,
 		order_status,
 		detail,
+		order_detail,
 		due_date,
 		notes,
 		currentDate,
@@ -244,6 +246,52 @@ export default function OrderForm({ functions, status, value }) {
 						</option>
 					))}
 			</Select>
+
+			{/* Order Detail Form Section */}
+			<Select
+				name="screen_printing"
+				value={order_detail.screen_printing}
+				placeholder="Jenis sablon"
+				label="Jenis Sablon"
+				onChange={handleChangeOrderDetailValue}
+				onLoading={getSelectLoad}
+				isOtherOption
+			>
+				{screenPrintings.length > 0 &&
+					screenPrintings.map(({ code, name }, index) => (
+						<option key={index} value={code}>
+							{name}
+						</option>
+					))}
+			</Select>
+
+			<TextArea
+				name="screen_printing_notes"
+				value={order_detail.screen_printing_notes}
+				placeholder="Catatan tambahan mengenai sablon yang akan dibuat"
+				label="Detil Sablon"
+				onChange={handleChangeOrderDetailValue}
+			/>
+
+			<TextInput
+				name="embroidery_point"
+				value={order_detail.embroidery_point}
+				type="number"
+				placeholder="Jumlah titik bordir"
+				label="Bordir"
+				onChange={handleChangeOrderDetailValue}
+				unit="Titik"
+			/>
+
+			<TextArea
+				name="embroidery_notes"
+				value={order_detail.embroidery_notes}
+				placeholder="Catatan tambahan mengenai titik bordir yang akan dibuat"
+				label="Detil Bordir"
+				onChange={handleChangeOrderDetailValue}
+			/>
+
+			{/* Order Detail Form Section */}
 
 			<OrderSize
 				inputList={detail}

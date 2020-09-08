@@ -10,10 +10,12 @@ const InputContainer = styled.div`
 
 	display: ${({ isShown }) => (isShown ? 'inline-block' : 'none')};
 	position: relative;
+
+	text-align: initial;
 `
 
 const Label = styled.label`
-	float: left;
+	display: block;
 	margin-bottom: 1vh;
 	color: ${({ theme }) => theme.colors.primary};
 	font-weight: 600;
