@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import mediaQueries from 'theme/mediaQueries'
 
 import { TextInput, TextArea } from 'components/Input/TextInput'
 import { PrimaryButton } from 'components/Button/Button'
@@ -10,9 +11,11 @@ import { RadioInput, RadioInputContainer } from 'components/Input/RadioInput'
 import Select from 'components/Input/Select'
 import Loading from 'components/Loading/Loading'
 
+import OrderSize from 'pages/Order/OrderSize'
+
 const OrderFormContainer = styled.form`
 	height: auto;
-	width: 60%;
+	width: 100%;
 	padding: 3vh 0;
 
 	display: flex;
@@ -24,6 +27,10 @@ const OrderFormContainer = styled.form`
 		margin: 20px auto;
 		max-width: 348px;
 	}
+
+	${mediaQueries('small_screen')`
+		width: 65%;
+	`}
 `
 
 export default function OrderForm({ functions, status, value }) {
@@ -31,6 +38,9 @@ export default function OrderForm({ functions, status, value }) {
 		onSubmitOrder,
 		handleChangeFormValue,
 		handleChangeImageValue,
+		handleAddDetailField,
+		handleRemoveDetailField,
+		handleChangeDetailField,
 	} = functions
 	const { loading, getSelectLoad } = status
 	const {
@@ -208,7 +218,6 @@ export default function OrderForm({ functions, status, value }) {
 				placeholder="Jenis sandang"
 				label="Jenis"
 				onChange={handleChangeFormValue}
-				options={types}
 				onLoading={getSelectLoad}
 				isOtherOption
 			>
@@ -225,7 +234,6 @@ export default function OrderForm({ functions, status, value }) {
 				placeholder="Jenis bahan"
 				label="Bahan"
 				onChange={handleChangeFormValue}
-				options={materials}
 				onLoading={getSelectLoad}
 				isOtherOption
 			>
@@ -237,13 +245,20 @@ export default function OrderForm({ functions, status, value }) {
 					))}
 			</Select>
 
-			{/* <TextInput
-				name="detail"
-				value={detail}
-				placeholder="Contoh : S - 12pcs, M-13pcs, L-20pcs"
-				label="Deskripsi Detail Jumlah dan Ukuran"
-				onChange={handleChangeFormValue}
+			<OrderSize
+				inputList={detail}
+				onAdd={handleAddDetailField}
+				onRemove={handleRemoveDetailField}
+				onChange={handleChangeDetailField}
 			/>
+
+			<ImageInput
+				name="total"
+				value={image}
+				label="Gambar Desain"
+				onChange={handleChangeImageValue}
+			/>
+
 			<DateInput
 				name="due_date"
 				value={due_date}
@@ -253,19 +268,14 @@ export default function OrderForm({ functions, status, value }) {
 				min={currentDate}
 				placeholder="Minimal tenggat waktu dua minggu dari hari ini"
 			/>
-			<ImageInput
-				name="total"
-				value={image}
-				label="Gambar Desain"
-				onChange={handleChangeImageValue}
-			/>
+
 			<TextArea
 				name="notes"
 				value={notes}
 				placeholder="Catatan tambahan mengenai pesanan yang akan dibuat"
 				label="Catatan Tambahan"
 				onChange={handleChangeFormValue}
-			/> */}
+			/>
 			<div className="submit-button">
 				<PrimaryButton type="submit">
 					{loading && <Loading />}

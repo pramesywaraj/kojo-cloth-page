@@ -351,6 +351,31 @@ export default function Order() {
 		window.scrollTo({ top: 0, behavior: 'smooth' })
 	}
 
+	function handleAddDetailField() {
+		const newField = {
+			size: 'DEFAULT',
+			type: '',
+			quantity: '',
+		}
+		setOrder({ ...order, detail: [...order.detail, newField] })
+	}
+
+	function handleRemoveDetailField(index) {
+		const list = [...order.detail]
+		list.splice(index, 1)
+		setOrder({ ...order, detail: [...list] })
+	}
+
+	function handleChangeDetailField(e, index) {
+		const { name, value } = e.target
+
+		const list = [...order.detail]
+
+		list[index][name] = value
+
+		setOrder({ ...order, detail: [...list] })
+	}
+
 	return (
 		<OrderMain>
 			<Wrapper>
@@ -374,6 +399,9 @@ export default function Order() {
 									onSubmitOrder,
 									handleChangeFormValue,
 									handleChangeImageValue,
+									handleAddDetailField,
+									handleRemoveDetailField,
+									handleChangeDetailField,
 								}}
 								status={{ loading, getSelectLoad }}
 								value={{

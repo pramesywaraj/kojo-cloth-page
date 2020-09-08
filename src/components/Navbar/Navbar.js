@@ -143,6 +143,7 @@ const NavbarCallToAction = styled.ul`
 
 			&:hover {
 				background: ${theme.colors.darkPrimary};
+				color: ${theme.colors.white};
 			}
 			
 			&:focus {

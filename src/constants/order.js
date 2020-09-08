@@ -1,46 +1,3 @@
-// {
-// 	"name": "Adi Purnama",
-// 	"institution": "Unpad",
-// 	"phone_number": "081231231231",
-// 	"address_street": "Jalan Jati No. 496 RT/RW 002/007",
-// 	"address_village": "Sindangrasa",
-// 	"address_kecamatan": "Ciamis",
-// 	"address_city": "Ciamis",
-// 	"address_postal_code": "46215",
-// 	"email": "webteam@mailinator.com",
-// 	"order_status": "FULL_ORDER",
-// 	"type": "TSHIRT",
-// 	"material": "COMBED_30S",
-// 	"detail": [
-// 		{
-// 			"size": "XL",
-// 			"type": "Lengan Panjang",
-// 			"quantity": 10
-// 		},
-// 		{
-// 			"size": "L",
-// 			"type": "Lengan Pendek",
-// 			"quantity": 10
-// 		}
-// 	],
-// 	"order_detail": {
-// 		"embroidery_point": 4,
-// 		"embroidery_notes": "Catatan bordir",
-// 		"screen_printing": "RUBBER_GL",
-// 		"screen_printing_notes": "Catatan detail sablon",
-// 		"button": "PSB",
-// 		"use_perepet": true,
-// 		"kur_rope": "FLAT",
-// 		"stopper": "ROUND",
-// 		"zipper": "BSZ",
-// 		"puring": "ASAHI",
-// 		"jacket_type": "ZIPPER"
-// 	},
-// 	"due_date": "2020-08-10",
-// 	"design_url": "https://fakeimg.pl/200x200",
-// 	"notes": "Deskripsi desain"
-// }
-
 // Order Form
 export const ORDER_FORM = {
 	TSHIRT: {
@@ -198,6 +155,19 @@ export const ORDER_FORM = {
 		zipper: true,
 		puring: false,
 		jacket_type: false,
+	},
+	OTHER: {
+		embroidery_point: true,
+		embroidery_notes: true,
+		screen_printing: true,
+		screen_printing_notes: true,
+		button: true,
+		use_perepet: true,
+		kur_rope: true,
+		stopper: true,
+		zipper: true,
+		puring: true,
+		jacket_type: true,
 	},
 }
 

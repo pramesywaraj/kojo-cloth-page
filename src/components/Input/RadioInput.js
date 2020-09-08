@@ -60,6 +60,8 @@ const Indicator = styled.div`
 	top: 0;
 	left: -1.5em;
 
+	cursor: pointer;
+
 	${Label}:hover & {
 		background: #e0e0e0;
 	}
@@ -102,8 +104,8 @@ export function RadioInputContainer({
 	isColumned,
 }) {
 	return (
-		<RadioContainer isShown={isShown} role="radiogroup">
-			<InputLabel>{label}</InputLabel>
+		<RadioContainer id={name} isShown={isShown} role="radiogroup">
+			<InputLabel htmlFor={name}>{label}</InputLabel>
 			<RadioInnerContainer>
 				{React.Children.map(children, (element) =>
 					React.cloneElement(element, {

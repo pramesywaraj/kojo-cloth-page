@@ -17,7 +17,7 @@ export const initialOrderState = {
 	detail: [
 		{
 			size: 'DEFAULT',
-			type: 'DEFAULT',
+			type: '',
 			quantity: '',
 		},
 	],

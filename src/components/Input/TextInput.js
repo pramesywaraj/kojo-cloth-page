@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 
 const InputContainer = styled.div`
-	width: 100%;
+	width: auto;
 	height: auto;
 	margin: 1.5vh 0;
 	
@@ -19,6 +19,8 @@ const InputContainer = styled.div`
 
 	&::after {
 		content: '${(props) => props.suffix}';
+		position: absolute;
+		top: 10px;
 	}
 `
 
