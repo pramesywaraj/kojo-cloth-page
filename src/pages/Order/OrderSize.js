@@ -34,14 +34,13 @@ const Container = styled.div`
 
 const FieldContainer = styled(Container)`
 	justify-content: initial;
-	flex: 6;
 `
 
 const FieldChildContainer = styled.div`
-	${({ size }) =>
-		size
+	${({ width }) =>
+		width
 			? css`
-					width: ${({ size }) => `${size}px`};
+					width: ${({ width }) => `${width}px`};
 			  `
 			: ''}
 	margin: 0 10px;
@@ -49,6 +48,7 @@ const FieldChildContainer = styled.div`
 `
 
 const ButtonContainer = styled(Container)`
+	padding: 1%;
 	flex: 1;
 `
 
@@ -72,7 +72,7 @@ export default function OrderSize({ inputList, onChange, onAdd, onRemove }) {
 			{inputList.map((element, index) => (
 				<Container key={index}>
 					<FieldContainer>
-						<FieldChildContainer size={100}>
+						<FieldChildContainer width={100}>
 							<Select
 								name="size"
 								placeholder="Ukuran"
@@ -87,7 +87,7 @@ export default function OrderSize({ inputList, onChange, onAdd, onRemove }) {
 									))}
 							</Select>
 						</FieldChildContainer>
-						<FieldChildContainer size={110}>
+						<FieldChildContainer width={110}>
 							<TextInput
 								name="quantity"
 								value={element.quantity}

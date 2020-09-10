@@ -37,8 +37,8 @@ const Label = styled.label`
 
 const Input = styled.input`
 	width: 100%;
-	min-height: 20px;
-	padding: 10px;
+	min-height: 21px;
+	padding: 13px 10px;
 	border: 1.5px solid ${({ theme }) => theme.colors.primary};
 	border-radius: 8px;
 
@@ -51,6 +51,18 @@ const Input = styled.input`
 
 	&:focus {
 		outline: none;
+	}
+
+	/* Chrome, Safari, Edge, Opera */
+	&::-webkit-outer-spin-button,
+	&::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	/* Firefox */
+	&[type='number'] {
+		-moz-appearance: textfield;
 	}
 `
 
@@ -69,7 +81,7 @@ const TextAreaInput = styled.textarea`
 export function TextInput({
 	name,
 	placeholder,
-	type = 'text',
+	type,
 	label,
 	onChange,
 	value,
@@ -142,6 +154,7 @@ TextArea.propTypes = {
 
 TextInput.defaultProps = {
 	isShown: true,
+	type: 'text',
 }
 
 TextArea.defaultProps = {
