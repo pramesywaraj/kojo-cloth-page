@@ -68,7 +68,7 @@ export default function Select({
 
 	return (
 		<SelectContainer isShown={isShown}>
-			<Label htmlFor={name}>{label}</Label>
+			{label && <Label htmlFor={name}>{label}</Label>}
 			<SelectInput
 				id={name}
 				name={name}
