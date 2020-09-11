@@ -275,9 +275,6 @@ export default function Order() {
 
 		showLoading()
 
-		let imageData = new FormData()
-		imageData.append('design', image)
-
 		try {
 			const imageUrl = await uploadImageRequest()
 
@@ -366,17 +363,17 @@ export default function Order() {
 
 	function handleChangeDetailField(e, index) {
 		let { name, value } = e.target
-		let realIndex = index
+		// let realIndex = index
 
 		const list = [...order.detail]
 
-		let temp = name.split('-')
-		if (temp.length >= 2) {
-			name = temp[1]
-			realIndex = temp[0]
-		}
+		// let temp = name.split('-')
+		// if (temp.length >= 2) {
+		// 	name = temp[1]
+		// 	realIndex = temp[0]
+		// }
 
-		list[realIndex][name] = value
+		list[index][name] = value
 
 		setOrder({ ...order, detail: [...list] })
 	}

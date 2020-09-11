@@ -31,7 +31,7 @@ const OrderFormContainer = styled.form`
 	}
 
 	${mediaQueries('small_screen')`
-		width: 65%;
+		width: 90%;
 	`}
 `
 

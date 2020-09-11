@@ -3,7 +3,7 @@ export const ORDER_FORM = {
 	TSHIRT: {
 		embroidery_point_status: false,
 		embroidery_notes_status: false,
-		screen_printing: true,
+		screen_printing_status: true,
 		screen_printing_notes_status: true,
 		button_status: false,
 		use_perepet_status: false,
@@ -16,7 +16,7 @@ export const ORDER_FORM = {
 	RAGLAN: {
 		embroidery_point_status: false,
 		embroidery_notes_status: false,
-		screen_printing: true,
+		screen_printing_status: true,
 		screen_printing_notes_status: true,
 		button_status: false,
 		use_perepet_status: false,
@@ -29,9 +29,9 @@ export const ORDER_FORM = {
 	POLO: {
 		embroidery_point_status: true,
 		embroidery_notes_status: true,
-		screen_printing: true,
-		screen_printing_notes_status_status: true,
-		button_status_status: false,
+		screen_printing_status: true,
+		screen_printing_notes_status: true,
+		button_status: false,
 		use_perepet_status: false,
 		kur_rope_status: false,
 		stopper_status: false,
@@ -42,8 +42,8 @@ export const ORDER_FORM = {
 	SHIRT: {
 		embroidery_point_status: true,
 		embroidery_notes_status: true,
-		screen_printing: true,
-		screen_printing_notes_status: true,
+		screen_printing_status: false,
+		screen_printing_notes_status: false,
 		button_status: true,
 		use_perepet_status: true,
 		kur_rope_status: false,
@@ -55,7 +55,7 @@ export const ORDER_FORM = {
 	SWEATER: {
 		embroidery_point_status: true,
 		embroidery_notes_status: true,
-		screen_printing: true,
+		screen_printing_status: true,
 		screen_printing_notes_status: true,
 		button_status: false,
 		use_perepet_status: false,
@@ -68,7 +68,7 @@ export const ORDER_FORM = {
 	JACKET: {
 		embroidery_point_status: true,
 		embroidery_notes_status: true,
-		screen_printing: true,
+		screen_printing_status: true,
 		screen_printing_notes_status: true,
 		button_status: true,
 		use_perepet_status: true,
@@ -81,8 +81,8 @@ export const ORDER_FORM = {
 	FORMAL_SUIT: {
 		embroidery_point_status: true,
 		embroidery_notes_status: true,
-		screen_printing: true,
-		screen_printing_notes_status: true,
+		screen_printing_status: false,
+		screen_printing_notes_status: false,
 		button_status: true,
 		use_perepet_status: false,
 		kur_rope_status: false,
@@ -94,8 +94,8 @@ export const ORDER_FORM = {
 	LAB_SUIT: {
 		embroidery_point_status: true,
 		embroidery_notes_status: true,
-		screen_printing: true,
-		screen_printing_notes_status: true,
+		screen_printing_status: false,
+		screen_printing_notes_status: false,
 		button_status: true,
 		use_perepet_status: false,
 		kur_rope_status: false,
@@ -107,8 +107,8 @@ export const ORDER_FORM = {
 	WEARPACK: {
 		embroidery_point_status: true,
 		embroidery_notes_status: true,
-		screen_printing: true,
-		screen_printing_notes_status: true,
+		screen_printing_status: false,
+		screen_printing_notes_status: false,
 		button_status: true,
 		use_perepet_status: true,
 		kur_rope_status: false,
@@ -120,8 +120,8 @@ export const ORDER_FORM = {
 	VEST: {
 		embroidery_point_status: true,
 		embroidery_notes_status: true,
-		screen_printing: true,
-		screen_printing_notes_status: true,
+		screen_printing_status: false,
+		screen_printing_notes_status: false,
 		button_status: true,
 		use_perepet_status: true,
 		kur_rope_status: false,
@@ -133,7 +133,7 @@ export const ORDER_FORM = {
 	TOTEBAG: {
 		embroidery_point_status: true,
 		embroidery_notes_status: true,
-		screen_printing: true,
+		screen_printing_status: true,
 		screen_printing_notes_status: true,
 		button_status: true,
 		use_perepet_status: true,
@@ -146,8 +146,8 @@ export const ORDER_FORM = {
 	DRESS: {
 		embroidery_point_status: true,
 		embroidery_notes_status: true,
-		screen_printing: true,
-		screen_printing_notes_status: true,
+		screen_printing_status: false,
+		screen_printing_notes_status: false,
 		button_status: true,
 		use_perepet_status: false,
 		kur_rope_status: false,
@@ -159,7 +159,7 @@ export const ORDER_FORM = {
 	OTHER: {
 		embroidery_point_status: true,
 		embroidery_notes_status: true,
-		screen_printing: true,
+		screen_printing_status: true,
 		screen_printing_notes_status: true,
 		button_status: true,
 		use_perepet_status: true,
@@ -174,7 +174,7 @@ export const ORDER_FORM = {
 export const initialOrderDetailState = {
 	embroidery_point_status: false,
 	embroidery_notes_status: false,
-	screen_printing: false,
+	screen_printing_status: false,
 	screen_printing_notes_status: false,
 	button_status: false,
 	use_perepet_status: false,

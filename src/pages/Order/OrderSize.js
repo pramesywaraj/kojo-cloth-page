@@ -1,9 +1,10 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
+import mediaQueries from 'theme/mediaQueries'
 
 import { TextInput } from 'components/Input/TextInput'
-import { RadioInput, RadioInputContainer } from 'components/Input/RadioInput'
+// import { RadioInput, RadioInputContainer } from 'components/Input/RadioInput'
 import Select from 'components/Input/Select'
 import { IconedButton } from 'components/Button/Button'
 import Icon from 'components/Icon/Icon'
@@ -30,24 +31,51 @@ const Container = styled.div`
 	align-items: center;
 	width: 100%;
 	height: auto;
+
+	border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+
+	&:last-of-type {
+		border: none !important;
+	}
+
+	${mediaQueries('tablet')`
+		border-bottom: none;
+	`};
 `
 
-const FieldContainer = styled(Container)`
-	justify-content: initial;
+const FieldContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
+
+	width: 100%;
+	height: auto;
+
+	${mediaQueries('tablet')`
+		flex-direction: row;
+		align-items: center;
+	`};
 `
 
 const FieldChildContainer = styled.div`
-	${({ width }) =>
-		width
-			? css`
-					width: ${({ width }) => `${width}px`};
-			  `
-			: ''}
 	margin: 0 10px;
+	width: 80%;
 	text-align: center;
+
+	${mediaQueries('tablet')`
+	
+	`}
 `
 
-const ButtonContainer = styled(Container)`
+const ButtonContainer = styled.div`
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-start;
+
+	width: 100%;
+	height: auto;
 	flex: 1;
 
 	.button {
@@ -75,7 +103,7 @@ export default function OrderSize({ inputList, onChange, onAdd, onRemove }) {
 			{inputList.map((element, index) => (
 				<Container key={index}>
 					<FieldContainer>
-						<FieldChildContainer width={100}>
+						<FieldChildContainer>
 							<Select
 								name="size"
 								placeholder="Ukuran"
@@ -90,7 +118,7 @@ export default function OrderSize({ inputList, onChange, onAdd, onRemove }) {
 									))}
 							</Select>
 						</FieldChildContainer>
-						<FieldChildContainer width={110}>
+						<FieldChildContainer>
 							<TextInput
 								name="quantity"
 								value={element.quantity}
@@ -101,7 +129,7 @@ export default function OrderSize({ inputList, onChange, onAdd, onRemove }) {
 							/>
 						</FieldChildContainer>
 						<FieldChildContainer>
-							<RadioInputContainer
+							{/* <RadioInputContainer
 								name={`${index}-type`}
 								id={`${index}-type`}
 								selectedValue={element.type}
@@ -117,7 +145,16 @@ export default function OrderSize({ inputList, onChange, onAdd, onRemove }) {
 									id={`lengan-pendek-${index}`}
 									value="Lengan Pendek"
 								/>
-							</RadioInputContainer>
+							</RadioInputContainer> */}
+							<Select
+								name="type"
+								placeholder="Jenis lengan"
+								value={element.type}
+								onChange={(e) => onChange(e, index)}
+							>
+								<option value="Lengan Panjang">Lengan Panjang</option>
+								<option value="Lengan Pendek">Lengan Pendek</option>
+							</Select>
 						</FieldChildContainer>
 					</FieldContainer>
 					<ButtonContainer>
@@ -136,7 +173,7 @@ export default function OrderSize({ inputList, onChange, onAdd, onRemove }) {
 				</Container>
 			))}
 			<WarnText>
-				Abaikan pemilihan lengan panjang/pendek jika dirasa tidak perlu
+				Abaikan pemilihan jenis lengan panjang/pendek jika dirasa tidak perlu
 			</WarnText>
 		</OrderSizeInputContainer>
 	)
