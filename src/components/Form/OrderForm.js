@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import mediaQueries from 'theme/mediaQueries'
@@ -10,6 +10,8 @@ import DateInput from 'components/Input/DateInput'
 import { RadioInput, RadioInputContainer } from 'components/Input/RadioInput'
 import Select from 'components/Input/Select'
 import Loading from 'components/Loading/Loading'
+
+import { ORDER_FORM, initialOrderDetailState } from 'constants/order'
 
 import OrderSize from 'pages/Order/OrderSize'
 
@@ -79,6 +81,32 @@ export default function OrderForm({ functions, status, value }) {
 		subDistricts,
 		postalCodes,
 	} = value
+
+	const [shownStatus, setShownStatus] = useState(initialOrderDetailState)
+	const [firstLoad, setFirstLoad] = useState(true)
+
+	useEffect(() => {
+		if (firstLoad) {
+			setFirstLoad(false)
+			return
+		}
+
+		setShownStatus({ ...ORDER_FORM[type] })
+	}, [type])
+
+	const {
+		embroidery_point_status,
+		embroidery_notes_status,
+		screen_printing_status,
+		screen_printing_notes_status,
+		button_status,
+		use_perepet_status,
+		kur_rope_status,
+		stopper_status,
+		zipper_status,
+		puring_status,
+		jacket_type_status,
+	} = shownStatus
 
 	return (
 		<OrderFormContainer onSubmit={onSubmitOrder}>
@@ -249,13 +277,32 @@ export default function OrderForm({ functions, status, value }) {
 
 			{/* Order Detail Form Section */}
 			<Select
+				name="jacket_type"
+				value={order_detail.jacket_type}
+				placeholder="Jenis jaket pesanan kamu"
+				label="Jenis Jaket"
+				onChange={handleChangeOrderDetailValue}
+				onLoading={getSelectLoad}
+				isOtherOption
+				isShown={jacket_type_status}
+			>
+				{jacketTypes.length > 0 &&
+					jacketTypes.map(({ code, name }, index) => (
+						<option key={index} value={code}>
+							{name}
+						</option>
+					))}
+			</Select>
+
+			<Select
 				name="screen_printing"
 				value={order_detail.screen_printing}
-				placeholder="Jenis sablon"
+				placeholder="Jenis sablon pesanan kamu"
 				label="Jenis Sablon"
 				onChange={handleChangeOrderDetailValue}
 				onLoading={getSelectLoad}
 				isOtherOption
+				isShown={screen_printing_status}
 			>
 				{screenPrintings.length > 0 &&
 					screenPrintings.map(({ code, name }, index) => (
@@ -271,6 +318,7 @@ export default function OrderForm({ functions, status, value }) {
 				placeholder="Catatan tambahan mengenai sablon yang akan dibuat"
 				label="Detil Sablon"
 				onChange={handleChangeOrderDetailValue}
+				isShown={screen_printing_notes_status}
 			/>
 
 			<TextInput
@@ -281,6 +329,7 @@ export default function OrderForm({ functions, status, value }) {
 				label="Bordir"
 				onChange={handleChangeOrderDetailValue}
 				unit="Titik"
+				isShown={embroidery_point_status}
 			/>
 
 			<TextArea
@@ -289,7 +338,109 @@ export default function OrderForm({ functions, status, value }) {
 				placeholder="Catatan tambahan mengenai titik bordir yang akan dibuat"
 				label="Detil Bordir"
 				onChange={handleChangeOrderDetailValue}
+				isShown={embroidery_notes_status}
 			/>
+
+			<Select
+				name="button"
+				value={order_detail.button}
+				placeholder="Jenis kancing pada pesanan kamu"
+				label="Jenis Kancing"
+				onChange={handleChangeOrderDetailValue}
+				onLoading={getSelectLoad}
+				isOtherOption
+				isShown={button_status}
+			>
+				{buttons.length > 0 &&
+					buttons.map(({ code, name }, index) => (
+						<option key={index} value={code}>
+							{name}
+						</option>
+					))}
+			</Select>
+
+			<RadioInputContainer
+				label="Perepet"
+				name="use_perepet"
+				onChangeValue={handleChangeOrderDetailValue}
+				selectedValue={order_detail.use_perepet}
+				isShown={use_perepet_status}
+			>
+				<RadioInput label="Ya" id="true" value={true} />
+				<RadioInput label="Tidak" id="false" value={false} />
+			</RadioInputContainer>
+
+			<Select
+				name="kur_rope"
+				value={order_detail.kur_rope}
+				placeholder="Jenis tali kur pada pesanan kamu"
+				label="Jenis Tali Kur"
+				onChange={handleChangeOrderDetailValue}
+				onLoading={getSelectLoad}
+				isOtherOption
+				isShown={kur_rope_status}
+			>
+				{kurRopes.length > 0 &&
+					kurRopes.map(({ code, name }, index) => (
+						<option key={index} value={code}>
+							{name}
+						</option>
+					))}
+			</Select>
+
+			<Select
+				name="stopper"
+				value={order_detail.stopper}
+				placeholder="Jenis stopper (yang ada di ujung jaket) pada pesanan kamu"
+				label="Jenis Stopper"
+				onChange={handleChangeOrderDetailValue}
+				onLoading={getSelectLoad}
+				isOtherOption
+				isShown={stopper_status}
+			>
+				{stoppers.length > 0 &&
+					stoppers.map(({ code, name }, index) => (
+						<option key={index} value={code}>
+							{name}
+						</option>
+					))}
+			</Select>
+
+			<Select
+				name="zipper"
+				value={order_detail.zipper}
+				placeholder="Jenis resleting pada pesanan kamu"
+				label="Jenis Resleting"
+				onChange={handleChangeOrderDetailValue}
+				onLoading={getSelectLoad}
+				isOtherOption
+				isShown={zipper_status}
+			>
+				{zippers.length > 0 &&
+					zippers.map(({ code, name }, index) => (
+						<option key={index} value={code}>
+							{name}
+						</option>
+					))}
+			</Select>
+
+			<Select
+				name="puring"
+				value={order_detail.puring}
+				placeholder="Jenis puring pada pesanan kamu"
+				label="Jenis Puring"
+				onChange={handleChangeOrderDetailValue}
+				onLoading={getSelectLoad}
+				isOtherOption
+				isShown={puring_status}
+			>
+				{purings.length > 0 &&
+					purings.map(({ code, name }, index) => (
+						<option key={index} value={code}>
+							{name}
+						</option>
+					))}
+			</Select>
 
 			{/* Order Detail Form Section */}
 

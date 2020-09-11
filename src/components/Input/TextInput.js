@@ -88,6 +88,7 @@ export function TextInput({
 	unit,
 	centered,
 	isShown,
+	...rest
 }) {
 	return (
 		<InputContainer isShown={isShown}>
@@ -101,7 +102,7 @@ export function TextInput({
 					placeholder={placeholder}
 					type={type}
 					onChange={onChange}
-					required={true}
+					{...rest}
 				/>
 			</Container>
 		</InputContainer>

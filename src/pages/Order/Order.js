@@ -352,12 +352,10 @@ export default function Order() {
 	}
 
 	function handleAddDetailField() {
-		const newField = {
-			size: 'DEFAULT',
-			type: '',
-			quantity: '',
-		}
-		setOrder({ ...order, detail: [...order.detail, newField] })
+		setOrder({
+			...order,
+			detail: [...order.detail, { size: 'DEFAULT', type: '', quantity: '' }],
+		})
 	}
 
 	function handleRemoveDetailField(index) {
@@ -367,11 +365,18 @@ export default function Order() {
 	}
 
 	function handleChangeDetailField(e, index) {
-		const { name, value } = e.target
+		let { name, value } = e.target
+		let realIndex = index
 
 		const list = [...order.detail]
 
-		list[index][name] = value
+		let temp = name.split('-')
+		if (temp.length >= 2) {
+			name = temp[1]
+			realIndex = temp[0]
+		}
+
+		list[realIndex][name] = value
 
 		setOrder({ ...order, detail: [...list] })
 	}
@@ -380,6 +385,7 @@ export default function Order() {
 		let { name, value } = e.target
 
 		if (value === 'OTHER') value = ''
+		if (name === 'use_perepet') value = value == 'true'
 
 		const attribute = { ...order.order_detail }
 

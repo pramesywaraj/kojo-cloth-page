@@ -48,8 +48,11 @@ const FieldChildContainer = styled.div`
 `
 
 const ButtonContainer = styled(Container)`
-	padding: 1%;
 	flex: 1;
+
+	.button {
+		margin: 0 4px;
+	}
 `
 
 const Label = styled.label`
@@ -99,29 +102,46 @@ export default function OrderSize({ inputList, onChange, onAdd, onRemove }) {
 						</FieldChildContainer>
 						<FieldChildContainer>
 							<RadioInputContainer
-								name="type"
+								name={`${index}-type`}
+								id={`${index}-type`}
 								selectedValue={element.type}
 								onChangeValue={(e) => onChange(e, index)}
 							>
 								<RadioInput
 									label="Lengan Panjang"
-									id="Lengan1"
+									id={`lengan-panjang-${index}`}
 									value="Lengan Panjang"
 								/>
 								<RadioInput
 									label="Lengan Pendek"
-									id="Lengan2"
+									id={`lengan-pendek-${index}`}
 									value="Lengan Pendek"
 								/>
 							</RadioInputContainer>
+							{/* <Select
+								name="type"
+								placeholder="Jenis Lengan"
+								value={element.type}
+								onChange={(e) => onChange(e, index)}
+							>
+								<option key="lengan-panjang" value="Lengan Panjang">
+									Lengan Panjang
+								</option>
+								<option key="lengan-pendek" value="Lengan Pendek">
+									Lengan Pendek
+								</option>
+							</Select> */}
 						</FieldChildContainer>
 					</FieldContainer>
 					<ButtonContainer>
-						<IconedButton primary onClickHandler={onAdd}>
+						<IconedButton className="button" primary onClickHandler={onAdd}>
 							<Icon icon={faPlus} size="lg" />
 						</IconedButton>
 						{inputList.length > 1 && (
-							<IconedButton onClickHandler={onRemove}>
+							<IconedButton
+								className="button"
+								onClickHandler={() => onRemove(index)}
+							>
 								<Icon icon={faTrash} size="lg" color="#eb2813" />
 							</IconedButton>
 						)}

@@ -100,6 +100,7 @@ const Indicator = styled.div`
 export function RadioInputContainer({
 	children,
 	label,
+	id,
 	name,
 	selectedValue,
 	onChangeValue,
@@ -107,8 +108,8 @@ export function RadioInputContainer({
 	isColumned,
 }) {
 	return (
-		<RadioContainer id={name} isShown={isShown} role="radiogroup">
-			<InputLabel htmlFor={name}>{label}</InputLabel>
+		<RadioContainer id={id} isShown={isShown} role="radiogroup">
+			<InputLabel htmlFor={id}>{label}</InputLabel>
 			<RadioInnerContainer>
 				{React.Children.map(children, (element) =>
 					React.cloneElement(element, {
@@ -157,7 +158,11 @@ RadioInput.propTypes = {
 	label: PropTypes.string,
 	id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 	name: PropTypes.string,
-	value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+	value: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.number,
+		PropTypes.bool,
+	]),
 	disabled: PropTypes.bool,
 	checked: PropTypes.bool,
 	onChange: PropTypes.func,
@@ -167,17 +172,22 @@ RadioInput.propTypes = {
 RadioInput.defaultProps = {
 	disabled: false,
 	onChange: () => {},
-	value: '',
+	value: null,
 	id: '',
 }
 
 RadioInputContainer.propTypes = {
+	id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 	children: PropTypes.node.isRequired,
 	label: PropTypes.string,
 	isShown: PropTypes.bool,
 	name: PropTypes.string,
 	onChangeValue: PropTypes.func,
-	selectedValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+	selectedValue: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.number,
+		PropTypes.bool,
+	]),
 	isColumned: PropTypes.bool,
 }
 
