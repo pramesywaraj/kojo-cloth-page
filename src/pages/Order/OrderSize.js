@@ -118,19 +118,6 @@ export default function OrderSize({ inputList, onChange, onAdd, onRemove }) {
 									value="Lengan Pendek"
 								/>
 							</RadioInputContainer>
-							{/* <Select
-								name="type"
-								placeholder="Jenis Lengan"
-								value={element.type}
-								onChange={(e) => onChange(e, index)}
-							>
-								<option key="lengan-panjang" value="Lengan Panjang">
-									Lengan Panjang
-								</option>
-								<option key="lengan-pendek" value="Lengan Pendek">
-									Lengan Pendek
-								</option>
-							</Select> */}
 						</FieldChildContainer>
 					</FieldContainer>
 					<ButtonContainer>
