@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import axios from 'axios'
 import PropTypes from 'prop-types'
 import mediaQueries from 'theme/mediaQueries'
 
 import useLoading from 'hooks/useLoading'
+import { post, fetch } from 'utils/api'
 
 import Wrapper from 'components/Layout/Wrapper'
 import { PrimarySectionTitle } from 'components/Misc/SectionTitle'
@@ -313,10 +313,7 @@ export default function OrderStatusCheck() {
 		showMainLoading()
 
 		try {
-			const { data } = await axios.get(
-				`${process.env.REACT_APP_API_URL}/order/${orderRef}`
-			)
-
+			const { data } = await fetch(`order/${orderRef}/`)
 			if (!data.success || data.errors) throw data.errors
 
 			setOrderDetail(data.data)
@@ -355,12 +352,10 @@ export default function OrderStatusCheck() {
 		}
 
 		try {
-			const {
-				data,
-			} = await axios.post(
-				`${process.env.REACT_APP_API_URL}/order/${orderRef}/${paymentType}`,
+			const { data } = await post(
+				`order/${orderRef}/${paymentType}`,
 				imageData,
-				{ headers: imageUploadOption }
+				imageUploadOption
 			)
 
 			if (!data.success || data.errors) throw data.errors

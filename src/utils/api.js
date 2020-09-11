@@ -17,6 +17,8 @@ export function fetch(path) {
 				const { data } = response
 				const { errors, success } = data
 
+				console.log(response)
+
 				if (errors && !success) reject(errors)
 
 				return data
@@ -35,6 +37,7 @@ export function post(path, data, headers) {
 			...defaultHeaders,
 			...headers,
 		},
+		data,
 	}
 
 	return new Promise((resolve, reject) => {

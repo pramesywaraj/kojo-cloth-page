@@ -286,14 +286,14 @@ export default function Order() {
 			const {
 				success,
 				errors,
-				data: { code },
+				data: { order_code },
 			} = await post('order', orderData)
 
 			if (!success || errors) throw errors
 
 			setOrderInfo({
 				isOrdered: true,
-				submittedOrderRef: code,
+				submittedOrderRef: order_code,
 			})
 
 			window.scrollTo({ top: 0, behavior: 'smooth' })
