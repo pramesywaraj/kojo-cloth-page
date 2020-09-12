@@ -98,7 +98,10 @@ const OrderDetailCell = styled.div`
 export default function OrderStatusTable({ data }) {
 	const {
 		name,
-		address,
+		address_street,
+		address_city,
+		address_province,
+		address_postal_code,
 		type,
 		material,
 		total,
@@ -132,7 +135,7 @@ export default function OrderStatusTable({ data }) {
 						<BoldText>Alamat Pemesan</BoldText>
 					</OrderDetailCell>
 					<OrderDetailCell width="60%">
-						<p>{address}</p>
+						<p>{`${address_street} - ${address_city}, ${address_province} (${address_postal_code})`}</p>
 					</OrderDetailCell>
 				</OrderDetailRow>
 				<OrderDetailRow>

@@ -30,8 +30,20 @@ const OrderFormContainer = styled.form`
 		max-width: 348px;
 	}
 
-	${mediaQueries('small_screen')`
+	${mediaQueries('tablet')`
 		width: 90%;
+	`}
+
+	${mediaQueries('small_screen')`
+		width: 80%;
+	`}
+
+	${mediaQueries('desktop')`
+		width: 70%;
+	`}
+
+	${mediaQueries('large_screen')`
+		width: 50%;
 	`}
 `
 
