@@ -20,8 +20,8 @@ import {
 const OrderDetailContainer = styled.section`
 	text-align: center;
 
-	width: 50%;
-	max-width: 520px;
+	width: 90%;
+	/* max-width: 520px; */
 
 	.order-detail-title {
 		width: 100%;
@@ -40,7 +40,12 @@ const OrderDetailContainer = styled.section`
 		margin: 0 auto;
 	}
 
+	${mediaQueries('small-screen')`
+	  width: 65%;
+	`}
+
 	${mediaQueries('desktop')`
+		width: 60%;
 		.detail-table {
 			table-layout: auto;			
 		}

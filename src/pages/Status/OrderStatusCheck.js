@@ -14,12 +14,7 @@ import Loading from 'components/Loading/Loading'
 import { ErrorMessage, SuccessMessage } from 'components/Message/Message'
 import OrderStatusTable from './OrderStatusTable'
 
-import {
-	ORDER_NEW,
-	ORDER_REJECTED,
-	ORDER_PAID,
-	ORDER_COMPLETED,
-} from 'constants/order'
+import { ORDER_NEW, ORDER_REJECTED } from 'constants/order'
 
 const OrderMain = styled.main`
 	padding-top: 8vh;
@@ -71,7 +66,7 @@ const OrderForm = styled.form`
 
 	${mediaQueries('phone')`
 		.submit-button {
-			width: 80vw;
+			max-width: 215px;
 		}
 	`}
 
