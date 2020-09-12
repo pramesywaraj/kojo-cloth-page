@@ -267,6 +267,8 @@ export default function Order() {
 				isError: true,
 				message: err.message,
 			})
+
+			window.scrollTo({ top: 0, behavior: 'smooth' })
 		}
 	}
 
@@ -303,6 +305,8 @@ export default function Order() {
 				isError: true,
 				message: err.message,
 			})
+
+			window.scrollTo({ top: 0, behavior: 'smooth' })
 		} finally {
 			hideLoading()
 		}

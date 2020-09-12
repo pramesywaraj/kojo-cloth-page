@@ -199,6 +199,22 @@ export const ORDER_PIPING = 'PIPING'
 export const ORDER_PACKING = 'PACKING'
 export const ORDER_COMPLETED = 'COMPLETED'
 
+export const ORDER_CONSTANTS = {
+	PROCESSED: 'Sedang dilihat',
+	NEW: 'Pesanan baru',
+	REJECTED: 'Pesanan ditolak',
+	PAID: 'Pesanan telah dibayar',
+	MATERIALIZING: 'Pembahanan',
+	CUTTING: 'Sedang pemotongan bahan',
+	SEWING: 'Sedang proses penjahitan',
+	SCREEN_PRINTING: 'Sedang proses penyablonan',
+	EMBROIDERING: 'Sedang proses pembordiran',
+	BUTTONING: 'Sedang proses pemasangan kancing',
+	PIPING: 'Sedang proses pengobrasan',
+	PACKING: 'Barang sedang dikemas',
+	COMPLETED: 'Selesai',
+}
+
 // Order Type
 export const MAKLOON = 'MAKLOON'
 export const FULL_ORDER = 'FULL_ORDER'

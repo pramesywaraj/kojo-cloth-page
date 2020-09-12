@@ -17,8 +17,6 @@ export function fetch(path) {
 				const { data } = response
 				const { errors, success } = data
 
-				console.log(response)
-
 				if (errors && !success) reject(errors)
 
 				return data
