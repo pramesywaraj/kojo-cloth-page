@@ -238,7 +238,7 @@ export default function OrderStatusCheck() {
 						</div>
 					</OrderForm>
 					{orderDetail && <OrderStatusTable data={orderDetail} />}
-					{orderDetail && (
+					{orderDetail && orderDetail.invoice_url && (
 						<OrderPaymentContainer>
 							<OrderPaymentMessageContainer>
 								{errorPayment.isError && (
