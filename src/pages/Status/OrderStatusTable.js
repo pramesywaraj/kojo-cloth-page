@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 
 import mediaQueries from 'theme/mediaQueries'
@@ -10,6 +10,7 @@ import { faFileDownload } from '@fortawesome/free-solid-svg-icons'
 
 import {
 	ORDER_NEW,
+	ORDER_PROCESSED,
 	ORDER_REJECTED,
 	ORDER_PAID,
 	ORDER_COMPLETED,
@@ -48,6 +49,36 @@ const OrderDetailContainer = styled.section`
 
 const BoldText = styled.p`
 	font-weight: 700;
+`
+
+const OrderStatusText = styled.p`
+	font-weight: 600;
+	${({ status }) => {
+		switch (status) {
+			case ORDER_NEW:
+				return css`
+					color: ${({ theme }) => theme.colors.primary};
+				`
+			case ORDER_PROCESSED:
+				return css`
+					color: ${({ theme }) => theme.colors.success};
+				`
+			case ORDER_REJECTED:
+				return css`
+					color: ${({ theme }) => theme.colors.error};
+				`
+			case ORDER_PAID:
+				return css`
+					color: ${({ theme }) => theme.colors.success};
+				`
+			case ORDER_COMPLETED:
+				return css`
+					color: ${({ theme }) => theme.colors.success};
+				`
+			default:
+				break
+		}
+	}}
 `
 
 const OrderDetailRow = styled.div`
@@ -156,7 +187,9 @@ export default function OrderStatusTable({ data }) {
 						<BoldText>Status Pesanan</BoldText>
 					</OrderDetailCell>
 					<OrderDetailCell width="60%">
-						<p>{ORDER_CONSTANTS[status]}</p>
+						<OrderStatusText status={status}>
+							{ORDER_CONSTANTS[status]}
+						</OrderStatusText>
 					</OrderDetailCell>
 				</OrderDetailRow>
 				{invoice_url && (

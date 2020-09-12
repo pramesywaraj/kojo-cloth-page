@@ -187,6 +187,7 @@ export const initialOrderDetailState = {
 
 // Order Status
 export const ORDER_NEW = 'NEW'
+export const ORDER_PROCESSED = 'PROCESSED'
 export const ORDER_REJECTED = 'REJECTED'
 export const ORDER_PAID = 'PAID'
 export const ORDER_MATERIALIZING = 'MATERIALIZING'
