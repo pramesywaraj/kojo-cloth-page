@@ -12,6 +12,8 @@ import Select from 'components/Input/Select'
 import Loading from 'components/Loading/Loading'
 
 import { ORDER_FORM, initialOrderDetailState } from 'constants/order'
+import { validateOrder } from 'utils/validator'
+import useFormValidation from 'hooks/useFormValidation'
 
 import OrderSize from 'pages/Order/OrderSize'
 
@@ -96,6 +98,7 @@ export default function OrderForm({ functions, status, value }) {
 
 	const [shownStatus, setShownStatus] = useState(initialOrderDetailState)
 	const [firstLoad, setFirstLoad] = useState(true)
+	const [errors, handleValidate] = useFormValidation(onSubmitOrder)
 
 	useEffect(() => {
 		if (firstLoad) {
@@ -120,8 +123,16 @@ export default function OrderForm({ functions, status, value }) {
 		jacket_type_status,
 	} = shownStatus
 
+	async function handleFormValidation(e) {
+		e.preventDefault()
+
+		const result = await validateOrder(value, order_status, shownStatus)
+
+		handleValidate(result)
+	}
+
 	return (
-		<OrderFormContainer onSubmit={onSubmitOrder}>
+		<OrderFormContainer onSubmit={handleFormValidation} noValidate>
 			<TextInput
 				name="name"
 				value={name}
@@ -129,6 +140,7 @@ export default function OrderForm({ functions, status, value }) {
 				placeholder="Masukkan nama lengkap kamu"
 				label="Nama"
 				onChange={handleChangeFormValue}
+				error={errors['name']}
 			/>
 			<TextInput
 				name="phone_number"
@@ -137,6 +149,7 @@ export default function OrderForm({ functions, status, value }) {
 				placeholder="Masukkan nomor telepon kamu (WA)"
 				label="Nomor Telepon"
 				onChange={handleChangeFormValue}
+				error={errors['phone_number']}
 			/>
 			<TextInput
 				name="email"
@@ -145,6 +158,7 @@ export default function OrderForm({ functions, status, value }) {
 				placeholder="Masukkan email kamu"
 				label="Email"
 				onChange={handleChangeFormValue}
+				error={errors['email']}
 			/>
 			<TextInput
 				name="institution"
@@ -153,6 +167,7 @@ export default function OrderForm({ functions, status, value }) {
 				placeholder="Sebutkan nama komunitas atau instansi kamu/perorangan"
 				label="Komunitas/Instansi/Perorangan"
 				onChange={handleChangeFormValue}
+				error={errors['institution']}
 			/>
 			<TextArea
 				name="address_street"
@@ -160,6 +175,7 @@ export default function OrderForm({ functions, status, value }) {
 				placeholder="Masukkan alamat lengkap kamu"
 				label="Alamat Lengkap"
 				onChange={handleChangeFormValue}
+				error={errors['address_street']}
 			/>
 			<Select
 				name="address_province"
@@ -168,6 +184,7 @@ export default function OrderForm({ functions, status, value }) {
 				label="Provinsi"
 				onChange={handleChangeFormValue}
 				onLoading={getSelectLoad}
+				error={errors['address_province']}
 			>
 				{provinces.length > 0 &&
 					provinces.map(({ province }, index) => (
@@ -183,6 +200,7 @@ export default function OrderForm({ functions, status, value }) {
 				label="Kota/Kabupaten"
 				onChange={handleChangeFormValue}
 				onLoading={getSelectLoad}
+				error={errors['address_city']}
 			>
 				{regencies.length > 0 &&
 					regencies.map(({ city }, index) => (
@@ -198,6 +216,7 @@ export default function OrderForm({ functions, status, value }) {
 				label="Kecamatan"
 				onChange={handleChangeFormValue}
 				onLoading={getSelectLoad}
+				error={errors['address_kecamatan']}
 			>
 				{districts.length > 0 &&
 					districts.map(({ kecamatan }, index) => (
@@ -213,6 +232,7 @@ export default function OrderForm({ functions, status, value }) {
 				label="Kelurahan/Desa"
 				onChange={handleChangeFormValue}
 				onLoading={getSelectLoad}
+				error={errors['address_village']}
 			>
 				{subDistricts.length > 0 &&
 					subDistricts.map(({ kelurahan }, index) => (
@@ -228,6 +248,7 @@ export default function OrderForm({ functions, status, value }) {
 				label="Kode Pos"
 				onChange={handleChangeFormValue}
 				onLoading={getSelectLoad}
+				error={errors['address_postal_code']}
 			>
 				{postalCodes.length > 0 &&
 					postalCodes.map(({ postal_code }, index) => (
@@ -242,6 +263,7 @@ export default function OrderForm({ functions, status, value }) {
 				onChangeValue={handleChangeFormValue}
 				selectedValue={order_status}
 				isColumned={true}
+				error={errors['order_status']}
 			>
 				<RadioInput
 					label="Full Order (Pemesanan Keseluruhan)"
@@ -262,6 +284,7 @@ export default function OrderForm({ functions, status, value }) {
 				onChange={handleChangeFormValue}
 				onLoading={getSelectLoad}
 				isOtherOption
+				error={errors['type']}
 			>
 				{types.length > 0 &&
 					types.map(({ code, name }, index) => (
@@ -278,6 +301,7 @@ export default function OrderForm({ functions, status, value }) {
 				onChange={handleChangeFormValue}
 				onLoading={getSelectLoad}
 				isOtherOption
+				error={errors['material']}
 			>
 				{materials.length > 0 &&
 					materials.map(({ code, name }, index) => (
@@ -297,6 +321,7 @@ export default function OrderForm({ functions, status, value }) {
 				onLoading={getSelectLoad}
 				isOtherOption
 				isShown={jacket_type_status}
+				error={errors['jacket_type']}
 			>
 				{jacketTypes.length > 0 &&
 					jacketTypes.map(({ code, name }, index) => (
@@ -315,6 +340,7 @@ export default function OrderForm({ functions, status, value }) {
 				onLoading={getSelectLoad}
 				isOtherOption
 				isShown={screen_printing_status}
+				error={errors['screen_printing']}
 			>
 				{screenPrintings.length > 0 &&
 					screenPrintings.map(({ code, name }, index) => (
@@ -331,6 +357,7 @@ export default function OrderForm({ functions, status, value }) {
 				label="Detil Sablon"
 				onChange={handleChangeOrderDetailValue}
 				isShown={screen_printing_notes_status}
+				error={errors['screen_printing_notes']}
 			/>
 
 			<TextInput
@@ -342,6 +369,7 @@ export default function OrderForm({ functions, status, value }) {
 				onChange={handleChangeOrderDetailValue}
 				unit="Titik"
 				isShown={embroidery_point_status}
+				error={errors['embroidery_point']}
 			/>
 
 			<TextArea
@@ -351,6 +379,7 @@ export default function OrderForm({ functions, status, value }) {
 				label="Detil Bordir"
 				onChange={handleChangeOrderDetailValue}
 				isShown={embroidery_notes_status}
+				error={errors['embroidery_notes']}
 			/>
 
 			<Select
@@ -362,6 +391,7 @@ export default function OrderForm({ functions, status, value }) {
 				onLoading={getSelectLoad}
 				isOtherOption
 				isShown={button_status}
+				error={errors['button']}
 			>
 				{buttons.length > 0 &&
 					buttons.map(({ code, name }, index) => (
@@ -377,6 +407,7 @@ export default function OrderForm({ functions, status, value }) {
 				onChangeValue={handleChangeOrderDetailValue}
 				selectedValue={order_detail.use_perepet}
 				isShown={use_perepet_status}
+				error={errors['use_perepet']}
 			>
 				<RadioInput label="Ya" id="true" value={true} />
 				<RadioInput label="Tidak" id="false" value={false} />
@@ -391,6 +422,7 @@ export default function OrderForm({ functions, status, value }) {
 				onLoading={getSelectLoad}
 				isOtherOption
 				isShown={kur_rope_status}
+				error={errors['kur_rope']}
 			>
 				{kurRopes.length > 0 &&
 					kurRopes.map(({ code, name }, index) => (
@@ -409,6 +441,7 @@ export default function OrderForm({ functions, status, value }) {
 				onLoading={getSelectLoad}
 				isOtherOption
 				isShown={stopper_status}
+				error={errors['stopper']}
 			>
 				{stoppers.length > 0 &&
 					stoppers.map(({ code, name }, index) => (
@@ -427,6 +460,7 @@ export default function OrderForm({ functions, status, value }) {
 				onLoading={getSelectLoad}
 				isOtherOption
 				isShown={zipper_status}
+				error={errors['zipper']}
 			>
 				{zippers.length > 0 &&
 					zippers.map(({ code, name }, index) => (
@@ -445,6 +479,7 @@ export default function OrderForm({ functions, status, value }) {
 				onLoading={getSelectLoad}
 				isOtherOption
 				isShown={puring_status}
+				error={errors['puring']}
 			>
 				{purings.length > 0 &&
 					purings.map(({ code, name }, index) => (
@@ -464,7 +499,7 @@ export default function OrderForm({ functions, status, value }) {
 			/>
 
 			<ImageInput
-				name="total"
+				name="image"
 				value={image}
 				label="Gambar Desain"
 				onChange={handleChangeImageValue}
@@ -475,6 +510,7 @@ export default function OrderForm({ functions, status, value }) {
 				placeholder="Catatan tambahan mengenai gambar desain pesanan yang akan dibuat"
 				label="Catatan Gambar Desain"
 				onChange={handleChangeFormValue}
+				error={errors['notes']}
 			/>
 			<DateInput
 				name="due_date"
@@ -484,6 +520,7 @@ export default function OrderForm({ functions, status, value }) {
 				type="date"
 				min={currentDate}
 				placeholder="Minimal tenggat waktu dua minggu dari hari ini"
+				error={errors['due_date']}
 			/>
 
 			<div className="submit-button">
