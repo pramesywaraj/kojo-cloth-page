@@ -356,9 +356,10 @@ export default function OrderForm({ functions, status, value }) {
 			<TextArea
 				name="screen_printing_notes"
 				value={order_detail.screen_printing_notes}
-				placeholder="Catatan tambahan mengenai sablon yang akan dibuat"
+				placeholder="Contoh : Sablon/Bordir logo pada dada kiri, ukuran standar. Sablon/Bordir belakang ukuran lebar 24cm tinggi 12cm, dan sablon bendera di lengan kanan."
 				label="Detil Sablon"
-				onChange={handleChangeOrderDetailValue}
+				onChange={handleChangeOrderDeta
+				ilValue}
 				isShown={screen_printing_notes_status}
 				error={errors['screen_printing_notes']}
 			/>
@@ -367,7 +368,7 @@ export default function OrderForm({ functions, status, value }) {
 				name="embroidery_point"
 				value={order_detail.embroidery_point}
 				type="number"
-				placeholder="Jumlah titik bordir"
+				placeholder="Ada berapa titik bordir? (Gunakan Angka)"
 				label="Bordir"
 				onChange={handleChangeOrderDetailValue}
 				unit="Titik"
@@ -512,7 +513,7 @@ export default function OrderForm({ functions, status, value }) {
 			<TextArea
 				name="notes"
 				value={notes}
-				placeholder="Catatan tambahan mengenai gambar desain pesanan yang akan dibuat"
+				placeholder="Berikan keterangan detail desain lainnya, misal : terdapat saku gamblok/berisi, scotlight, kupluk bisa dilepas, skoder X, dll."
 				label="Catatan Gambar Desain"
 				onChange={handleChangeFormValue}
 				error={errors['notes']}
