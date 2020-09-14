@@ -15,7 +15,7 @@ import LandingSlideshow from 'components/Slide/LandingSlideshow'
 import TestimonialSlideshow from 'components/Slide/TestimonialSlideshow'
 import ClientItems from 'components/Items/ClientItems'
 
-import LandingBackground from 'assets/bg-landing.svg'
+import LandingBackground from 'assets/bg-landing.jpg'
 import KojoHuman1 from 'assets/illustrations/kojo-human-1.svg'
 import KojoHuman2 from 'assets/illustrations/kojo-human-2.svg'
 
