@@ -24,18 +24,27 @@ const AboutContainer = styled.section`
 	}
 
 	.about-paragraph {
-		text-align: center;
+		text-align: justify;
+		max-width: 600px;
+		margin-bottom: 5vh;
 
 		P {
 			margin-bottom: 3vh;
 			font-size: ${({ theme }) => theme.fontSize.regular};
 			color: ${({ theme }) => theme.colors.font};
+			font-stretch: normal;
+			line-height: normal;
 		}
 	}
 
 	${mediaQueries('small_screen')`
 		margin: 0 10vw;
-		max-width: 1000px;
+	`}
+
+	${mediaQueries('large_screen')`
+		.about-paragraph {
+			max-width: 800px;
+		}
 	`}
 `
 

@@ -30,6 +30,7 @@ const OtherServiceContainer = styled.div`
 	p {
 		font-size: ${({ theme }) => theme.fontSize.regular};
 		color: ${({ theme }) => theme.colors.font};
+		text-align: center;
 	}
 
 	${mediaQueries('tablet')`
@@ -56,7 +57,7 @@ const OtherServicesListContainer = styled.div`
 	width: 100%;
 	margin: 3vh auto;
 	justify-items: center;
-	align-items: center;
+	align-items: baseline;
 `
 
 const CardContainer = styled.div`

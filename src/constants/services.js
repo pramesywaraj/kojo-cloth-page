@@ -107,28 +107,28 @@ export const otherServices = [
 	{
 		name: 'Tote Bag',
 		description:
-			'KOJO.CLOTH juga menerima pemesanan untuk membuat Tote Bag dengan bahan Canvas, Belacu, Drill, Dll.',
+			'Kojo Cloth juga menerima pemesanan untuk membuat Tote Bag dengan bahan Canvas, Belacu, Drill, Dll.',
 		img: Bag,
 		value: 'OTHER',
 	},
 	{
 		name: 'Topi',
 		description:
-			'KOJO.CLOTH juga menerima pemesanan untuk membuat Topi Favoritmu dengan desain sendiri dan tentunya menggunakan bahan yang premium.',
+			'Kojo Cloth menerima pemesanan untuk membuat Topi Favoritmu dengan desain sendiri dan tentunya menggunakan bahan yang premium.',
 		img: Hat,
 		value: 'OTHER',
 	},
 	{
 		name: 'Syal',
 		description:
-			'KOJO.CLOTH juga dapat membuatkanmu Syal, Scarf Pramuka, dll. untuk Kepanitiaan, Komunitas, Dll.',
+			'Kojo Cloth juga dapat membuatkanmu Syal, Scarf Pramuka, dll. untuk Kepanitiaan, Komunitas, Dll.',
 		img: Scarf,
 		value: 'OTHER',
 	},
 	{
 		name: 'Gelang',
 		description:
-			'KOJO.CLOTH juga menerima pesanan untuk pembuatan gelang Kepanitiaan, Komunitas, Perusahaan Dll.',
+			'Kojo Cloth juga menerima pesanan untuk pembuatan gelang Kepanitiaan, Komunitas, Perusahaan Dll.',
 		img: Bracelet,
 		value: 'OTHER',
 	},
