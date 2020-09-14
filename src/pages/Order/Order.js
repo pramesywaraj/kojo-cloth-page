@@ -272,9 +272,7 @@ export default function Order() {
 		}
 	}
 
-	async function onSubmitOrder(e) {
-		e.preventDefault()
-
+	async function onSubmitOrder() {
 		showLoading()
 
 		try {

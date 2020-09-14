@@ -98,51 +98,51 @@ export function validateOrder(values, orderStatus, orderDetail) {
 
 		if (isFullOrder) {
 			if (orderDetail.embroidery_point_status) {
-				if (!values.embroidery_point) {
+				if (!values.order_detail.embroidery_point) {
 					errors.embroidery_point =
 						'Tipe bordir pada pesanan kamu belum terisi.'
 				}
 			}
 
 			if (orderDetail.screen_printing_status) {
-				if (!values.screen_printing) {
+				if (!values.order_detail.screen_printing) {
 					errors.screen_printing = 'Tipe sablon pada pesanan kamu belum terisi.'
 				}
 			}
 
 			if (orderDetail.button_status) {
-				if (!values.button) {
+				if (!values.order_detail.button) {
 					errors.button = 'Tipe kancing pada pesanan kamu belum terisi.'
 				}
 			}
 			if (orderDetail.use_perepet_status) {
-				if (!values.use_perepet) {
+				if (!values.order_detail.use_perepet) {
 					errors.use_perepet =
 						'Tipe velcro/perepet pada pesanan kamu belum terisi.'
 				}
 			}
 			if (orderDetail.kur_rope_status) {
-				if (!values.kur_rope) {
+				if (!values.order_detail.kur_rope) {
 					errors.kur_rope = 'Tipe tali kur pada pesanan kamu belum terisi.'
 				}
 			}
 			if (orderDetail.stopper_status) {
-				if (!values.stopper) {
+				if (!values.order_detail.stopper) {
 					errors.stopper = 'Tipe stopper pada pesanan kamu belum terisi.'
 				}
 			}
 			if (orderDetail.zipper_status) {
-				if (!values.zipper) {
+				if (!values.order_detail.zipper) {
 					errors.zipper = 'Tipe risleting pada pesanan kamu belum terisi.'
 				}
 			}
 			if (orderDetail.puring_status) {
-				if (!values.puring) {
+				if (!values.order_detail.puring) {
 					errors.puring = 'Tipe puring pada pesanan kamu belum terisi.'
 				}
 			}
 			if (orderDetail.jacket_type_status) {
-				if (!values.jacket_type) {
+				if (!values.order_detail.jacket_type) {
 					errors.jacket_type = 'Tipe jaket pada pesanan kamu belum terisi.'
 				}
 			}

@@ -6,7 +6,9 @@ export default function useFormValidation(callback) {
 	function handleValidate(results) {
 		setErrors(results)
 
-		if (results) {
+		let isObjectEmpty = Object.entries(results).length === 0
+
+		if (!isObjectEmpty) {
 			let keys = Object.keys(results)
 
 			document

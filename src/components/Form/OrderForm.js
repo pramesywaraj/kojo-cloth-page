@@ -128,6 +128,8 @@ export default function OrderForm({ functions, status, value }) {
 
 		const result = await validateOrder(value, order_status, shownStatus)
 
+		if (!image) result.image = 'Kamu belum mengunggah gambar desain pesananmu.'
+
 		handleValidate(result)
 	}
 
@@ -258,6 +260,7 @@ export default function OrderForm({ functions, status, value }) {
 					))}
 			</Select>
 			<RadioInputContainer
+				id="order_status"
 				label="Status Pesanan"
 				name="order_status"
 				onChangeValue={handleChangeFormValue}
@@ -402,6 +405,7 @@ export default function OrderForm({ functions, status, value }) {
 			</Select>
 
 			<RadioInputContainer
+				id="use_perepet"
 				label="Velcro/Perepet"
 				name="use_perepet"
 				onChangeValue={handleChangeOrderDetailValue}
@@ -503,6 +507,7 @@ export default function OrderForm({ functions, status, value }) {
 				value={image}
 				label="Gambar Desain"
 				onChange={handleChangeImageValue}
+				error={errors['image']}
 			/>
 			<TextArea
 				name="notes"
