@@ -86,7 +86,6 @@ const KojoDescriptionContainer = styled(KojoLandingContainer)`
 
 	${mediaQueries('tablet')`
 		.kojo-illust-1 {
-			width: 70vw;
 			max-width: 525px;
 		}
 	`}
@@ -95,23 +94,23 @@ const KojoDescriptionContainer = styled(KojoLandingContainer)`
 		flex-direction: row;
 
 		.kojo-illust-1 {
-			width: 60vw;
-			max-width: 670px;
+			max-width: 400px;
 			flex: 2;
 		}
 
 		.kojo-short-description {
 			flex: 1;
+			max-width: 550px;
 		}
 	`}
 	
 	${mediaQueries('large_screen')`
 		.kojo-illust-1 {
-			max-width: 900px;
+			max-width: 500px;
 		}
 
 		.kojo-short-description {
-			padding: 0 7vw;
+			max-width: 655px;
 		}
 	`}
 `

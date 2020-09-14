@@ -147,6 +147,8 @@ export default function OrderStatusCheck() {
 				isError: true,
 				message: err.message,
 			})
+
+			window.scrollTo({ top: 0, behavior: 'smooth' })
 		} finally {
 			hideMainLoading()
 		}
@@ -192,11 +194,15 @@ export default function OrderStatusCheck() {
 			if (paymentType === 'pay_off') {
 				setPayOff(null)
 			}
+
+			window.scrollTo({ top: 0, behavior: 'smooth' })
 		} catch (err) {
 			setErrorPayment({
 				isError: true,
 				message: err.message,
 			})
+
+			window.scrollTo({ top: 0, behavior: 'smooth' })
 		} finally {
 			if (paymentType === 'pay_dp') hideDownPaymentLoading()
 			if (paymentType === 'pay_off') hidePaidOffLoading()
@@ -221,6 +227,12 @@ export default function OrderStatusCheck() {
 				<OrderFormSection>
 					<PrimarySectionTitle>Cek Status Pemesanan</PrimarySectionTitle>
 					{error.isError && <ErrorMessage message={error.message} />}
+					{errorPayment.isError && (
+						<ErrorMessage message={errorPayment.message} />
+					)}
+					{successUploadingPayment && (
+						<SuccessMessage message="Bukti pembayaran telah terkirim. Mohon tunggu konfirmasi selanjutnya" />
+					)}
 					<OrderForm onSubmit={onSubmitSearchStatus}>
 						<TextInput
 							name="name"
@@ -241,12 +253,6 @@ export default function OrderStatusCheck() {
 					{orderDetail && orderDetail.invoice_url && (
 						<OrderPaymentContainer>
 							<OrderPaymentMessageContainer>
-								{errorPayment.isError && (
-									<ErrorMessage message={errorPayment.message} />
-								)}
-								{successUploadingPayment && (
-									<SuccessMessage message="Bukti pembayaran telah terkirim. Mohon tunggu konfirmasi selanjutnya" />
-								)}
 								{(orderDetail.status === ORDER_NEW &&
 									orderDetail.status !== ORDER_REJECTED) ||
 								!orderDetail.is_dp_paid ||
