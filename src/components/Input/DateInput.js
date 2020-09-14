@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-
 import PropTypes from 'prop-types'
+
+import { ErrorMessage } from 'components/Message/Message'
 
 const InputContainer = styled.div`
 	width: auto;
@@ -47,6 +48,8 @@ export default function DateInput({
 	max,
 	placeholder,
 	isShown,
+	required,
+	error,
 }) {
 	return (
 		<InputContainer isShown={isShown}>
@@ -59,8 +62,10 @@ export default function DateInput({
 				onChange={onChange}
 				min={min}
 				max={max}
+				required={required}
 			/>
 			{placeholder && <DatePlaceholder>{placeholder}</DatePlaceholder>}
+			{error && <ErrorMessage message={error} isCentered={false} />}
 		</InputContainer>
 	)
 }
@@ -74,8 +79,11 @@ DateInput.propTypes = {
 	max: PropTypes.string,
 	placeholder: PropTypes.string,
 	isShown: PropTypes.bool,
+	required: PropTypes.bool,
+	error: PropTypes.string,
 }
 
 DateInput.defaultProps = {
 	isShown: true,
+	required: true,
 }

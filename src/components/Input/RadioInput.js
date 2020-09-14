@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { keyframes } from 'styled-components'
 
+import { ErrorMessage } from 'components/Message/Message'
+
 const RadioContainer = styled.div`
 	width: auto;
 	height: auto;
@@ -106,6 +108,8 @@ export function RadioInputContainer({
 	onChangeValue,
 	isShown,
 	isColumned,
+	required,
+	error,
 }) {
 	return (
 		<RadioContainer id={id} isShown={isShown} role="radiogroup">
@@ -118,9 +122,11 @@ export function RadioInputContainer({
 						onChange: onChangeValue,
 						name,
 						isColumned,
+						required,
 					})
 				)}
 			</RadioInnerContainer>
+			{error && <ErrorMessage message={error} isCentered={false} />}
 		</RadioContainer>
 	)
 }
@@ -134,6 +140,7 @@ export function RadioInput({
 	checked,
 	onChange,
 	isColumned,
+	required,
 }) {
 	return (
 		<Label htmlFor={id} isColumned={isColumned}>
@@ -148,6 +155,7 @@ export function RadioInput({
 				onChange={onChange}
 				checked={checked}
 				isColumned={isColumned}
+				required={required}
 			/>
 			<Indicator />
 		</Label>
@@ -167,6 +175,7 @@ RadioInput.propTypes = {
 	checked: PropTypes.bool,
 	onChange: PropTypes.func,
 	isColumned: PropTypes.bool,
+	required: PropTypes.bool,
 }
 
 RadioInput.defaultProps = {
@@ -189,6 +198,8 @@ RadioInputContainer.propTypes = {
 		PropTypes.bool,
 	]),
 	isColumned: PropTypes.bool,
+	required: PropTypes.bool,
+	error: PropTypes.string,
 }
 
 RadioInputContainer.defaultProps = {
@@ -196,4 +207,5 @@ RadioInputContainer.defaultProps = {
 	name: '',
 	selectedValue: '',
 	isColumned: false,
+	required: true,
 }

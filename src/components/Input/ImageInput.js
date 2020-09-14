@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-
 import PropTypes from 'prop-types'
+
+import { ErrorMessage } from 'components/Message/Message'
 
 const InputContainer = styled.div`
 	width: auto;
@@ -40,6 +41,8 @@ export default function ImageInput({
 	onChange,
 	children,
 	isShown,
+	required,
+	error,
 }) {
 	return (
 		<InputContainer isShown={isShown}>
@@ -51,8 +54,10 @@ export default function ImageInput({
 				type="file"
 				onChange={onChange}
 				accept="image/*"
+				required={required}
 			/>
 			{children}
+			{error && <ErrorMessage message={error} isCentered={false} />}
 		</InputContainer>
 	)
 }
@@ -64,8 +69,11 @@ ImageInput.propTypes = {
 	onChange: PropTypes.func.isRequired,
 	children: PropTypes.node,
 	isShown: PropTypes.bool,
+	required: PropTypes.bool,
+	error: PropTypes.string,
 }
 
 ImageInput.defaultProps = {
 	isShown: true,
+	required: true,
 }

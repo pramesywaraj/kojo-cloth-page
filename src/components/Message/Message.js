@@ -5,7 +5,8 @@ import PropTypes from 'prop-types'
 const TextContainer = styled.div`
 	width: 100%;
 	height: auto;
-	text-align: center;
+	text-align: ${({ isCentered }) => (isCentered ? 'center' : 'inherit')};
+	margin: 1vh 0;
 `
 
 const ErrorText = styled.p`
@@ -18,7 +19,7 @@ const SuccessText = styled.p`
 	font-size: 1rem;
 `
 
-export function ErrorMessage({ message }) {
+export function ErrorMessage({ message, isCentered }) {
 	function checkMessageType(message) {
 		if (typeof message !== 'string') return 'Terjadi kesalahan'
 
@@ -26,7 +27,7 @@ export function ErrorMessage({ message }) {
 	}
 
 	return (
-		<TextContainer>
+		<TextContainer isCentered={isCentered}>
 			<ErrorText>{checkMessageType(message)}</ErrorText>
 		</TextContainer>
 	)
@@ -34,11 +35,16 @@ export function ErrorMessage({ message }) {
 
 ErrorMessage.propTypes = {
 	message: PropTypes.any.isRequired,
+	isCentered: PropTypes.bool,
 }
 
-export function SuccessMessage({ message }) {
+ErrorMessage.defaultProps = {
+	isCentered: true,
+}
+
+export function SuccessMessage({ message, isCentered }) {
 	return (
-		<TextContainer>
+		<TextContainer isCentered={isCentered}>
 			<SuccessText>{message}</SuccessText>
 		</TextContainer>
 	)
@@ -46,4 +52,9 @@ export function SuccessMessage({ message }) {
 
 SuccessMessage.propTypes = {
 	message: PropTypes.string.isRequired,
+	isCentered: PropTypes.bool,
+}
+
+SuccessMessage.defaultProps = {
+	isCentered: true,
 }

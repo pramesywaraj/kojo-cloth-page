@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
 import { TextInput } from 'components/Input/TextInput'
+import { ErrorMessage } from 'components/Message/Message'
 
 const SelectContainer = styled.div`
 	width: 100%;
@@ -51,6 +52,8 @@ export default function Select({
 	onLoading,
 	isShown,
 	isOtherOption,
+	required,
+	error,
 }) {
 	const [isOther, setIsOther] = useState(false)
 
@@ -74,6 +77,7 @@ export default function Select({
 				name={name}
 				onChange={selectAnOption}
 				value={isOther ? 'OTHER' : value === '' ? 'DEFAULT' : value}
+				required={required}
 			>
 				<option value="DEFAULT" disabled>
 					{placeholder}
@@ -93,6 +97,7 @@ export default function Select({
 			) : (
 				''
 			)}
+			{error && <ErrorMessage message={error} isCentered={false} />}
 		</SelectContainer>
 	)
 }
@@ -107,10 +112,13 @@ Select.propTypes = {
 	onLoading: PropTypes.bool,
 	isShown: PropTypes.bool,
 	isOtherOption: PropTypes.bool,
+	required: PropTypes.bool,
+	error: PropTypes.string,
 }
 
 Select.defaultProps = {
 	isShown: true,
 	children: <option disabled>---</option>,
 	isOtherOption: false,
+	required: true,
 }

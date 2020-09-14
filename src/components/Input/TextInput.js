@@ -1,7 +1,8 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-
 import PropTypes from 'prop-types'
+
+import { ErrorMessage } from 'components/Message/Message'
 
 const InputContainer = styled.div`
 	width: 100%;
@@ -88,6 +89,8 @@ export function TextInput({
 	unit,
 	centered,
 	isShown,
+	required,
+	error,
 	...rest
 }) {
 	return (
@@ -102,8 +105,10 @@ export function TextInput({
 					placeholder={placeholder}
 					type={type}
 					onChange={onChange}
+					required={required}
 					{...rest}
 				/>
+				{error && <ErrorMessage message={error} isCentered={false} />}
 			</Container>
 		</InputContainer>
 	)
@@ -116,6 +121,8 @@ export function TextArea({
 	onChange,
 	value,
 	isShown,
+	required,
+	error,
 }) {
 	return (
 		<InputContainer isShown={isShown}>
@@ -127,7 +134,9 @@ export function TextArea({
 				value={value}
 				placeholder={placeholder}
 				onChange={onChange}
+				required={required}
 			/>
+			{error && <ErrorMessage message={error} isCentered={false} />}
 		</InputContainer>
 	)
 }
@@ -142,6 +151,8 @@ TextInput.propTypes = {
 	unit: PropTypes.string,
 	centered: PropTypes.bool,
 	isShown: PropTypes.bool,
+	required: PropTypes.bool,
+	error: PropTypes.string,
 }
 
 TextArea.propTypes = {
@@ -151,13 +162,17 @@ TextArea.propTypes = {
 	onChange: PropTypes.func.isRequired,
 	value: PropTypes.any.isRequired,
 	isShown: PropTypes.bool,
+	required: PropTypes.bool,
+	error: PropTypes.string,
 }
 
 TextInput.defaultProps = {
 	isShown: true,
 	type: 'text',
+	required: true,
 }
 
 TextArea.defaultProps = {
 	isShown: true,
+	required: true,
 }

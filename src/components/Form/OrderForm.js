@@ -372,7 +372,7 @@ export default function OrderForm({ functions, status, value }) {
 			</Select>
 
 			<RadioInputContainer
-				label="Perepet"
+				label="Velcro/Perepet"
 				name="use_perepet"
 				onChangeValue={handleChangeOrderDetailValue}
 				selectedValue={order_detail.use_perepet}
@@ -469,7 +469,13 @@ export default function OrderForm({ functions, status, value }) {
 				label="Gambar Desain"
 				onChange={handleChangeImageValue}
 			/>
-
+			<TextArea
+				name="notes"
+				value={notes}
+				placeholder="Catatan tambahan mengenai gambar desain pesanan yang akan dibuat"
+				label="Catatan Gambar Desain"
+				onChange={handleChangeFormValue}
+			/>
 			<DateInput
 				name="due_date"
 				value={due_date}
@@ -480,13 +486,6 @@ export default function OrderForm({ functions, status, value }) {
 				placeholder="Minimal tenggat waktu dua minggu dari hari ini"
 			/>
 
-			<TextArea
-				name="notes"
-				value={notes}
-				placeholder="Catatan tambahan mengenai pesanan yang akan dibuat"
-				label="Catatan Tambahan"
-				onChange={handleChangeFormValue}
-			/>
 			<div className="submit-button">
 				<PrimaryButton type="submit">
 					{loading && <Loading />}
