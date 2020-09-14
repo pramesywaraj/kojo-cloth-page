@@ -358,8 +358,7 @@ export default function OrderForm({ functions, status, value }) {
 				value={order_detail.screen_printing_notes}
 				placeholder="Contoh : Sablon/Bordir logo pada dada kiri, ukuran standar. Sablon/Bordir belakang ukuran lebar 24cm tinggi 12cm, dan sablon bendera di lengan kanan."
 				label="Detil Sablon"
-				onChange={handleChangeOrderDeta
-				ilValue}
+				onChange={handleChangeOrderDetailValue}
 				isShown={screen_printing_notes_status}
 				error={errors['screen_printing_notes']}
 			/>
