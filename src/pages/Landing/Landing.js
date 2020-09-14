@@ -30,11 +30,16 @@ const HeaderTitleContainer = styled.div`
 	background: transparent;
 	border: 3px solid ${({ theme }) => theme.colors.primary};
 	border-radius: 10px;
-	padding: 3vh 6vw;
+	padding: 3vh 4vw;
 	text-align: center;
 
 	p {
+		margin-top: 10px;
 		font-size: ${({ theme }) => theme.fontSize.medium};
+	}
+
+	h1 {
+		font-size: 2.5rem;
 	}
 `
 
