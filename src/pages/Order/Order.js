@@ -60,7 +60,6 @@ export default function Order() {
 	const [getSelectLoad, setSelectLoad] = useState(true)
 
 	const [image, setImage] = useState(null)
-	const [currentDate, setCurrentDate] = useState(null)
 	const [selectedTypeId, setSelectedTypeId] = useState(null)
 
 	const [firstLoad, setFirstLoad] = useState(true)
@@ -183,8 +182,6 @@ export default function Order() {
 		const date = new Date()
 
 		Promise.all([getTypes(), getProvinces()])
-
-		setCurrentDate(dateFormatParse(date))
 
 		if (firstLoad) setFirstLoad(false)
 	}, [])
@@ -425,7 +422,7 @@ export default function Order() {
 								value={{
 									...order,
 									image,
-									currentDate,
+
 									types,
 									materials,
 									buttons,

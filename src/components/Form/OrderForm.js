@@ -19,6 +19,7 @@ import {
 } from 'constants/order'
 import { validateOrder } from 'utils/validator'
 import useFormValidation from 'hooks/useFormValidation'
+import { addDateFromToday } from 'utils/date'
 
 import OrderSize from 'pages/Order/OrderSize'
 
@@ -58,6 +59,7 @@ export default function OrderForm({ functions, status, value }) {
 	const [shownStatus, setShownStatus] = useState(initialOrderDetailState)
 	const [firstLoad, setFirstLoad] = useState(true)
 	const [sizeList, setSizeList] = useState([])
+	const [dueDate, setDueDate] = useState(null)
 	const {
 		onSubmitOrder,
 		handleChangeFormValue,
@@ -86,7 +88,6 @@ export default function OrderForm({ functions, status, value }) {
 		order_detail,
 		due_date,
 		notes,
-		currentDate,
 		image,
 		types,
 		materials,
@@ -135,6 +136,12 @@ export default function OrderForm({ functions, status, value }) {
 			: setSizeList([...CLOTHES_SIZE])
 	}, [type])
 
+	useEffect(() => {
+		if (firstLoad) return
+
+		setDueDate(dueDateMinimal())
+	}, [shownStatus])
+
 	async function handleFormValidation(e) {
 		e.preventDefault()
 
@@ -145,7 +152,13 @@ export default function OrderForm({ functions, status, value }) {
 		handleValidate(result)
 	}
 
-	function dueDateMinimal() {}
+	function dueDateMinimal() {
+		let due = addDateFromToday(min_days)
+
+		return `${due.getFullYear()}-${`0${due.getMonth() + 1}`.slice(
+			-2
+		)}-${`0${due.getDate()}`.slice(-2)}`
+	}
 
 	return (
 		<OrderFormContainer onSubmit={handleFormValidation} noValidate>
@@ -539,8 +552,8 @@ export default function OrderForm({ functions, status, value }) {
 				label="Tenggat"
 				onChange={handleChangeFormValue}
 				type="date"
-				min={currentDate}
-				placeholder="Minimal tenggat waktu dua minggu dari hari ini"
+				min={dueDate}
+				placeholder={`Minimal tenggat waktu ${min_days} hari dari hari ini.`}
 				error={errors['due_date']}
 			/>
 

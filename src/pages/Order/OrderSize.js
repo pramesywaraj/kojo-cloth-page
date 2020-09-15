@@ -94,6 +94,8 @@ const WarnText = styled.span`
 	font-weight: 400;
 	font-size: 0.8rem;
 	margin: 1vh 0;
+
+	color: ${({ theme }) => theme.colors.primary};
 `
 
 export default function OrderSize({
