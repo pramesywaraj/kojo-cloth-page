@@ -11,8 +11,6 @@ import Icon from 'components/Icon/Icon'
 
 import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons'
 
-import { CLOTHES_SIZE } from 'constants/order'
-
 const OrderSizeInputContainer = styled.div`
 	width: auto;
 	height: auto;

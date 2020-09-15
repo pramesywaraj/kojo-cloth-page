@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
 import useLoading from 'hooks/useLoading'
-import { dateFormatParse } from 'utils/date'
 import { fetch, post } from 'utils/api'
 import { initialOrderState, emptyArray } from 'utils/initialState'
 
