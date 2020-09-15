@@ -96,7 +96,14 @@ const WarnText = styled.span`
 	margin: 1vh 0;
 `
 
-export default function OrderSize({ inputList, onChange, onAdd, onRemove }) {
+export default function OrderSize({
+	inputList,
+	sizeList,
+	sleeveOption,
+	onChange,
+	onAdd,
+	onRemove,
+}) {
 	return (
 		<OrderSizeInputContainer isShown={true}>
 			<Label>Jumlah & Ukuran</Label>
@@ -109,9 +116,10 @@ export default function OrderSize({ inputList, onChange, onAdd, onRemove }) {
 								placeholder="Ukuran"
 								value={element.size}
 								onChange={(e) => onChange(e, index)}
+								isOtherOption
 							>
-								{CLOTHES_SIZE.length > 0 &&
-									CLOTHES_SIZE.map((size, index) => (
+								{sizeList.length > 0 &&
+									sizeList.map((size, index) => (
 										<option key={index} value={size}>
 											{size}
 										</option>
@@ -128,34 +136,19 @@ export default function OrderSize({ inputList, onChange, onAdd, onRemove }) {
 								onChange={(e) => onChange(e, index)}
 							/>
 						</FieldChildContainer>
-						<FieldChildContainer>
-							{/* <RadioInputContainer
-								name={`${index}-type`}
-								id={`${index}-type`}
-								selectedValue={element.type}
-								onChangeValue={(e) => onChange(e, index)}
-							>
-								<RadioInput
-									label="Lengan Panjang"
-									id={`lengan-panjang-${index}`}
-									value="Lengan Panjang"
-								/>
-								<RadioInput
-									label="Lengan Pendek"
-									id={`lengan-pendek-${index}`}
-									value="Lengan Pendek"
-								/>
-							</RadioInputContainer> */}
-							<Select
-								name="type"
-								placeholder="Jenis lengan"
-								value={element.type}
-								onChange={(e) => onChange(e, index)}
-							>
-								<option value="Lengan Panjang">Lengan Panjang</option>
-								<option value="Lengan Pendek">Lengan Pendek</option>
-							</Select>
-						</FieldChildContainer>
+						{sleeveOption && (
+							<FieldChildContainer>
+								<Select
+									name="type"
+									placeholder="Jenis lengan"
+									value={element.type}
+									onChange={(e) => onChange(e, index)}
+								>
+									<option value="Lengan Panjang">Lengan Panjang</option>
+									<option value="Lengan Pendek">Lengan Pendek</option>
+								</Select>
+							</FieldChildContainer>
+						)}
 					</FieldContainer>
 					<ButtonContainer>
 						<IconedButton className="button" primary onClickHandler={onAdd}>
@@ -181,7 +174,15 @@ export default function OrderSize({ inputList, onChange, onAdd, onRemove }) {
 
 OrderSize.propTypes = {
 	inputList: PropTypes.array,
+	sizeList: PropTypes.array,
 	onChange: PropTypes.func,
 	onAdd: PropTypes.func,
 	onRemove: PropTypes.func,
+	sleeveOption: PropTypes.bool,
+}
+
+OrderSize.defaultProps = {
+	inputList: [],
+	sizeList: [],
+	sleeveOption: true,
 }

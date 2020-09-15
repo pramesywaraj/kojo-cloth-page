@@ -12,6 +12,8 @@ export const ORDER_FORM = {
 		zipper_status: false,
 		puring_status: false,
 		jacket_type_status: false,
+		min_days: 14,
+		sleeve_option: true,
 	},
 	RAGLAN: {
 		embroidery_point_status: false,
@@ -25,6 +27,8 @@ export const ORDER_FORM = {
 		zipper_status: false,
 		puring_status: false,
 		jacket_type_status: false,
+		min_days: 14,
+		sleeve_option: false,
 	},
 	POLO: {
 		embroidery_point_status: true,
@@ -38,6 +42,8 @@ export const ORDER_FORM = {
 		zipper_status: false,
 		puring_status: false,
 		jacket_type_status: false,
+		min_days: 14,
+		sleeve_option: true,
 	},
 	SHIRT: {
 		embroidery_point_status: true,
@@ -51,6 +57,8 @@ export const ORDER_FORM = {
 		zipper_status: false,
 		puring_status: false,
 		jacket_type_status: false,
+		min_days: 20,
+		sleeve_option: true,
 	},
 	SWEATER: {
 		embroidery_point_status: true,
@@ -64,6 +72,8 @@ export const ORDER_FORM = {
 		zipper_status: false,
 		puring_status: false,
 		jacket_type_status: false,
+		min_days: 14,
+		sleeve_option: false,
 	},
 	JACKET: {
 		embroidery_point_status: true,
@@ -77,6 +87,8 @@ export const ORDER_FORM = {
 		zipper_status: true,
 		puring_status: true,
 		jacket_type_status: true,
+		min_days: 20,
+		sleeve_option: false,
 	},
 	FORMAL_SUIT: {
 		embroidery_point_status: true,
@@ -90,6 +102,8 @@ export const ORDER_FORM = {
 		zipper_status: false,
 		puring_status: true,
 		jacket_type_status: false,
+		min_days: 20,
+		sleeve_option: false,
 	},
 	LAB_SUIT: {
 		embroidery_point_status: true,
@@ -103,6 +117,8 @@ export const ORDER_FORM = {
 		zipper_status: false,
 		puring_status: false,
 		jacket_type_status: false,
+		min_days: 20,
+		sleeve_option: true,
 	},
 	WEARPACK: {
 		embroidery_point_status: true,
@@ -116,6 +132,8 @@ export const ORDER_FORM = {
 		zipper_status: true,
 		puring_status: false,
 		jacket_type_status: false,
+		min_days: 20,
+		sleeve_option: true,
 	},
 	VEST: {
 		embroidery_point_status: true,
@@ -129,6 +147,8 @@ export const ORDER_FORM = {
 		zipper_status: true,
 		puring_status: true,
 		jacket_type_status: false,
+		min_days: 20,
+		sleeve_option: false,
 	},
 	TOTEBAG: {
 		embroidery_point_status: true,
@@ -142,6 +162,8 @@ export const ORDER_FORM = {
 		zipper_status: true,
 		puring_status: false,
 		jacket_type_status: false,
+		min_days: 10,
+		sleeve_option: false,
 	},
 	DRESS: {
 		embroidery_point_status: true,
@@ -155,6 +177,8 @@ export const ORDER_FORM = {
 		zipper_status: true,
 		puring_status: false,
 		jacket_type_status: false,
+		min_days: 10,
+		sleeve_option: false,
 	},
 	OTHER: {
 		embroidery_point_status: true,
@@ -168,6 +192,8 @@ export const ORDER_FORM = {
 		zipper_status: true,
 		puring_status: true,
 		jacket_type_status: false,
+		min_days: 14,
+		sleeve_option: true,
 	},
 }
 
@@ -183,6 +209,8 @@ export const initialOrderDetailState = {
 	zipper_status: false,
 	puring_status: false,
 	jacket_type_status: false,
+	min_days: 0,
+	sleeve_option: true,
 }
 
 // Order Status
@@ -235,6 +263,8 @@ export const CLOTHES_SIZE = [
 	'4XL',
 	'5XL',
 ]
+
+export const TOTE_BAG_SIZE = ['20x30cm', '30x40cm']
 
 // Other
 export const OTHER = 'OTHER'

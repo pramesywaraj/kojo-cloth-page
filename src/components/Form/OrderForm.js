@@ -11,7 +11,12 @@ import { RadioInput, RadioInputContainer } from 'components/Input/RadioInput'
 import Select from 'components/Input/Select'
 import Loading from 'components/Loading/Loading'
 
-import { ORDER_FORM, initialOrderDetailState } from 'constants/order'
+import {
+	ORDER_FORM,
+	initialOrderDetailState,
+	CLOTHES_SIZE,
+	TOTE_BAG_SIZE,
+} from 'constants/order'
 import { validateOrder } from 'utils/validator'
 import useFormValidation from 'hooks/useFormValidation'
 
@@ -50,6 +55,9 @@ const OrderFormContainer = styled.form`
 `
 
 export default function OrderForm({ functions, status, value }) {
+	const [shownStatus, setShownStatus] = useState(initialOrderDetailState)
+	const [firstLoad, setFirstLoad] = useState(true)
+	const [sizeList, setSizeList] = useState([])
 	const {
 		onSubmitOrder,
 		handleChangeFormValue,
@@ -96,19 +104,6 @@ export default function OrderForm({ functions, status, value }) {
 		postalCodes,
 	} = value
 
-	const [shownStatus, setShownStatus] = useState(initialOrderDetailState)
-	const [firstLoad, setFirstLoad] = useState(true)
-	const [errors, handleValidate] = useFormValidation(onSubmitOrder)
-
-	useEffect(() => {
-		if (firstLoad) {
-			setFirstLoad(false)
-			return
-		}
-
-		setShownStatus({ ...ORDER_FORM[type] })
-	}, [type])
-
 	const {
 		embroidery_point_status,
 		embroidery_notes_status,
@@ -121,7 +116,24 @@ export default function OrderForm({ functions, status, value }) {
 		zipper_status,
 		puring_status,
 		jacket_type_status,
+		min_days,
+		sleeve_option,
 	} = shownStatus
+
+	const [errors, handleValidate] = useFormValidation(onSubmitOrder)
+
+	useEffect(() => {
+		if (firstLoad) {
+			setFirstLoad(false)
+			return
+		}
+
+		setShownStatus({ ...ORDER_FORM[type] })
+
+		type === 'TOTEBAG'
+			? setSizeList([...TOTE_BAG_SIZE])
+			: setSizeList([...CLOTHES_SIZE])
+	}, [type])
 
 	async function handleFormValidation(e) {
 		e.preventDefault()
@@ -132,6 +144,8 @@ export default function OrderForm({ functions, status, value }) {
 
 		handleValidate(result)
 	}
+
+	function dueDateMinimal() {}
 
 	return (
 		<OrderFormContainer onSubmit={handleFormValidation} noValidate>
@@ -497,9 +511,11 @@ export default function OrderForm({ functions, status, value }) {
 
 			<OrderSize
 				inputList={detail}
+				sizeList={sizeList}
 				onAdd={handleAddDetailField}
 				onRemove={handleRemoveDetailField}
 				onChange={handleChangeDetailField}
+				sleeveOption={sleeve_option}
 			/>
 
 			<ImageInput
