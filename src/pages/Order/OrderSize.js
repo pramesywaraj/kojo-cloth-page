@@ -88,18 +88,11 @@ const Label = styled.label`
 	font-weight: 600;
 `
 
-const WarnText = styled.span`
-	font-weight: 400;
-	font-size: 0.8rem;
-	margin: 1vh 0;
-
-	color: ${({ theme }) => theme.colors.primary};
-`
-
 export default function OrderSize({
 	inputList,
 	sizeList,
 	sleeveOption,
+	isOtherOption,
 	onChange,
 	onAdd,
 	onRemove,
@@ -116,7 +109,7 @@ export default function OrderSize({
 								placeholder="Ukuran"
 								value={element.size}
 								onChange={(e) => onChange(e, index)}
-								isOtherOption
+								isOtherOption={isOtherOption}
 							>
 								{sizeList.length > 0 &&
 									sizeList.map((size, index) => (
@@ -143,6 +136,7 @@ export default function OrderSize({
 									placeholder="Jenis lengan"
 									value={element.type}
 									onChange={(e) => onChange(e, index)}
+									isOtherOption={isOtherOption}
 								>
 									<option value="Lengan Panjang">Lengan Panjang</option>
 									<option value="Lengan Pendek">Lengan Pendek</option>
@@ -165,9 +159,6 @@ export default function OrderSize({
 					</ButtonContainer>
 				</Container>
 			))}
-			<WarnText>
-				Abaikan pemilihan jenis lengan panjang/pendek jika dirasa tidak perlu
-			</WarnText>
 		</OrderSizeInputContainer>
 	)
 }
@@ -179,10 +170,12 @@ OrderSize.propTypes = {
 	onAdd: PropTypes.func,
 	onRemove: PropTypes.func,
 	sleeveOption: PropTypes.bool,
+	isOtherOption: PropTypes.bool,
 }
 
 OrderSize.defaultProps = {
 	inputList: [],
 	sizeList: [],
 	sleeveOption: true,
+	isOtherOption: true,
 }

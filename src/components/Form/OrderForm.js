@@ -55,6 +55,11 @@ const OrderFormContainer = styled.form`
 	`}
 `
 
+const totebagPrintingPlaceholder =
+	'Misal : Bordir logo 4 warna/ warna sablon disesuaikan karena banyak warnanya, ukuran seperti tampak pada gambar, dll.'
+const defaultPrintingPlaceholder =
+	'Misal : Sablon/Bordir logo pada dada kiri, ukuran standar. Sablon/Bordir belakang ukuran lebar 24cm tinggi 12cm, dan sablon bendera di lengan kanan.'
+
 export default function OrderForm({ functions, status, value }) {
 	const [shownStatus, setShownStatus] = useState(initialOrderDetailState)
 	const [firstLoad, setFirstLoad] = useState(true)
@@ -119,6 +124,7 @@ export default function OrderForm({ functions, status, value }) {
 		jacket_type_status,
 		min_days,
 		sleeve_option,
+		isOtherOption,
 	} = shownStatus
 
 	const [errors, handleValidate] = useFormValidation(onSubmitOrder)
@@ -383,7 +389,11 @@ export default function OrderForm({ functions, status, value }) {
 			<TextArea
 				name="screen_printing_notes"
 				value={order_detail.screen_printing_notes}
-				placeholder="Contoh : Sablon/Bordir logo pada dada kiri, ukuran standar. Sablon/Bordir belakang ukuran lebar 24cm tinggi 12cm, dan sablon bendera di lengan kanan."
+				placeholder={
+					type === 'TOTEBAG'
+						? totebagPrintingPlaceholder
+						: defaultPrintingPlaceholder
+				}
 				label="Detil Sablon"
 				onChange={handleChangeOrderDetailValue}
 				isShown={screen_printing_notes_status}
@@ -405,7 +415,7 @@ export default function OrderForm({ functions, status, value }) {
 			<TextArea
 				name="embroidery_notes"
 				value={order_detail.embroidery_notes}
-				placeholder="Catatan tambahan mengenai titik bordir yang akan dibuat"
+				placeholder="Misal : Bordir logo 4 warna/ warna sablon disesuaikan karena banyak warnanya, ukuran seperti tampak pada gambar, dll."
 				label="Detil Bordir"
 				onChange={handleChangeOrderDetailValue}
 				isShown={embroidery_notes_status}
@@ -521,7 +531,6 @@ export default function OrderForm({ functions, status, value }) {
 			</Select>
 
 			{/* Order Detail Form Section */}
-
 			<OrderSize
 				inputList={detail}
 				sizeList={sizeList}
@@ -529,6 +538,7 @@ export default function OrderForm({ functions, status, value }) {
 				onRemove={handleRemoveDetailField}
 				onChange={handleChangeDetailField}
 				sleeveOption={sleeve_option}
+				isOtherOption={isOtherOption}
 			/>
 
 			<ImageInput
@@ -538,18 +548,20 @@ export default function OrderForm({ functions, status, value }) {
 				onChange={handleChangeImageValue}
 				error={errors['image']}
 			/>
+
 			<TextArea
 				name="notes"
 				value={notes}
-				placeholder="Berikan keterangan detail desain lainnya, misal : terdapat saku gamblok/berisi, scotlight, kupluk bisa dilepas, skoder X, dll."
+				placeholder="Misal : Terdapat saku gamblok/berisi, scotlight di punggung, kupluk bisa dilepas, ukuran logo/desain sesuai tampak pada gambar, dll."
 				label="Catatan Gambar Desain"
 				onChange={handleChangeFormValue}
 				error={errors['notes']}
 			/>
+
 			<DateInput
 				name="due_date"
 				value={due_date}
-				label="Tenggat"
+				label="Tenggat (Deadline Proses Produksi)"
 				onChange={handleChangeFormValue}
 				type="date"
 				min={dueDate}

@@ -2,6 +2,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import Clipboard from 'clipboard'
+import tippy from 'tippy.js'
+import 'tippy.js/dist/tippy.css'
 
 import ContainedImage from 'components/Images/ContainedImage'
 import {
@@ -60,12 +63,23 @@ export default function OrderSuccess({ orderRef, onReOrderHandler }) {
 	}
 
 	function handleCopyToClipboard() {
-		let range = document.createRange()
+		const clip = new Clipboard('#order-ref-code', {
+			text: function () {
+				return orderRef
+			},
+		})
 
-		range.selectNode(document.getElementById('order-ref-code'))
-		window.getSelection().addRange(range)
+		const tooltips = tippy('#copy-btn', {
+			content: 'Berhasil menyalin nomor pemesanan!',
+			animation: 'fade',
+			duration: [0, 300],
+		})
 
-		document.execCommand('copy')
+		tooltips[0].show()
+
+		clip.on('success', function (e) {
+			e.clearSelection()
+		})
 	}
 
 	return (
@@ -96,10 +110,13 @@ export default function OrderSuccess({ orderRef, onReOrderHandler }) {
 			<div className="order-ref">
 				<p>Nomor pesanan Anda:</p>
 				{orderRef && (
-					<p id="order-ref-code">
+					<p id="order-ref-code" data-clipboard-text={`${orderRef}`}>
 						{orderRef}{' '}
 						<span style={{ fontSize: '18px' }}>
-							<IconedButton onClickHandler={handleCopyToClipboard}>
+							<IconedButton
+								onClickHandler={handleCopyToClipboard}
+								id="copy-btn"
+							>
 								<Icon icon={faCopy} size="xs" color="#672693" />
 							</IconedButton>
 						</span>

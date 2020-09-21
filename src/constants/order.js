@@ -14,6 +14,7 @@ export const ORDER_FORM = {
 		jacket_type_status: false,
 		min_days: 14,
 		sleeve_option: true,
+		isOtherOption: true,
 	},
 	RAGLAN: {
 		embroidery_point_status: false,
@@ -29,6 +30,7 @@ export const ORDER_FORM = {
 		jacket_type_status: false,
 		min_days: 14,
 		sleeve_option: false,
+		isOtherOption: true,
 	},
 	POLO: {
 		embroidery_point_status: true,
@@ -44,6 +46,7 @@ export const ORDER_FORM = {
 		jacket_type_status: false,
 		min_days: 14,
 		sleeve_option: true,
+		isOtherOption: true,
 	},
 	SHIRT: {
 		embroidery_point_status: true,
@@ -59,6 +62,7 @@ export const ORDER_FORM = {
 		jacket_type_status: false,
 		min_days: 20,
 		sleeve_option: true,
+		isOtherOption: true,
 	},
 	SWEATER: {
 		embroidery_point_status: true,
@@ -74,6 +78,7 @@ export const ORDER_FORM = {
 		jacket_type_status: false,
 		min_days: 14,
 		sleeve_option: false,
+		isOtherOption: true,
 	},
 	JACKET: {
 		embroidery_point_status: true,
@@ -89,6 +94,7 @@ export const ORDER_FORM = {
 		jacket_type_status: true,
 		min_days: 20,
 		sleeve_option: false,
+		isOtherOption: true,
 	},
 	FORMAL_SUIT: {
 		embroidery_point_status: true,
@@ -104,6 +110,7 @@ export const ORDER_FORM = {
 		jacket_type_status: false,
 		min_days: 20,
 		sleeve_option: false,
+		isOtherOption: true,
 	},
 	LAB_SUIT: {
 		embroidery_point_status: true,
@@ -119,6 +126,7 @@ export const ORDER_FORM = {
 		jacket_type_status: false,
 		min_days: 20,
 		sleeve_option: true,
+		isOtherOption: true,
 	},
 	WEARPACK: {
 		embroidery_point_status: true,
@@ -134,6 +142,7 @@ export const ORDER_FORM = {
 		jacket_type_status: false,
 		min_days: 20,
 		sleeve_option: true,
+		isOtherOption: true,
 	},
 	VEST: {
 		embroidery_point_status: true,
@@ -149,6 +158,7 @@ export const ORDER_FORM = {
 		jacket_type_status: false,
 		min_days: 20,
 		sleeve_option: false,
+		isOtherOption: true,
 	},
 	TOTEBAG: {
 		embroidery_point_status: true,
@@ -164,6 +174,7 @@ export const ORDER_FORM = {
 		jacket_type_status: false,
 		min_days: 10,
 		sleeve_option: false,
+		isOtherOption: false,
 	},
 	DRESS: {
 		embroidery_point_status: true,
@@ -179,6 +190,7 @@ export const ORDER_FORM = {
 		jacket_type_status: false,
 		min_days: 10,
 		sleeve_option: false,
+		isOtherOption: true,
 	},
 	OTHER: {
 		embroidery_point_status: true,
@@ -194,6 +206,7 @@ export const ORDER_FORM = {
 		jacket_type_status: false,
 		min_days: 14,
 		sleeve_option: true,
+		isOtherOption: true,
 	},
 }
 
@@ -211,6 +224,7 @@ export const initialOrderDetailState = {
 	jacket_type_status: false,
 	min_days: 0,
 	sleeve_option: true,
+	isOtherOption: true,
 }
 
 // Order Status
