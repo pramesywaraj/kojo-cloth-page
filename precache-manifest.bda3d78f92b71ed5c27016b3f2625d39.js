@@ -1,31 +1,31 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c9988f053fdcb1c6929af62af1440843",
+    "revision": "d88f05082a9271f1a6d32f2e54506e11",
     "url": "/kojo-cloth-page/index.html"
   },
   {
-    "revision": "c161e048589bfdb42cac",
+    "revision": "edd9f84ed5bdb031ed0a",
     "url": "/kojo-cloth-page/static/css/2.a8f673c4.chunk.css"
   },
   {
-    "revision": "67ab4866f5aa4c93b2db",
+    "revision": "afacf9311273ac1e57a4",
     "url": "/kojo-cloth-page/static/css/main.9e8fa7f1.chunk.css"
   },
   {
-    "revision": "c161e048589bfdb42cac",
-    "url": "/kojo-cloth-page/static/js/2.1ae9eb50.chunk.js"
+    "revision": "edd9f84ed5bdb031ed0a",
+    "url": "/kojo-cloth-page/static/js/2.32db8c8a.chunk.js"
   },
   {
     "revision": "6993fa7b13fb81f4bc70d0dc713d6897",
-    "url": "/kojo-cloth-page/static/js/2.1ae9eb50.chunk.js.LICENSE.txt"
+    "url": "/kojo-cloth-page/static/js/2.32db8c8a.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "67ab4866f5aa4c93b2db",
-    "url": "/kojo-cloth-page/static/js/main.f01b4f07.chunk.js"
+    "revision": "afacf9311273ac1e57a4",
+    "url": "/kojo-cloth-page/static/js/main.35de269f.chunk.js"
   },
   {
     "revision": "4e0e34f265fae8f33b01b27ae29d9d6f",
-    "url": "/kojo-cloth-page/static/js/main.f01b4f07.chunk.js.LICENSE.txt"
+    "url": "/kojo-cloth-page/static/js/main.35de269f.chunk.js.LICENSE.txt"
   },
   {
     "revision": "9ac43ca06b90ce9eb12d",

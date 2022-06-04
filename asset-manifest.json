@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/kojo-cloth-page/static/css/main.9e8fa7f1.chunk.css",
-    "main.js": "/kojo-cloth-page/static/js/main.f01b4f07.chunk.js",
-    "main.js.map": "/kojo-cloth-page/static/js/main.f01b4f07.chunk.js.map",
+    "main.js": "/kojo-cloth-page/static/js/main.35de269f.chunk.js",
+    "main.js.map": "/kojo-cloth-page/static/js/main.35de269f.chunk.js.map",
     "runtime-main.js": "/kojo-cloth-page/static/js/runtime-main.ff3e084d.js",
     "runtime-main.js.map": "/kojo-cloth-page/static/js/runtime-main.ff3e084d.js.map",
     "static/css/2.a8f673c4.chunk.css": "/kojo-cloth-page/static/css/2.a8f673c4.chunk.css",
-    "static/js/2.1ae9eb50.chunk.js": "/kojo-cloth-page/static/js/2.1ae9eb50.chunk.js",
-    "static/js/2.1ae9eb50.chunk.js.map": "/kojo-cloth-page/static/js/2.1ae9eb50.chunk.js.map",
+    "static/js/2.32db8c8a.chunk.js": "/kojo-cloth-page/static/js/2.32db8c8a.chunk.js",
+    "static/js/2.32db8c8a.chunk.js.map": "/kojo-cloth-page/static/js/2.32db8c8a.chunk.js.map",
     "index.html": "/kojo-cloth-page/index.html",
-    "precache-manifest.edf026adf5e660b7fa52fa0d61e7a25e.js": "/kojo-cloth-page/precache-manifest.edf026adf5e660b7fa52fa0d61e7a25e.js",
+    "precache-manifest.bda3d78f92b71ed5c27016b3f2625d39.js": "/kojo-cloth-page/precache-manifest.bda3d78f92b71ed5c27016b3f2625d39.js",
     "service-worker.js": "/kojo-cloth-page/service-worker.js",
     "static/css/2.a8f673c4.chunk.css.map": "/kojo-cloth-page/static/css/2.a8f673c4.chunk.css.map",
     "static/css/main.9e8fa7f1.chunk.css.map": "/kojo-cloth-page/static/css/main.9e8fa7f1.chunk.css.map",
-    "static/js/2.1ae9eb50.chunk.js.LICENSE.txt": "/kojo-cloth-page/static/js/2.1ae9eb50.chunk.js.LICENSE.txt",
-    "static/js/main.f01b4f07.chunk.js.LICENSE.txt": "/kojo-cloth-page/static/js/main.f01b4f07.chunk.js.LICENSE.txt",
+    "static/js/2.32db8c8a.chunk.js.LICENSE.txt": "/kojo-cloth-page/static/js/2.32db8c8a.chunk.js.LICENSE.txt",
+    "static/js/main.35de269f.chunk.js.LICENSE.txt": "/kojo-cloth-page/static/js/main.35de269f.chunk.js.LICENSE.txt",
     "static/media/1.jpeg": "/kojo-cloth-page/static/media/1.3beb8769.jpeg",
     "static/media/10.jpeg": "/kojo-cloth-page/static/media/10.eb346806.jpeg",
     "static/media/11.jpeg": "/kojo-cloth-page/static/media/11.efef1be8.jpeg",
@@ -97,8 +97,8 @@
   "entrypoints": [
     "static/js/runtime-main.ff3e084d.js",
     "static/css/2.a8f673c4.chunk.css",
-    "static/js/2.1ae9eb50.chunk.js",
+    "static/js/2.32db8c8a.chunk.js",
     "static/css/main.9e8fa7f1.chunk.css",
-    "static/js/main.f01b4f07.chunk.js"
+    "static/js/main.35de269f.chunk.js"
   ]
 }
