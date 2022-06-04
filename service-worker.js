@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/kojo-cloth-page/precache-manifest.99590847e1a7de39c4d71612d34a10d6.js"
+  "/kojo-cloth-page/precache-manifest.b7c461ecea382b526a3fb879d2e2a828.js"
 );
 
 self.addEventListener('message', (event) => {
